@@ -1,6 +1,6 @@
 # Como trabalhamos: GitHub e Drive sempre em dia
 
-> **Fonte:** este arquivo. Há uma cópia no Drive em *07 - Planejamento › Cap Soleil — Como trabalhamos (GitHub e Drive)*.
+> **Fonte:** este arquivo. Há uma cópia no Drive: [Cap Soleil — Como trabalhamos (GitHub e Drive)](https://docs.google.com/document/d/1gzJ54-_tb3c9mlNeBZretGxF4SdpEdZcEEZPS8bJKJM/edit) (07 - Planejamento).
 > **Atualizado em:** 2026-10-03
 
 ## A lei do projeto
@@ -21,7 +21,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 | Assunto | Fonte (vale esta) | Espelho |
 |---|---|---|
 | História, posicionamento e tom de voz | Drive: *Cap Soleil — História e Posicionamento* | [docs/marca.md](marca.md) |
-| Identidade visual: emblema, logos, paleta da marca, pôsteres, coleções, experiência | Drive: *01 - Identidade da marca*, *02 - Coleção e produtos* e o Google Doc *Cap Soleil — Identidade visual* | [docs/identidade-visual.md](identidade-visual.md) |
+| Identidade visual: emblema, logos, paleta da marca, pôsteres, coleções, experiência | Drive: *01 - Identidade da marca*, *02 - Coleção e produtos* e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) | [docs/identidade-visual.md](identidade-visual.md) |
 | Cores, fontes e gráficos **do site** | GitHub: `assets/css/styles.css`, `index.html` e [identidade-visual.md › No site](identidade-visual.md#no-site) | — |
 | Código, configuração, banco e segurança do site | GitHub (código, [README](../README.md) e [site-e-acessos.md](site-e-acessos.md)) | Drive: *Site: projetos e acessos* (só status e links) |
 | Status das peças (GitHub, Vercel, Supabase, domínio) | GitHub: [site-e-acessos.md](site-e-acessos.md#status) | Drive: *Site: projetos e acessos* |

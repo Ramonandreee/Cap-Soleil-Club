@@ -1,6 +1,6 @@
 # Identidade visual Cap Soleil
 
-> **Fonte:** Drive › [01 - Identidade da marca](https://drive.google.com/drive/folders/1jiWUrwR6iFXIYnnAePwqRuGFMRYCwFCd) e [02 - Coleção e produtos](https://drive.google.com/drive/folders/1fBppQcaIvW5glW1dHiPuoTvNlQejR-3r), com a cópia em Google Doc *Cap Soleil — Identidade visual* (01 - Identidade da marca).
+> **Fonte:** Drive › [01 - Identidade da marca](https://drive.google.com/drive/folders/1jiWUrwR6iFXIYnnAePwqRuGFMRYCwFCd) e [02 - Coleção e produtos](https://drive.google.com/drive/folders/1fBppQcaIvW5glW1dHiPuoTvNlQejR-3r), e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) (01 - Identidade da marca), que tem este mesmo conteúdo.
 > A seção **[No site](#no-site)** tem como fonte este repositório (`assets/css/styles.css`), e uma verificação automática confere que ela está em dia.
 > **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
