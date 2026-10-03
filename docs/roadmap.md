@@ -7,6 +7,14 @@
 > Os ☐/✅ do dia a dia e o **Registro** das sessões ficam no Drive (a fonte). Aqui ficam o mapa e **o que cada etapa muda no código**.
 > **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
+## Próxima fase: o site v2 (produto real)
+
+A proposta completa do site v2 está no Drive: [Cap Soleil — Proposta do site de lançamento (v2)](https://docs.google.com/document/d/1FAFPsSY93FUrCLoEGsGT61_TLRYatLDxYpNLAzzpWU4/edit) (pasta *Site — capsoleilclub.com*).
+Ela cobre posicionamento, benchmark, conceito, arquitetura da experiência, identidade digital, captação, banco de dados, arquitetura técnica e as decisões em aberto.
+
+> Ela fica **só no Drive** de propósito. Com o repositório público, plano de lançamento e mecânicas não devem ficar abertos no GitHub.
+> Aqui entra só o que vira código, conforme as decisões forem tomadas.
+
 ## A rotina
 
 Sessões curtas à noite, de segunda a quinta, em horário de Brasília: **3 sessões fixas + 1 flexível** por semana.
