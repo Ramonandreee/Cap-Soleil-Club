@@ -84,6 +84,8 @@ function rpcArgs(lead: Lead): Record<string, unknown> {
   return {
     p_email: lead.email,
     p_first_name: lead.firstName,
+    p_last_name: lead.lastName,
+    p_phone_e164: lead.phone,
     p_country_code: lead.country,
     p_locale: lead.locale,
     p_consent: true,

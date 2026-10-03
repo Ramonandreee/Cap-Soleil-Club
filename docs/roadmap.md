@@ -19,10 +19,10 @@ Ela cobre posicionamento, benchmark, conceito, arquitetura da experiência, iden
 
 | Etapa da proposta | Estado |
 |---|---|
-| Fundação: Astro, tokens, componentes, relógio de sol, testes e CI | ✅ Pronto na branch (entra no ar com o merge) |
+| Fundação: Astro, tokens, componentes, relógio de sol, testes e CI | ✅ No ar desde 03/10/2026 |
 | Dados: banco v2 (esquema `club`) e função `apply` | ✅ No Supabase, testados. ☐ Turnstile (opcional) |
 | Experiência: os cinco atos, o cartão de membro e o selo | ✅ Pronto. ☐ Revisão dos textos pelos sócios (Regras do Clube e promessa da lista) |
-| Hospedagem: Cloudflare Pages e repositório privado | ☐ Criar o projeto ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) |
+| Hospedagem: Cloudflare Pages e repositório privado | ✅ Cloudflare no ar (cap-soleil-club.pages.dev). ☐ Repositório privado e Vercel desligada |
 | E-mail: dupla confirmação, número de membro, convites, cartas | ☐ Depois (decisão: sem e-mail por enquanto; o banco já está pronto) |
 | Lançamento: analytics, domínio, páginas legais preenchidas, testes em aparelhos | ☐ Ver as sessões D4–D12 |
 
@@ -53,7 +53,7 @@ Estado conferido em **03/10/2026**. As três primeiras sessões já estão adian
 |---|---|---|---|---|
 | D1 | Seg 05/10 | GitHub | ✅ Repositório privado no ar e Felipe convidado | — |
 | D2 | Ter 06/10 | Vercel | ✅ No ar em capsoleilclub.vercel.app | Hospedagem decidida depois: **Cloudflare Pages** ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) |
-| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto e banco v2 (`club`) prontos, função `apply` publicada · ☐ falta o cadastro de teste depois do deploy | Nenhuma. As migrations já foram aplicadas: **não rode de novo** |
+| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto e banco v2 (`club`) prontos, função `apply` publicada · ✅ Cadastro de teste ponta a ponta em 03/10 (site no ar → função `apply` → `club.members`, `club.consents` e `club.events`) | Nenhuma. As migrations já foram aplicadas: **não rode de novo** |
 | D4 | Qui 08/10 | Domínio (com o Felipe) | ☐ | Nada no código: o domínio entra em *Cloudflare Pages › Custom domains*, e `SITE_URL` passa a ser `https://capsoleilclub.com`. A função `apply` já aceita o domínio |
 | D5 | Seg 12/10 | Privacidade e contato | ☐ | Colchetes de `src/pages/privacy.astro` e `legal.astro`; `contactEmail` em `src/config.ts` (ex.: hello@capsoleilclub.com) |
 | D6 | Ter 13/10 | Textos | ☐ | `src/content/site.ts`: revisar as **Regras do Clube**, a **promessa da lista** (48 h, 1 carta por mês) e as legendas da Boutique (trio). Checklist de [marca.md](marca.md#checklist-para-qualquer-texto-novo) |
@@ -83,7 +83,8 @@ Os três números da semana: **visitas, inscrições e taxa** (inscrições ÷ v
 ### Antes de D10 (e-mail)
 
 - **Decisão de 2026-10-03: sem e-mail por enquanto.** Quando houver: o provedor entra na Privacy, e a dupla confirmação usa os campos que o banco já tem (`status`, `confirmed_at`, `member_number`, `invite_code`, `club.consents` com o método `double_opt_in`).
-- O consentimento de hoje é para **Les Lettres du Club**: a abertura da Pro Shop e notícias raras, no máximo uma carta por mês (versão `2026-10-03` em `supabase/functions/_shared/lead.ts`). Se os envios forem além disso, mude o texto **e** crie uma versão nova do consentimento.
+- O consentimento de hoje é para **Les Lettres du Club por e-mail e WhatsApp**: a abertura da Pro Shop e notícias raras, no máximo uma por mês (versão `2026-10-03.2` em `supabase/functions/_shared/lead.ts`; a `2026-10-03` era só e-mail). Se os envios forem além disso, mude o texto **e** crie uma versão nova do consentimento.
+- **WhatsApp:** antes da primeira mensagem, escolher como enviar (WhatsApp Business ou a API da Meta) e nomear o provedor na Privacy, como o de e-mail.
 - Para levar a lista: *Supabase › Table Editor › club › members › Export* (CSV), só quem tem `marketing_consent = true`.
 
 ## Cronograma da loja (resumo)

@@ -4,9 +4,12 @@
 
 import {
   CONSENT_VERSION,
+  DIAL_CODES,
   checkCountry,
   checkEmail,
   checkFirstName,
+  checkLastName,
+  checkPhone,
   suggestEmail,
   type ApplyPayload,
   type DeviceClass,
@@ -65,8 +68,10 @@ function deviceClass(): DeviceClass {
 if (form && status && card) {
   const fields = {
     firstName: form.elements.namedItem("firstName") as HTMLInputElement,
+    lastName: form.elements.namedItem("lastName") as HTMLInputElement,
     email: form.elements.namedItem("email") as HTMLInputElement,
     country: form.elements.namedItem("country") as HTMLSelectElement,
+    phone: form.elements.namedItem("phone") as HTMLInputElement,
     consent: form.elements.namedItem("consent") as HTMLInputElement,
   } satisfies Record<Field, HTMLElement>;
   const honeypot = form.elements.namedItem("website") as HTMLInputElement;
@@ -76,6 +81,7 @@ if (form && status && card) {
   const suggestButton = form.querySelector<HTMLButtonElement>("[data-suggestion]")!;
   const cardName = card.querySelector<HTMLElement>("[data-card-name]")!;
   const cardPlace = card.querySelector<HTMLElement>("[data-card-place]")!;
+  const dial = form.querySelector<HTMLElement>("[data-dial]")!;
   const turnstileBox = form.querySelector<HTMLElement>("[data-turnstile]");
 
   const visit = landing();
@@ -85,8 +91,10 @@ if (form && status && card) {
 
   const checks: Record<Field, () => FieldError | null> = {
     firstName: () => checkFirstName(fields.firstName.value),
+    lastName: () => checkLastName(fields.lastName.value),
     email: () => checkEmail(fields.email.value),
     country: () => checkCountry(fields.country.value),
+    phone: () => checkPhone(fields.phone.value, fields.country.value),
     consent: () => (fields.consent.checked ? null : "required"),
   };
 
@@ -119,11 +127,19 @@ if (form && status && card) {
   // ---------- O cartão acompanha o que a pessoa digita ----------
 
   function paintCard() {
-    const name = fields.firstName.value.trim().replace(/\s+/g, " ");
+    const name = `${fields.firstName.value} ${fields.lastName.value}`.trim().replace(/\s+/g, " ");
     cardName.textContent = name || LIST.card.namePlaceholder;
     cardName.classList.toggle("is-empty", !name);
     const option = fields.country.selectedOptions[0];
     cardPlace.textContent = fields.country.value && option ? option.text : cardPlace.dataset.default ?? "";
+  }
+
+  /** Mostra "+33" antes do número, enquanto ele não trouxer o próprio código. */
+  function paintDial() {
+    const code = DIAL_CODES[fields.country.value as keyof typeof DIAL_CODES];
+    const own = /^\s*(\+|00)/.test(fields.phone.value);
+    dial.textContent = code && !own ? `+${code}` : "";
+    dial.hidden = !dial.textContent;
   }
 
   function updateSuggestion() {
@@ -132,14 +148,22 @@ if (form && status && card) {
     suggestButton.textContent = proposal ?? "";
   }
 
-  fields.firstName.addEventListener("input", () => {
-    paintCard();
-    if (touched.has("firstName")) showError("firstName", checks.firstName());
-  });
+  for (const field of ["firstName", "lastName"] as const) {
+    fields[field].addEventListener("input", () => {
+      paintCard();
+      if (touched.has(field)) showError(field, checks[field]());
+    });
+  }
   fields.country.addEventListener("change", () => {
     paintCard();
+    paintDial();
     touched.add("country");
     showError("country", checks.country());
+    if (touched.has("phone")) showError("phone", checks.phone());
+  });
+  fields.phone.addEventListener("input", () => {
+    paintDial();
+    if (touched.has("phone")) showError("phone", checks.phone());
   });
   fields.email.addEventListener("input", () => {
     if (touched.has("email")) showError("email", checks.email());
@@ -150,7 +174,7 @@ if (form && status && card) {
     touched.add("consent");
     showError("consent", checks.consent());
   });
-  for (const field of ["firstName", "email"] as const) {
+  for (const field of ["firstName", "lastName", "email", "phone"] as const) {
     fields[field].addEventListener("blur", () => {
       if (fields[field].value.trim()) touched.add(field);
       if (touched.has(field)) showError(field, checks[field]());
@@ -252,8 +276,10 @@ if (form && status && card) {
     try {
       const payload: ApplyPayload = {
         firstName: fields.firstName.value,
+        lastName: fields.lastName.value,
         email: fields.email.value,
         country: fields.country.value || undefined,
+        phone: fields.phone.value,
         consent: true,
         consentVersion: CONSENT_VERSION,
         locale: navigator.language,
@@ -324,6 +350,7 @@ if (form && status && card) {
   });
 
   paintCard();
+  paintDial();
   submit.disabled = false;
   form.querySelector<HTMLElement>("[data-nojs]")?.setAttribute("hidden", "");
 }

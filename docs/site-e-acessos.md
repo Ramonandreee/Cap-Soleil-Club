@@ -13,7 +13,7 @@ O endereço final previsto é **capsoleilclub.com**. A proposta completa (posici
 Instagram / Threads (@capsoleilclub)
         │  link da bio: …/?utm_source=instagram
         ▼
-Site (Astro, estático) ── Cloudflare Pages (decidido) · hoje: capsoleilclub.vercel.app
+Site (Astro, estático) ── Cloudflare Pages: cap-soleil-club.pages.dev (a Vercel ainda publica até ser desligada)
         │  publicado a cada commit na main · cada PR ganha uma prévia
         │◄─────────────── GitHub: Ramonandreee/Cap-Soleil-Club
         ▼
@@ -38,12 +38,12 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 
 | Peça | Para quê | Onde | Status | Responsável |
 |---|---|---|---|---|
-| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` | ✅ No ar, **público** desde 2026-10-03 (para a Vercel Hobby publicar os commits do Felipe). Volta a ser privado depois da Cloudflare | Ramon |
-| Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ Pronto na branch, com testes. ☐ Entra no ar com o merge do PR | Ramon |
-| Cloudflare Pages | Hospedagem decidida (uso comercial, deploy dos dois sócios com repositório privado) | `cap-soleil-club.pages.dev` | ☐ Criar o projeto ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
-| Vercel | Hospedagem atual, até a troca | https://capsoleilclub.vercel.app | ✅ No ar (v1). O `vercel.json` já sabe construir a v2. Sai depois da Cloudflare | Ramon |
-| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migration `20261003054108_club_v2` | ✅ Aplicado e testado em 2026-10-03 (sem cadastros) | Ramon |
-| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 1, `verify_jwt = false`) e respondendo | Ramon |
+| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` | ✅ No ar, **público** desde 2026-10-03 (para a Vercel Hobby publicar os commits do Felipe). ☐ Voltar a ser privado: a Cloudflare já publica | Ramon |
+| Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ No ar desde 03/10/2026 (PR #3) | Ramon |
+| Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
+| Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
+| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2` e `20261003210000_club_apply_name_phone` | ✅ Aplicado e testado em 2026-10-03; cadastro de teste ponta a ponta feito e apagado | Ramon |
+| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (`verify_jwt = false`) e respondendo. A versão com sobrenome e WhatsApp é publicada logo depois do merge do PR que muda o formulário | Ramon |
 | Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Ainda ligada ao site v1, vazia. Aposentar depois da virada | Ramon |
 | Turnstile | Anti-robô da Cloudflare (opcional) | Cloudflare › Turnstile | ☐ Não ligado ([README › passo 7](../README.md#7-ligar-o-turnstile-anti-robô-da-cloudflare-opcional)) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
@@ -51,11 +51,14 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 
 ## Banco de dados
 
-Tudo da v2 fica no esquema **`club`** (migration [`20261003054108_club_v2.sql`](../supabase/migrations/20261003054108_club_v2.sql), aplicada em 2026-10-03). Ela é **aditiva**: não mexe na tabela da v1.
+Tudo da v2 fica no esquema **`club`**, nas migrations aplicadas em 2026-10-03:
+
+1. [`20261003054108_club_v2.sql`](../supabase/migrations/20261003054108_club_v2.sql): cria o esquema. É **aditiva**: não mexe na tabela da v1.
+2. [`20261003210000_club_apply_name_phone.sql`](../supabase/migrations/20261003210000_club_apply_name_phone.sql): a candidatura passa a gravar **sobrenome** (`last_name`) e **WhatsApp** (`phone_e164`). Os dois parâmetros novos têm valor padrão, então a função antiga continuou funcionando até a nova ser publicada.
 
 | Tabela | Para quê | Principais campos |
 |---|---|---|
-| `club.members` | Um registro por pessoa (o lead) | `id`, `email` (único, sem diferenciar maiúsculas), `first_name`, `country_code` (ISO), `locale`, `status` (*pending*, *confirmed*, *unsubscribed*, *bounced*, *shop_invited*, *customer*), `member_number` (vazio até haver confirmação por e-mail), `invite_code` (8 letras), `invited_by`, `invitations_left` (3), origem (`utm_*`, `referrer_host`, `landing_path`), `device_class`, consentimento atual (`marketing_consent`, `consent_version`, `consent_at`), datas, `crm_contact_id` e `crm_synced_at` (integração futura), `metadata` (ex.: a hora do dia no site). Também `last_name` e `phone_e164`, desligados no lançamento |
+| `club.members` | Um registro por pessoa (o lead) | `id`, `email` (único, sem diferenciar maiúsculas), `first_name`, `last_name`, `phone_e164` (o WhatsApp no formato internacional, ex.: `+5511912345678`), `country_code` (ISO), `locale`, `status` (*pending*, *confirmed*, *unsubscribed*, *bounced*, *shop_invited*, *customer*), `member_number` (vazio até haver confirmação por e-mail), `invite_code` (8 letras), `invited_by`, `invitations_left` (3), origem (`utm_*`, `referrer_host`, `landing_path`), `device_class`, consentimento atual (`marketing_consent`, `consent_version`, `consent_at`), datas, `crm_contact_id` e `crm_synced_at` (integração futura), `metadata` (ex.: a hora do dia no site). Nome, sobrenome, e-mail e WhatsApp são obrigatórios no formulário desde 2026-10-03; quem entrou antes pode estar sem sobrenome e WhatsApp |
 | `club.consents` | Prova de consentimento (GDPR art. 7) | membro, finalidade (`club_letters`), concedido ou não, versão do texto aceito, método (`web_form`, `double_opt_in`…), data |
 | `club.events` | Histórico para campanhas e auditoria | membro, tipo (`applied`, `applied_again`, `invite_used`…), dados, data |
 | `club.rate_limits` | Freio contra abuso | chave com HMAC (nunca IP ou e-mail em claro), janela, contagem. Limpa sozinha |
@@ -65,6 +68,7 @@ Tudo da v2 fica no esquema **`club`** (migration [`20261003054108_club_v2.sql`](
 - E-mail novo: cria o membro, grava o consentimento e o evento `applied` (e `invite_used` para quem convidou, se houver convite).
 - E-mail repetido: **não sobrescreve nada** (um terceiro poderia ter digitado o e-mail de outra pessoa), só registra `applied_again`. Quem tinha saído da lista e voltou a consentir é reativado.
 - Sem consentimento ou sem versão do texto, a função recusa.
+- O WhatsApp chega já no formato internacional: quem digita o número local tem o código do país escolhido somado na hora (o 0 de tronco sai, menos na Itália, em San Marino e no Vaticano). Sem país, o número precisa começar com `+`. As regras estão em `normalisePhone`, em `supabase/functions/_shared/lead.ts`.
 
 **Segurança no banco:** RLS ligado em todas as tabelas do `club`, sem políticas (negação total para `anon` e `authenticated`); nenhum privilégio para eles no esquema; funções com `search_path` vazio. Os *advisors* do Supabase só apontam avisos informativos esperados (RLS sem políticas, de propósito, e índices ainda sem uso).
 
@@ -109,7 +113,7 @@ O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrat
 | Base técnica | **Astro** (site estático com build) |
 | E-mail e dupla confirmação | **Sem e-mail por enquanto.** O banco já tem os campos de confirmação, número de membro e convites, para quando houver |
 | Hospedagem e repositório | **Cloudflare Pages + repositório privado** |
-| Imagens | **Ilustração + texturas** agora; ensaio fotográfico para a Pro Shop depois |
+| Imagens | ~~Ilustração + texturas~~ → **fotografia editorial** (decisão revista em 2026-10-03): gerada pelos sócios com os prompts de [direcao-fotografica.md](direcao-fotografica.md), revisada e otimizada pelo Claude. As ilustrações ficam até as fotos chegarem |
 | Telefone | Não coletar no lançamento (a coluna fica pronta) |
 | Número de membro | Não aparece na tela (só por e-mail e no cartão privado, quando houver e-mail) |
 | Idioma | Inglês com toques de francês |

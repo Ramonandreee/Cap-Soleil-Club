@@ -1,0 +1,169 @@
+---
+// Uma foto do roteiro, pronta para qualquer tela:
+//   • AVIF, WebP e JPEG em várias larguras (srcset + sizes);
+//   • direção de arte: a versão vertical (ex.: H1m) no celular;
+//   • placeholder: a própria foto, minúscula e desfocada, embutida como data:
+//     (permitido pela CSP), que dá lugar à foto com uma fusão;
+//   • lazy loading, exceto quando `priority` (a foto do topo).
+// Sem a foto em src/assets/photos/, mostra o que vier dentro do componente
+// (a ilustração daquele lugar).
+import { getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import sharp from "sharp";
+import { join } from "node:path";
+import { PHOTOS, PHOTO_QUALITY, PHOTO_WIDTHS, type PhotoId } from "../lib/photos.ts";
+
+interface Props {
+  id: PhotoId;
+  /** Atributo sizes: quanto da largura da tela a foto ocupa. */
+  sizes?: string;
+  /** Foto do topo: carrega primeiro, sem lazy. */
+  priority?: boolean;
+  /** Decorativa: alt vazio (o texto ao lado já diz tudo). */
+  decorative?: boolean;
+  class?: string;
+}
+
+const { id, sizes = "100vw", priority = false, decorative = false, class: className } = Astro.props;
+
+const files = import.meta.glob<{ default: ImageMetadata }>("../assets/photos/*.{jpg,jpeg,png,webp}", { eager: true });
+// Ler width/height direto da imagem faz o Astro achar que a original é usada e
+// publicá-la inteira (dezenas de MB em 4K). `clone` lê as medidas sem isso.
+const find = (code: string) => {
+  const entry = Object.entries(files).find(([path]) => path.split("/").pop()!.replace(/\.[a-z]+$/, "") === code);
+  if (!entry) return null;
+  const image = entry[1].default;
+  const { width, height } = (image as ImageMetadata & { clone: ImageMetadata }).clone;
+  return { path: entry[0], image, width, height };
+};
+
+const slot = PHOTOS[id];
+const main = find(id);
+const mobile = slot.mobile ? find(slot.mobile) : null;
+
+async function variants({ image, width: original }: { image: ImageMetadata; width: number }) {
+  const widths: number[] = PHOTO_WIDTHS.filter((w) => w < original);
+  if (original <= PHOTO_WIDTHS.at(-1)!) widths.push(original);
+  const set = async (format: "avif" | "webp" | "jpeg") =>
+    (
+      await Promise.all(
+        widths.map(async (width) => {
+          const result = await getImage({ src: image, width, format, quality: PHOTO_QUALITY[format] });
+          return `${result.src} ${width}w`;
+        }),
+      )
+    ).join(", ");
+  const fallback = await getImage({ src: image, width: Math.min(1440, original), format: "jpeg", quality: PHOTO_QUALITY.jpeg });
+  return { avif: await set("avif"), webp: await set("webp"), jpeg: await set("jpeg"), src: fallback.src };
+}
+
+/** Placeholder de ~24 px, desfocado no CSS. O build roda na raiz do projeto. */
+async function placeholder(path: string) {
+  const file = join(process.cwd(), "src/assets/photos", path.split("/").pop()!);
+  const buffer = await sharp(file).resize(24).webp({ quality: 40 }).toBuffer();
+  return `data:image/webp;base64,${buffer.toString("base64")}`;
+}
+
+const desktop = main ? await variants(main) : null;
+const phone = mobile ? await variants(mobile) : null;
+const lqip = main ? await placeholder(main.path) : null;
+const phoneLqip = mobile ? await placeholder(mobile.path) : null;
+const mobileQuery = "(max-width: 47.99rem) and (orientation: portrait)";
+---
+
+{
+  main && desktop ? (
+    <div class:list={["photo", `photo--focus-${slot.focus}`, className]} data-photo={id}>
+      <picture class="photo__placeholder" aria-hidden="true">
+        {phoneLqip && <source media={mobileQuery} srcset={phoneLqip} />}
+        <img src={lqip} alt="" width={main.width} height={main.height} />
+      </picture>
+      <picture class="photo__picture">
+        {phone && <source media={mobileQuery} type="image/avif" srcset={phone.avif} sizes={sizes} />}
+        {phone && <source media={mobileQuery} type="image/webp" srcset={phone.webp} sizes={sizes} />}
+        {phone && <source media={mobileQuery} type="image/jpeg" srcset={phone.jpeg} sizes={sizes} />}
+        <source type="image/avif" srcset={desktop.avif} sizes={sizes} />
+        <source type="image/webp" srcset={desktop.webp} sizes={sizes} />
+        <img
+          class="photo__img"
+          src={desktop.src}
+          srcset={desktop.jpeg}
+          sizes={sizes}
+          alt={decorative ? "" : slot.alt}
+          width={main.width}
+          height={main.height}
+          loading={priority ? "eager" : "lazy"}
+          fetchpriority={priority ? "high" : "auto"}
+          decoding={priority ? "sync" : "async"}
+        />
+      </picture>
+    </div>
+  ) : (
+    <slot />
+  )
+}
+
+<script>
+  import "../scripts/photos.ts";
+</script>
+
+<style>
+  .photo {
+    position: relative;
+    overflow: hidden;
+    background: var(--cream-2);
+  }
+
+  /* O placeholder fica no fluxo e dá a proporção à caixa (pelas medidas da foto);
+     se quem usa o componente der altura ou aspect-ratio, ele preenche e recorta. */
+  .photo__placeholder img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo__placeholder img {
+    filter: blur(18px);
+    transform: scale(1.12); /* esconde a borda clara do desfoque */
+  }
+
+  .photo__img {
+    transition: opacity 0.9s var(--ease);
+  }
+
+  /* Só com JavaScript: a foto espera carregar e entra por cima do placeholder. */
+  :global(.photos-js) .photo__img:not(.is-loaded) {
+    opacity: 0;
+  }
+
+  .photo--focus-left :is(.photo__img, .photo__placeholder img) {
+    object-position: 30% 50%;
+  }
+
+  .photo--focus-right :is(.photo__img, .photo__placeholder img) {
+    object-position: 70% 50%;
+  }
+
+  .photo--focus-top :is(.photo__img, .photo__placeholder img) {
+    object-position: 50% 25%;
+  }
+
+  .photo--focus-bottom :is(.photo__img, .photo__placeholder img) {
+    object-position: 50% 75%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo__img {
+      transition: none;
+    }
+  }
+</style>

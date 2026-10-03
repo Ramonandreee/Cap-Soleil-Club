@@ -3,8 +3,8 @@
 Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da Riviera Francesa, no luxo silencioso e vendida na Europa.
 Este site é a **portaria de um clube que ainda não abriu**: a pessoa chega na luz real daquela hora na Côte d’Azur, lê as Regras do Clube, vê fragmentos da Pro Shop e põe o nome na lista (**La Liste**).
 
-- **No ar hoje:** https://capsoleilclub.vercel.app (endereço final previsto: capsoleilclub.com).
-- **Hospedagem decidida:** **Cloudflare Pages** com o repositório privado. A troca está no passo 4; até lá, a Vercel continua publicando.
+- **No ar:** https://cap-soleil-club.pages.dev (Cloudflare Pages, desde 03/10/2026). Endereço final previsto: capsoleilclub.com.
+- **Hospedagem:** **Cloudflare Pages**. A Vercel (capsoleilclub.vercel.app) ainda publica a mesma versão até ser desligada (passo 4, item 7).
 - **Site:** [Astro](https://astro.build), que gera páginas estáticas. Tem build com npm e JavaScript pequeno, só para o céu, a rolagem e o formulário.
 - **Lista:** o formulário manda para a função **`apply`** (Supabase Edge Function), que valida e grava no esquema **`club`** do banco (projeto **Cap Soleil Club**, Paris / eu-west-3).
 - **Proposta completa (privada, no Drive):** [Cap Soleil — Proposta do site de lançamento (v2)](https://docs.google.com/document/d/1FAFPsSY93FUrCLoEGsGT61_TLRYatLDxYpNLAzzpWU4/edit).
@@ -19,6 +19,7 @@ Este site é a **portaria de um clube que ainda não abriu**: a pessoa chega na 
 | [docs/como-trabalhamos.md](docs/como-trabalhamos.md) | **A lei:** onde mora cada coisa, “se mudou isto, atualize aquilo”, trabalho simultâneo, organização do Drive, sincronização e a verificação automática |
 | [docs/marca.md](docs/marca.md) | História (PT e EN), posicionamento, tom de voz e o **checklist para qualquer texto do site** |
 | [docs/identidade-visual.md](docs/identidade-visual.md) | Emblema e regras de uso, logos alternativos, paletas (marca e site), tipografia, pôsteres, coleções, produtos-alvo, experiência da marca e o **relógio de sol** do site |
+| [docs/direcao-fotografica.md](docs/direcao-fotografica.md) | **Direção fotográfica** da marca (site, Instagram, campanhas): luz, cor, lentes, elenco, figurino, o roteiro de fotos do site e os **prompts de produção** |
 | [docs/site-e-acessos.md](docs/site-e-acessos.md) | Como as peças se ligam, status, banco de dados, segurança, chaves e senhas, custos e decisões pendentes |
 | [docs/roadmap.md](docs/roadmap.md) | Rotina das sessões do site (D1–D12), cronograma da loja (S1–S10) e o que cada etapa muda no código |
 | [CLAUDE.md](CLAUDE.md) | As mesmas regras, resumidas para as sessões do Claude |
@@ -86,9 +87,11 @@ Eles **nunca** chamam a função de verdade: o envio é interceptado.
 
 ## 4. Publicar na Cloudflare Pages (a hospedagem decidida)
 
+> ✅ **Feito em 03/10/2026:** o projeto `cap-soleil-club` está no ar. Faltam o item 6 (domínio) e o item 7 (repositório privado e Vercel desligada). Os passos ficam aqui para refazer ou conferir.
+
 Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos dois sócios, mesmo com o repositório **privado**, e cada branch ou PR ganha um link de prévia. O plano grátis permite uso comercial.
 
-1. Entre em **dash.cloudflare.com** (crie a conta da Cap Soleil, se ainda não houver) › **Workers & Pages › Create › Pages › Connect to Git**.
+1. Entre em **dash.cloudflare.com** › **Workers & Pages › Create application**. A Cloudflare abre no caminho de **Workers**: não use. Clique no link do rodapé **“Looking to deploy Pages? Get started”** e depois em **Import an existing Git repository › Get started**.
 2. Autorize o GitHub e escolha `Ramonandreee/Cap-Soleil-Club`. Dê ao projeto o nome **`cap-soleil-club`** (a função `apply` já aceita `cap-soleil-club.pages.dev` e as prévias `*.cap-soleil-club.pages.dev`).
 3. Em **Build settings**:
    - **Framework preset:** Astro
@@ -157,9 +160,9 @@ Números do dia por origem, país e aparelho: **SQL Editor** › `select * from 
 ## 6. Teste real depois de publicar
 
 1. Abra o site no celular com `?utm_source=teste`, por exemplo: `https://cap-soleil-club.pages.dev/?utm_source=teste`.
-2. Preencha nome, e-mail (`voce+teste@…`) e país, marque o consentimento e toque em **Put my name down**.
+2. Preencha nome, sobrenome, e-mail (`voce+teste@…`), país e WhatsApp, marque o consentimento e toque em **Put my name down**.
 3. Deve aparecer **“Your name is down.”** e o cartão ganha o selo dourado.
-4. No Supabase, em `club.members`, a linha deve estar lá com `utm_source = teste`, `status = pending`, `marketing_consent = true`, e em `club.consents` a prova do consentimento.
+4. No Supabase, em **Table Editor**, troque o esquema `public` por **`club`** (seletor no alto da lista de tabelas). Em `members`, a linha deve estar lá com `utm_source = teste`, `status = pending`, `marketing_consent = true`, `last_name` e `phone_e164` (ex.: `+5511912345678`), e em `consents` a prova do consentimento.
 5. Apague o teste: em `club.members`, marque a linha e **Delete** (o consentimento e os eventos saem junto).
 
 Se aparecer *“Something went wrong on our side”*, veja **Edge Functions › apply › Logs** no Supabase.
