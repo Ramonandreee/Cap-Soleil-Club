@@ -43,7 +43,7 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
 | Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
 | Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2` e `20261003210000_club_apply_name_phone` | ✅ Aplicado e testado em 2026-10-03; cadastro de teste ponta a ponta feito e apagado | Ramon |
-| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (`verify_jwt = false`) e respondendo. A versão com sobrenome e WhatsApp é publicada logo depois do merge do PR que muda o formulário | Ramon |
+| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 2, com sobrenome e WhatsApp, desde 2026-10-03; `verify_jwt = false`) e respondendo | Ramon |
 | Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Ainda ligada ao site v1, vazia. Aposentar depois da virada | Ramon |
 | Turnstile | Anti-robô da Cloudflare (opcional) | Cloudflare › Turnstile | ☐ Não ligado ([README › passo 7](../README.md#7-ligar-o-turnstile-anti-robô-da-cloudflare-opcional)) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
