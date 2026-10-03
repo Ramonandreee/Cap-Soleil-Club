@@ -7,3 +7,6 @@ playwright-report/
 .env.*
 !.env.example
 .DS_Store
+
+# Python (scripts/check_docs.py)
+__pycache__/
