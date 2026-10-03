@@ -36,8 +36,8 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 
 | Peça | Para quê | Onde | Status | Responsável |
 |---|---|---|---|---|
-| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` (privado) | ✅ No ar. O Felipe é colaborador com permissão de escrita | Ramon |
-| Vercel | Publica o site a cada commit | https://capsoleilclub.vercel.app | ✅ Publicado no plano Hobby (ver *Custos e limites*) | Ramon |
+| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` (**público** desde 2026-10-03) | ✅ No ar. O Felipe é colaborador com permissão de escrita | Ramon |
+| Vercel | Publica o site a cada commit (de qualquer um dos dois sócios) | https://capsoleilclub.vercel.app | ✅ Publicado no plano Hobby. Com o repositório público, os commits do Felipe também publicam (ver *Custos e limites*) | Ramon |
 | Supabase | Guarda a lista de espera | Projeto *Cap Soleil Club*, Paris (eu-west-3) | ✅ Tabela e função prontas e ligadas ao site. Ainda sem cadastros (falta o de teste) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
 | Instagram e Threads | Onde o link aparece | @capsoleilclub | ✅ Garantido | Ramon |
@@ -50,6 +50,8 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 
 ## Custos e limites
 
+- **Deploy automático para os dois sócios:** no plano Hobby, a Vercel só publica commits de outra pessoa quando o repositório é **público** (em repositório privado, só os commits do dono publicam). Por isso o repositório ficou público. Commit na `main` publica o site; branch ou PR ganha um link de prévia.
+- **Repositório público = documentação pública:** tudo em `docs/`, `CLAUDE.md` e o histórico de commits pode ser lido por qualquer pessoa no GitHub. Os documentos do Drive citados continuam fechados (só o dono acessa). O `.vercelignore` impede que `docs/`, `scripts/`, `supabase/`, `README.md` e `CLAUDE.md` sejam publicados no site.
 - **Vercel:** o plano grátis (Hobby) é só para uso pessoal e não comercial. Para a página da marca no ar com o link na bio, os termos pedem o plano **Pro**.
   O site é estático e pode ir para outra hospedagem sem mudar o código. Só os headers de segurança do `vercel.json` precisariam ser recriados no novo serviço.
 - **Supabase:** o plano grátis permite 2 projetos ativos por pessoa, somando todas as organizações em que ela é dona ou admin. Projetos grátis podem ser **pausados por inatividade**; se o formulário parar de funcionar, confira isso primeiro.
@@ -63,7 +65,6 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | Domínio | Confirmar se `capsoleilclub.com` está livre e registrar (Felipe) | `[URL DO SITE]` nas meta tags do `index.html` e do `privacy.html` |
 | Privacidade e contato | Preencher responsável, endereço, e-mail, provedores e data | `privacy.html` e `[EMAIL DE CONTATO]` no `index.html` |
 | Trio de produtos | Decidir no S1 do cronograma | `[TRIO DE PRODUTOS]` em *I · The hour* |
-| Paleta do site × emblema | O site usa verde-clube e saibro; o emblema, azul-marinho `#1F2A44`, dourado `#B89B5E` e creme `#F4EFE6` (ver [identidade-visual.md](identidade-visual.md#no-site)) | `assets/css/styles.css`, `og-image.jpg`, `favicon.svg` e a tabela *No site* |
 | “1954” nas artes | 3 logos alternativos e os 6 pôsteres v01 trazem “1954” (ver [identidade-visual.md](identidade-visual.md#pôsteres--coleção-verão)). Decidir no S1 se a data sai | Nada no site (ele já não tem data); afeta as artes no Drive |
 | Nome do repositório | No Drive o nome previsto era `capsoleilclub`; no GitHub está `Cap-Soleil-Club` | Nada. Se renomear, confira depois se a Vercel continua ligada |
 

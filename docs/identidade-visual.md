@@ -122,21 +122,29 @@ Fica em [Experiência da marca](https://drive.google.com/drive/folders/1dZqfarv0
 
 Esta seção **tem como fonte o código**. Se mudar uma cor ou uma fonte no `styles.css` ou no `<head>` das páginas, atualize esta tabela na mesma mudança; a verificação automática do GitHub cobra isso.
 
+> **Decisão (2026-10-03):** o site segue a **paleta oficial do emblema** (azul-marinho, dourado e creme). O saibro, o mar e os pinheiros dos pôsteres entram só como cores de apoio da ilustração.
+
 ### Cores do site (`assets/css/styles.css`, `:root`)
 
 | Token | Hex | Uso | Contraste |
 |---|---|---|---|
-| `--paper` | `#f5f0e6` | Fundo principal (quase igual ao creme da marca) | — |
-| `--paper-2` | `#ece3d0` | Fundo da seção *The list* | — |
-| `--white` | `#fdfbf6` | Campos do formulário, linhas da quadra | — |
-| `--green` | `#1f3b2e` | Verde-clube: hero, rodapé e texto principal | 10,7:1 sobre `--paper` |
-| `--muted` | `#4e5f55` | Texto secundário | 6,0:1 sobre `--paper` |
-| `--clay` | `#b5532b` | Saibro: numerais romanos, quadra, detalhes | 4,4:1 (só texto grande ou decoração) |
-| `--clay-ink` | `#a3481f` | Saibro para texto pequeno, erros e foco | 5,3:1 sobre `--paper` |
-| `--sun` | `#f3e7cf` | O sol da ilustração | — |
-| `--on-green` | `#f5f0e6` | Texto sobre o verde | 10,7:1 |
-| `--on-green-muted` | `#c9c3b4` | Texto secundário sobre o verde | 6,9:1 |
-| `--field-border` | `#7e8a80` | Borda dos campos | 3,2:1 (mínimo para bordas) |
+| `--navy` | `#1f2a44` | Azul-marinho da marca: texto principal, hero, rodapé, botões | 12,5:1 sobre `--cream` |
+| `--gold` | `#b89b5e` | Dourado da marca: fios, ornamentos, sol; texto só sobre o azul-marinho | 5,4:1 sobre `--navy` (2,3:1 sobre creme: nunca texto) |
+| `--cream` | `#f4efe6` | Creme da marca: fundo principal | — |
+| `--cream-2` | `#ece4d4` | Fundo alternado (*The grounds*) | — |
+| `--ivory` | `#fbf8f2` | Cartão da lista, linhas da quadra | — |
+| `--navy-2` | `#2b3858` | Linhas e estados sobre o azul-marinho | — |
+| `--muted` | `#4b5468` | Texto secundário | 6,6:1 sobre `--cream` |
+| `--gold-deep` | `#8a6e3b` | Numerais romanos (texto grande) | 4,2:1 sobre `--cream` |
+| `--gold-ink` | `#6e5527` | Dourado para texto pequeno e foco sobre fundo claro | 5,8:1 sobre `--cream` |
+| `--on-navy-muted` | `#c9c2b3` | Texto secundário sobre o azul-marinho | 8,1:1 |
+| `--field-border` | `#7f8494` | Borda dos campos | 3,5:1 sobre `--ivory` |
+| `--error` | `#a3481f` | Mensagens de erro do formulário | 5,2:1 sobre `--cream` |
+| `--clay` | `#b5532b` | Saibro da quadra (ilustração e quadro *Clay*) | — |
+| `--sea` | `#24395a` | Mar ao entardecer (ilustração) | — |
+| `--pine` | `#0e1513` | Silhueta dos pinheiros-mansos (ilustração) | — |
+| `--ground` | `#1b2726` | Jardim do terraço (ilustração) | — |
+| `--stone` | `#c9b998` | Mureta de pedra do terraço (ilustração) | — |
 
 A meta é contraste **AA**: 4,5:1 para texto e 3:1 para texto grande e bordas.
 
@@ -144,19 +152,18 @@ A meta é contraste **AA**: 4,5:1 para texto e 3:1 para texto grande e bordas.
 
 | Família | Pesos | Uso |
 |---|---|---|
-| Cormorant Garamond | 500, 600 e 500 itálico | Nome do clube, títulos, numerais romanos, frase do hero |
-| Jost | 400 e 500 | Texto, rótulos, botões (caixa-alta espaçada) |
+| Cormorant Garamond | 500, 600 e 500 itálico | Nome CAP SOLEIL (caixa-alta espaçada), títulos, numerais romanos, frase do hero |
+| EB Garamond | 400, 500 e 400 itálico | Texto corrido, rótulos e botões em versalete espaçado, como nos materiais da marca |
 
 ### Elementos gráficos do site
 
-- **Ilustração do hero:** uma quadra de saibro em perspectiva, com rede, a sombra longa da rede e um sol pálido no horizonte, sobre o verde. É um SVG desenhado direto no `index.html`.
-- **Três quadros de *The grounds*:** Sun (sol sobre o verde), Clay (linhas brancas no saibro) e White (branco com listras verde e saibro, como a gola de um suéter de tênis).
-- **`assets/img/og-image.jpg`:** a mesma composição do hero, com o nome. É a prévia do link no WhatsApp e no Instagram.
-- **`assets/img/favicon.svg`:** quadrado verde com o sol e a quadra de saibro.
-
-> ⚠️ **Decisão pendente: paleta do site × marca.** O site usa verde-clube e saibro, que conversam com os pôsteres (pinheiros e quadras). O emblema e a embalagem usam azul-marinho e dourado.
-> Opções: (a) manter o site como está; (b) trazer o azul-marinho e o dourado para o site (trocando o verde e usando o emblema no hero, no favicon e no og-image); (c) misturar, por exemplo com o emblema creme e dourado sobre o verde.
-> Quando decidirem, registrem aqui e na [site-e-acessos.md](site-e-acessos.md#decisões-pendentes).
+- **Emblema oficial** em SVG: `assets/img/emblema.svg` (fundo claro) e `assets/img/emblema-navy.svg` (fundo azul-marinho). São cópias fiéis dos vetores do Drive (*Logo › Aprovada*). Aparecem no hero, no cartão da lista, no rodapé e na barra da página Privacy.
+- **Ornamento do sol:** o sol nascente do emblema entre dois fios dourados, em cima de cada título de seção (símbolo `#sun-rule` no `index.html`).
+- **Ilustração do hero:** o entardecer na Riviera, no estilo dos pôsteres. Tem o sol de raios do emblema sobre o mar, o brilho na água, a costa ao fundo, a mureta de pedra, pinheiros-mansos e a quadra de saibro em perspectiva. É um SVG desenhado direto no `index.html`.
+- **Três quadros de *The grounds*:** *Sun* (sol dourado sobre o azul-marinho), *Clay* (linhas da quadra no saibro) e *White* (suéter de tricô com tranças e gola V azul-marinho e dourada, como nas coleções).
+- **`assets/img/og-image.jpg`:** prévia do link (1200×630). Fundo azul-marinho, emblema, CAP SOLEIL, *Lawn Tennis Club* e moldura dupla dourada, como nos pôsteres.
+- **`assets/img/favicon.svg`:** versão simplificada do emblema para tamanhos pequenos (raquetes creme e sol dourado sobre azul-marinho).
+- **`assets/img/apple-touch-icon.png`:** o emblema completo sobre azul-marinho (180×180), para a tela de início do iPhone.
 
 ## Onde fica cada arquivo
 

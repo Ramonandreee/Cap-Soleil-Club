@@ -32,8 +32,10 @@ assets/css/styles.css      Visual (cores, fontes, layout, animações)
 assets/js/main.js          Formulário. O CONFIG com os dados do Supabase fica no topo
 assets/img/og-image.jpg    Imagem de prévia do link (1200×630)
 assets/img/favicon.svg     Ícone da aba
+assets/img/emblema*.svg    Emblema oficial (fundo claro e fundo azul-marinho)
 supabase/migrations/…sql   Só referência do banco. O banco já existe: NÃO rode este arquivo
 vercel.json                Headers de segurança e endereços sem .html
+.vercelignore              O que NÃO vai para o site (docs, scripts, SQL, README)
 docs/                      Como trabalhamos, marca, identidade visual, peças e acessos, roadmap
 CLAUDE.md                  Regras do projeto para as sessões do Claude
 scripts/check_docs.py      Verificação "Documentação em dia" (roda em todo PR)
@@ -111,7 +113,9 @@ Duas coisas são normais nesse teste local:
 5. Clique em **Deploy** e espere cerca de 1 minuto.
 6. A Vercel mostra um link parecido com `https://capsoleilclub.vercel.app`. **Abra esse link no celular** e confira: a página abre inteira, o botão *Join the list* desce até o formulário e o link *Privacy* abre a política.
 
-A partir daqui, **cada commit novo no GitHub publica o site sozinho** em cerca de 1 minuto.
+A partir daqui, **cada commit na `main` publica o site sozinho** em cerca de 1 minuto, seja do Ramon ou do Felipe. Cada branch ou PR ganha um **link de prévia** (a Vercel comenta o link no PR).
+
+> No plano Hobby, a Vercel só publica commits do Felipe porque o repositório é **público**. Se ele voltar a ser privado, os commits do Felipe deixam de publicar, e aí é preciso o plano Pro com o Felipe como membro. Detalhes em [docs/site-e-acessos.md](docs/site-e-acessos.md#custos-e-limites).
 
 ---
 

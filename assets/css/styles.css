@@ -1,25 +1,36 @@
 /* Cap Soleil Lawn Tennis Club: página de pré-lançamento
-   Mobile first. Paleta: off-white, verde-clube escuro e saibro. */
+   Mobile first. Paleta oficial do emblema (azul-marinho, dourado, creme),
+   com o saibro dos pôsteres como cor de apoio. Ver docs/identidade-visual.md. */
 
 :root {
-  --paper: #f5f0e6;
-  --paper-2: #ece3d0;
-  --white: #fdfbf6;
-  --green: #1f3b2e;
-  --muted: #4e5f55;
-  --clay: #b5532b;          /* decorativo e textos grandes */
-  --clay-ink: #a3481f;      /* texto pequeno sobre o off-white (AA) */
-  --sun: #f3e7cf;
-  --on-green: #f5f0e6;
-  --on-green-muted: #c9c3b4;
-  --field-border: #7e8a80;  /* contraste 3:1 com o fundo */
-  --line: rgba(31, 59, 46, 0.18);
+  /* Marca (valores do SVG oficial do emblema) */
+  --navy: #1f2a44;
+  --gold: #b89b5e;          /* decoração; texto só sobre o azul-marinho */
+  --cream: #f4efe6;         /* fundo principal */
 
-  --serif: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  --sans: "Jost", "Avenir Next", Avenir, "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* Derivadas */
+  --cream-2: #ece4d4;       /* fundo alternado */
+  --ivory: #fbf8f2;         /* cartão e campos */
+  --navy-2: #2b3858;        /* linhas e hover sobre o azul-marinho */
+  --muted: #4b5468;         /* texto secundário sobre creme (AA) */
+  --gold-deep: #8a6e3b;     /* dourado para texto grande sobre creme */
+  --gold-ink: #6e5527;      /* dourado para texto pequeno e foco sobre creme (AA) */
+  --on-navy-muted: #c9c2b3; /* texto secundário sobre o azul-marinho */
+  --field-border: #7f8494;  /* borda dos campos (3:1) */
+  --error: #a3481f;         /* erros do formulário */
+
+  /* Ilustração (cores de apoio dos pôsteres) */
+  --clay: #b5532b;
+  --sea: #24395a;
+  --pine: #0e1513;
+  --ground: #1b2726;
+  --stone: #c9b998;
+
+  --serif-display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --serif-text: "EB Garamond", Garamond, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
 
   --gutter: clamp(1.25rem, 5vw, 3rem);
-  --wide: 68rem;
+  --wide: 70rem;
   --measure: 34rem;
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -39,17 +50,19 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
-  color: var(--green);
-  font-family: var(--sans);
-  font-size: 1.0625rem;
+  background: var(--cream);
+  color: var(--navy);
+  font-family: var(--serif-text);
+  font-size: 1.1875rem;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.65;
+  font-kerning: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-svg {
+svg,
+img {
   display: block;
 }
 
@@ -57,43 +70,51 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-weight: 500;
   line-height: 1.1;
 }
 
 p {
-  margin: 0 0 1.1em;
+  margin: 0 0 1.05em;
 }
 
 a {
   color: inherit;
+  text-decoration-color: var(--gold);
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
 }
 
 a:hover {
-  color: var(--clay-ink);
+  color: var(--gold-ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--clay-ink);
+  outline: 2px solid var(--gold-ink);
   outline-offset: 3px;
 }
 
 .hero :focus-visible,
 .footer :focus-visible,
 .topbar :focus-visible {
-  outline-color: var(--on-green);
+  outline-color: var(--gold);
 }
 
 ::selection {
-  background: var(--clay);
-  color: var(--paper);
+  background: var(--navy);
+  color: var(--cream);
 }
 
 [hidden] {
   display: none !important;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .skip-link {
@@ -102,9 +123,9 @@ a:hover {
   left: 0.75rem;
   z-index: 10;
   padding: 0.6rem 1rem;
-  background: var(--paper);
-  color: var(--green);
-  font-size: 0.875rem;
+  background: var(--cream);
+  color: var(--navy);
+  font-size: 0.9375rem;
   transform: translateY(-200%);
 }
 
@@ -112,49 +133,65 @@ a:hover {
   transform: none;
 }
 
-/* ---------- Buttons ---------- */
+/* Versalete espaçado: rótulos, botões e subtítulos, como nos materiais da marca */
+.caps,
+.button,
+.field label,
+.hero__club,
+.card__label,
+.footer__name span,
+.topbar__back {
+  font-family: var(--serif-text);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ornament {
+  width: 7.5rem;
+  height: 0.875rem;
+  color: var(--gold);
+}
+
+/* ---------- Botões ---------- */
 
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 3.25rem;
-  padding: 0.9rem 2.25rem;
+  padding: 0.95rem 2.4rem 0.85rem;
   border: 1px solid currentColor;
   border-radius: 0;
-  font-family: var(--sans);
   font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.22em;
   line-height: 1.2;
-  text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.35s var(--ease), color 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 
-.button--light {
-  background: var(--paper);
-  border-color: var(--paper);
-  color: var(--green);
-}
-
-.button--light:hover {
+.button--gold {
+  border-color: var(--gold);
   background: transparent;
-  color: var(--paper);
+  color: var(--cream);
 }
 
-.button--solid {
+.button--gold:hover {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.button--navy {
   width: 100%;
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--paper);
+  border-color: var(--navy);
+  background: var(--navy);
+  color: var(--cream);
 }
 
-.button--solid:hover:not([disabled]) {
-  background: var(--clay-ink);
-  border-color: var(--clay-ink);
-  color: var(--paper);
+.button--navy:hover:not([disabled]) {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--navy);
 }
 
 .button[disabled] {
@@ -175,86 +212,117 @@ a:hover {
   min-height: 100vh;
   min-height: 100svh;
   overflow: hidden;
-  background: var(--green);
-  color: var(--on-green);
+  background: var(--navy);
+  color: var(--cream);
 }
 
 .hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   align-self: center;
   width: 100%;
   max-width: 48rem;
   margin-inline: auto;
-  padding: 4.5rem var(--gutter) 2.5rem;
+  padding: 3.5rem var(--gutter) 2rem;
   text-align: center;
+}
+
+.hero__emblem {
+  width: clamp(7rem, 30vw, 11rem);
+  height: auto;
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
 }
 
 .hero__title {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.1rem, 2.4vw, 1.9rem);
+  gap: clamp(0.9rem, 2vw, 1.3rem);
 }
 
 .hero__name {
-  font-size: clamp(3.75rem, 17vw, 8.5rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  padding-left: 0.12em; /* compensa o espaçamento depois da última letra */
+  font-size: clamp(2.35rem, 9.6vw, 5.5rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
   line-height: 1;
+  text-transform: uppercase;
 }
 
 .hero__club {
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: var(--on-green-muted);
-  font-family: var(--sans);
+  color: var(--gold);
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.34em;
+  letter-spacing: 0.36em;
   line-height: 1;
-  text-transform: uppercase;
 }
 
 .hero__club::before,
 .hero__club::after {
   content: "";
-  width: 1.75rem;
+  width: clamp(1.5rem, 6vw, 3rem);
   height: 1px;
   background: currentColor;
-  opacity: 0.6;
 }
 
-/* Compensa o espaçamento que sobra depois da última letra */
 .hero__club::after {
-  margin-left: -0.34em;
+  margin-left: -0.36em;
 }
 
 .hero__line {
   max-width: 24ch;
-  text-wrap: balance;
-  margin: 1.75rem auto 2.5rem;
-  font-family: var(--serif);
-  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  margin: 1.5rem auto 2.25rem;
+  color: var(--on-navy-muted);
+  font-family: var(--serif-display);
+  font-size: clamp(1.35rem, 4.6vw, 1.85rem);
   font-style: italic;
   line-height: 1.3;
+  text-wrap: balance;
 }
 
-.hero__court {
+.hero__scene {
   width: 100%;
   /* Nunca mais larga que 4:1, para o sol não ser cortado em telas largas */
-  height: max(clamp(13rem, 36vh, 24rem), 25vw);
+  height: max(clamp(12rem, 34vh, 24rem), 25vw);
 }
 
 .hero__sun {
-  fill: var(--sun);
+  fill: var(--gold);
 }
 
-.hero__horizon {
+.hero__rays {
   fill: none;
-  stroke: var(--on-green);
-  stroke-opacity: 0.28;
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
+  stroke: var(--gold);
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+
+.hero__coast {
+  fill: #18223a;
+}
+
+.hero__sea {
+  fill: var(--sea);
+}
+
+.hero__glitter {
+  fill: none;
+  stroke: var(--gold);
+  stroke-linecap: round;
+  stroke-opacity: 0.7;
+  stroke-width: 2.5;
+}
+
+.hero__ground {
+  fill: var(--ground);
+}
+
+.hero__terrace {
+  fill: var(--stone);
+  fill-opacity: 0.85;
 }
 
 .hero__clay {
@@ -262,32 +330,43 @@ a:hover {
 }
 
 .hero__shadow {
-  fill: var(--green);
-  fill-opacity: 0.16;
+  fill: var(--navy);
+  fill-opacity: 0.22;
 }
 
 .hero__lines,
 .hero__net-tape {
   fill: none;
-  stroke: var(--white);
+  stroke: var(--ivory);
   stroke-linecap: square;
   stroke-width: 1.5;
   vector-effect: non-scaling-stroke;
 }
 
 .hero__lines {
-  stroke-opacity: 0.88;
+  stroke-opacity: 0.9;
 }
 
 .hero__net {
-  fill: var(--green);
-  fill-opacity: 0.55;
+  fill: var(--navy);
+  fill-opacity: 0.6;
 }
 
-/* ---------- Sections ---------- */
+.hero__pines {
+  fill: var(--pine);
+}
+
+.pine__branches {
+  fill: none;
+  stroke: var(--pine);
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+/* ---------- Seções ---------- */
 
 .section {
-  padding: clamp(5rem, 16vw, 10rem) var(--gutter);
+  padding: clamp(5rem, 15vw, 9.5rem) var(--gutter);
 }
 
 .section__inner {
@@ -297,11 +376,15 @@ a:hover {
   margin-inline: auto;
 }
 
+.section__head .ornament {
+  margin-bottom: 1.4rem;
+}
+
 .section__title {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 0 0.32em;
+  gap: 0 0.3em;
   font-size: clamp(2.6rem, 9vw, 4.25rem);
 }
 
@@ -310,13 +393,12 @@ a:hover {
 }
 
 .section__numeral {
-  color: var(--clay);
+  color: var(--gold-deep);
   font-style: italic;
-  font-weight: 500;
 }
 
 .section__dot {
-  color: var(--clay);
+  color: var(--gold);
 }
 
 .section__intro {
@@ -334,25 +416,25 @@ a:hover {
 }
 
 .lead {
-  font-family: var(--serif);
-  font-size: clamp(1.55rem, 5vw, 2.05rem);
+  font-family: var(--serif-display);
+  font-size: clamp(1.6rem, 5vw, 2.15rem);
   font-weight: 500;
-  line-height: 1.28;
+  line-height: 1.26;
 }
 
 .placeholder {
   display: inline-block;
-  padding: 0.55rem 0.9rem;
-  border: 1px dashed var(--clay);
-  color: var(--clay-ink);
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
+  padding: 0.5rem 0.9rem;
+  border: 1px dashed var(--gold-deep);
+  color: var(--gold-ink);
+  font-size: 0.9375rem;
+  letter-spacing: 0.06em;
 }
 
 /* II · The grounds */
 
 .section--grounds {
-  border-top: 1px solid var(--line);
+  background: var(--cream-2);
 }
 
 .elements {
@@ -366,8 +448,8 @@ a:hover {
 
 .element {
   display: grid;
-  grid-template-columns: minmax(6.5rem, 38%) 1fr;
-  gap: 1.25rem;
+  grid-template-columns: minmax(6.5rem, 34%) 1fr;
+  gap: 1.4rem;
   align-items: center;
 }
 
@@ -377,8 +459,8 @@ a:hover {
 }
 
 .element__title {
-  margin-bottom: 0.35rem;
-  font-size: 1.85rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.9rem;
 }
 
 .element p {
@@ -386,8 +468,8 @@ a:hover {
   color: var(--muted);
 }
 
-.tile--green {
-  fill: var(--green);
+.tile--navy {
+  fill: var(--navy);
 }
 
 .tile--clay {
@@ -395,51 +477,111 @@ a:hover {
 }
 
 .tile--white {
-  fill: var(--white);
-  stroke: var(--line);
+  fill: var(--ivory);
+  stroke: var(--field-border);
+  stroke-opacity: 0.35;
 }
 
 .tile__sun {
-  fill: var(--sun);
+  fill: var(--gold);
 }
 
+.tile__rays,
 .tile__horizon {
-  stroke: var(--on-green);
-  stroke-opacity: 0.35;
+  fill: none;
+  stroke: var(--gold);
+  stroke-linecap: round;
+  stroke-width: 2.4;
+}
+
+.tile__frame {
+  fill: none;
+  stroke: var(--gold);
+  stroke-opacity: 0.6;
+}
+
+.tile__frame--light {
+  stroke: var(--ivory);
 }
 
 .tile__lines {
   fill: none;
-  stroke: var(--white);
+  stroke: var(--ivory);
+  stroke-opacity: 0.92;
   stroke-width: 3;
-  stroke-opacity: 0.9;
 }
 
-.tile__stripe {
-  stroke-width: 6;
+.tile__cable,
+.tile__ribs {
+  fill: none;
+  stroke: #e2d6bf;
+  stroke-linecap: round;
+  stroke-width: 4;
 }
 
-.tile__stripe--green {
-  stroke: var(--green);
+.tile__ribs {
+  stroke-width: 2;
 }
 
-.tile__stripe--clay {
-  stroke: var(--clay);
+.tile__vneck {
+  fill: none;
+  stroke-linejoin: miter;
+}
+
+.tile__vneck--outer {
+  stroke: var(--navy);
+  stroke-width: 10;
+}
+
+.tile__vneck--inner {
+  stroke: var(--gold);
+  stroke-width: 5;
 }
 
 /* III · The list */
 
 .section--list {
-  background: var(--paper-2);
+  background: var(--cream);
 }
 
 .card {
   position: relative;
-  padding: clamp(1.75rem, 6vw, 3.25rem);
-  background: var(--paper);
-  border: 1px solid var(--green);
-  outline: 1px solid var(--line);
+  padding: clamp(1.9rem, 6vw, 3.4rem);
+  background: var(--ivory);
+  border: 1px solid var(--gold);
+  outline: 1px solid var(--gold);
   outline-offset: -9px;
+  box-shadow: 0 1px 0 rgba(31, 42, 68, 0.04), 0 18px 40px -28px rgba(31, 42, 68, 0.35);
+}
+
+.card__crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.card__crest img {
+  width: 5.25rem;
+  height: auto;
+}
+
+.card__label {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0;
+  color: var(--gold-ink);
+  font-size: 0.75rem;
+}
+
+.card__label::before,
+.card__label::after {
+  content: "";
+  width: 1.75rem;
+  height: 1px;
+  background: var(--gold);
 }
 
 .form {
@@ -456,15 +598,13 @@ a:hover {
   display: block;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
-  font-weight: 500;
   letter-spacing: 0.18em;
   line-height: 1.4;
-  text-transform: uppercase;
 }
 
 .field__req {
   color: var(--muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: none;
 }
 
@@ -475,12 +615,12 @@ a:hover {
   min-height: 3.25rem;
   margin: 0;
   padding: 0.75rem 0.9rem;
-  background-color: var(--white);
+  background-color: #fffefb;
   border: 1px solid var(--field-border);
   border-radius: 0;
-  color: var(--green);
+  color: var(--navy);
   font: inherit;
-  font-size: 1.0625rem; /* 16px ou mais evita o zoom automático do iPhone */
+  font-size: 1.125rem; /* 16px ou mais evita o zoom automático do iPhone */
   line-height: 1.4;
   transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
   -webkit-appearance: none;
@@ -489,7 +629,7 @@ a:hover {
 
 .field select {
   padding-right: 2.75rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231f3b2e' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%231f2a44' stroke-width='1.5'/%3E%3C/svg%3E");
   background-position: right 1rem center;
   background-repeat: no-repeat;
   background-size: 14px 9px;
@@ -498,24 +638,24 @@ a:hover {
 
 .field input:hover,
 .field select:hover {
-  border-color: var(--green);
+  border-color: var(--navy);
 }
 
 .field input:focus,
 .field select:focus {
-  border-color: var(--green);
-  box-shadow: inset 0 0 0 1px var(--green);
+  border-color: var(--navy);
+  box-shadow: inset 0 0 0 1px var(--navy);
 }
 
 .field input[aria-invalid="true"] {
-  border-color: var(--clay-ink);
-  box-shadow: inset 0 0 0 1px var(--clay-ink);
+  border-color: var(--error);
+  box-shadow: inset 0 0 0 1px var(--error);
 }
 
 .field__error {
   margin: 0.5rem 0 0;
-  color: var(--clay-ink);
-  font-size: 0.875rem;
+  color: var(--error);
+  font-size: 0.9375rem;
   line-height: 1.45;
 }
 
@@ -524,15 +664,15 @@ a:hover {
   grid-template-columns: auto 1fr;
   column-gap: 0.9rem;
   align-items: start;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 
 .consent input {
   width: 1.3rem;
   height: 1.3rem;
-  margin: 0.15rem 0 0;
-  accent-color: var(--green);
+  margin: 0.2rem 0 0;
+  accent-color: var(--navy);
   cursor: pointer;
 }
 
@@ -551,7 +691,7 @@ a:hover {
 .form__note {
   margin: 0;
   color: var(--muted);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 
 /* Honeypot: fora da tela e fora da navegação por teclado */
@@ -570,10 +710,10 @@ a:hover {
 .list-status.is-error {
   margin-top: 1.4rem;
   padding: 0.9rem 1rem;
-  border-left: 2px solid var(--clay-ink);
-  background: var(--paper-2);
-  color: var(--green);
-  font-size: 0.9375rem;
+  border-left: 2px solid var(--error);
+  background: var(--cream);
+  color: var(--navy);
+  font-size: 1.0625rem;
   line-height: 1.55;
 }
 
@@ -582,55 +722,66 @@ a:hover {
 }
 
 .list-status.is-success {
-  padding: 1rem 0 0.5rem;
+  padding: 0 0 0.5rem;
   text-align: center;
 }
 
 .list-status__title {
   margin-bottom: 0.6rem;
-  font-family: var(--serif);
+  font-family: var(--serif-display);
   font-size: clamp(2rem, 7vw, 2.75rem);
   font-weight: 500;
   line-height: 1.15;
 }
 
 .list-status.is-success p:last-child {
-  margin: 0 auto;
   max-width: 24rem;
+  margin: 0 auto;
   color: var(--muted);
 }
 
-/* ---------- Footer ---------- */
+/* ---------- Rodapé ---------- */
 
 .footer {
   padding: 4rem var(--gutter) 3.5rem;
-  background: var(--green);
-  color: var(--on-green);
+  background: var(--navy);
+  color: var(--cream);
 }
 
 .footer__inner {
   display: grid;
-  gap: 1.75rem;
+  gap: 2rem;
   max-width: var(--wide);
   margin-inline: auto;
 }
 
+.footer__brand {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.footer__emblem {
+  width: 4.5rem;
+  height: auto;
+}
+
 .footer__name {
   margin: 0;
-  font-family: var(--serif);
-  font-size: 1.75rem;
+  font-family: var(--serif-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .footer__name span {
   display: block;
-  margin-top: 0.4rem;
-  color: var(--on-green-muted);
-  font-family: var(--sans);
+  margin-top: 0.35rem;
+  color: var(--gold);
   font-size: 0.6875rem;
-  font-weight: 500;
   letter-spacing: 0.3em;
-  text-transform: uppercase;
 }
 
 .footer__links {
@@ -639,7 +790,7 @@ a:hover {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
 }
 
 .footer__links a {
@@ -649,20 +800,19 @@ a:hover {
 }
 
 .footer__links a:hover {
-  color: var(--on-green);
-  text-decoration: underline;
+  color: var(--gold);
 }
 
 .footer__handle {
-  color: var(--on-green-muted);
+  color: var(--on-navy-muted);
 }
 
 /* ---------- Página Privacy ---------- */
 
 .topbar {
-  padding: 1.25rem var(--gutter);
-  background: var(--green);
-  color: var(--on-green);
+  padding: 1rem var(--gutter);
+  background: var(--navy);
+  color: var(--cream);
 }
 
 .topbar__inner {
@@ -676,23 +826,31 @@ a:hover {
 }
 
 .topbar__brand {
-  font-family: var(--serif);
-  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--serif-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   line-height: 1.2;
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+.topbar__brand img {
+  width: 2.75rem;
+  height: auto;
 }
 
 .topbar__brand:hover,
 .topbar__back:hover {
-  color: var(--on-green);
+  color: var(--gold);
 }
 
 .topbar__back {
   padding: 0.5rem 0;
   font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   text-decoration: none;
 }
 
@@ -702,6 +860,10 @@ a:hover {
   padding: clamp(3.5rem, 12vw, 7rem) var(--gutter) clamp(4.5rem, 14vw, 8rem);
 }
 
+.legal .ornament {
+  margin-bottom: 1.4rem;
+}
+
 .legal h1 {
   font-size: clamp(2.75rem, 10vw, 4.25rem);
 }
@@ -709,16 +871,16 @@ a:hover {
 .legal__updated {
   margin: 1rem 0 3rem;
   color: var(--muted);
-  font-size: 0.9375rem;
+  font-size: 1rem;
 }
 
 .legal h2 {
   margin: 2.75rem 0 0.9rem;
-  font-size: clamp(1.6rem, 5vw, 2rem);
+  font-size: clamp(1.65rem, 5vw, 2.05rem);
 }
 
 .legal ul {
-  margin: 0 0 1.1em;
+  margin: 0 0 1.05em;
   padding-left: 1.2rem;
 }
 
@@ -727,7 +889,7 @@ a:hover {
 }
 
 .legal li::marker {
-  color: var(--clay);
+  color: var(--gold-deep);
 }
 
 /* ---------- Telas maiores ---------- */
@@ -739,7 +901,7 @@ a:hover {
 
   .elements {
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 2.25rem;
   }
 
   .element {
@@ -750,13 +912,13 @@ a:hover {
     margin-bottom: 1.4rem;
   }
 
-  .button--solid {
+  .button--navy {
     width: auto;
   }
 
   .footer__inner {
     grid-template-columns: 1fr auto;
-    align-items: end;
+    align-items: center;
   }
 
   .footer__links {
@@ -792,8 +954,13 @@ a:hover {
     animation: sun-rise 2.8s var(--ease) 0.2s both;
   }
 
-  .hero__ground {
-    animation: fade-in 1.6s var(--ease) 0.3s both;
+  .hero__glow,
+  .hero__glitter {
+    animation: fade-in 2.4s var(--ease) 0.6s both;
+  }
+
+  .hero__emblem {
+    animation: fade-in 1.4s var(--ease) both;
   }
 
   .hero__line,
@@ -829,7 +996,7 @@ a:hover {
 
 @keyframes sun-rise {
   from {
-    transform: translateY(46px);
+    transform: translateY(52px);
   }
   to {
     transform: none;

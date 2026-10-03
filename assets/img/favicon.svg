@@ -1,8 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <title>Cap Soleil Lawn Tennis Club</title>
-  <rect width="64" height="64" rx="12" fill="#1f3b2e"/>
-  <path d="M18 30a14 14 0 0 1 28 0z" fill="#f3e7cf"/>
-  <path d="M8 30.75h48" stroke="#f5f0e6" stroke-opacity=".4" stroke-width="1.5"/>
-  <path d="M24 37h16l14 21H10z" fill="#b5532b"/>
-  <path d="M19.4 44h25.2" stroke="#fdfbf6" stroke-width="2"/>
+  <rect width="64" height="64" rx="14" fill="#1F2A44"/>
+  <path d="M26 15.5a6 6 0 0 1 12 0z" fill="#B89B5E"/>
+  <path d="M19 16.25h26" stroke="#B89B5E" stroke-width="1.5"/>
+  <g fill="none" stroke="#F4EFE6" stroke-linecap="round">
+    <ellipse cx="23.5" cy="31" rx="6.6" ry="8.6" transform="rotate(-34 23.5 31)" stroke-width="2.6"/>
+    <ellipse cx="40.5" cy="31" rx="6.6" ry="8.6" transform="rotate(34 40.5 31)" stroke-width="2.6"/>
+    <path d="M28.3 38.1L39.8 54.6M35.7 38.1L24.2 54.6" stroke-width="3.2"/>
+  </g>
 </svg>

@@ -119,15 +119,14 @@ python3 scripts/check_docs.py
 
 | Ela confere | Se falhar |
 |---|---|
-| Se o PR mexe no site (`index.html`, `privacy.html`, `assets/`, `vercel.json` ou `supabase/`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
+| Se o PR mexe no site (`index.html`, `privacy.html`, `assets/`, `vercel.json`, `.vercelignore` ou `supabase/`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
 | Se toda cor de `:root` no `styles.css` e toda fonte do Google Fonts aparecem em [identidade-visual.md › No site](identidade-visual.md#no-site) | Inclua a cor ou a fonte na tabela |
 | Se os links entre os documentos (e as âncoras `#`) existem | Corrija o link |
 | Se o site menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
 | Se cada documento em `docs/` tem a linha **Atualizado em** | Acrescente a linha no topo |
 
-> **Limite atual:** em repositório privado no plano grátis do GitHub, não dá para **bloquear** o merge quando a verificação falha. Ela fica vermelha e avisa, mas não impede.
-> Para bloquear de verdade (*branch protection*), é preciso o GitHub Pro ou deixar o repositório público.
-> Até lá, a regra é: **PR vermelho não entra.**
+> **Bloquear o merge de verdade:** com o repositório público, o GitHub grátis permite *branch protection*. Em **Settings › Branches › Add rule** (ou *Rulesets*), para a `main`: exigir PR antes do merge e exigir a verificação **Documentação em dia**.
+> Enquanto isso não estiver ligado, a regra é: **PR vermelho não entra.**
 
 ## Com o Claude
 

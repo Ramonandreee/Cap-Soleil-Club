@@ -1,0 +1,8 @@
+# Só o site vai para a Vercel. Documentação, regras e ferramentas ficam no GitHub
+# e não podem ser abertas pela internet (ex.: capsoleilclub.vercel.app/docs/…).
+/docs
+/scripts
+/supabase
+/.github
+/README.md
+/CLAUDE.md

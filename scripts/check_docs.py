@@ -26,7 +26,7 @@ CSS = ROOT / "assets" / "css" / "styles.css"
 PAGES = [ROOT / "index.html", ROOT / "privacy.html"]
 
 # Arquivos que mudam o site e arquivos que contam como documentação.
-SITE_PATHS = ("index.html", "privacy.html", "vercel.json", "assets/", "supabase/")
+SITE_PATHS = ("index.html", "privacy.html", "vercel.json", ".vercelignore", "assets/", "supabase/")
 DOC_PATHS = ("README.md", "CLAUDE.md", "docs/")
 
 FOUNDING_DATE = re.compile(r"\bEst\.?\s*(?:1[89]|20)\d{2}\b|\bEstablished\b|\bFounded\s+in\b", re.I)
