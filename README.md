@@ -1,8 +1,23 @@
 # Cap Soleil Lawn Tennis Club: página de pré-lançamento
 
-Página única para montar a lista de espera (**The list**) antes da abertura da Pro Shop.
-Site estático: HTML, CSS e JavaScript puro. Não tem build, framework nem npm.
-Os cadastros vão para o Supabase (projeto **Cap Soleil Club**, região Paris / eu-west-3).
+Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da Riviera Francesa, no luxo silencioso e vendida na Europa.
+Esta é a página única para montar a lista de espera (**The list**) antes da abertura da Pro Shop.
+
+- **No ar:** https://capsoleilclub.vercel.app (endereço final previsto: capsoleilclub.com)
+- **Site estático:** HTML, CSS e JavaScript puro. Não tem build, framework nem npm.
+- **Cadastros:** vão para o Supabase (projeto **Cap Soleil Club**, região Paris / eu-west-3).
+
+## Documentação
+
+Os conceitos e as decisões vêm do Drive da Cap Soleil, que é a referência viva.
+
+| Documento | O que tem |
+|---|---|
+| [docs/marca.md](docs/marca.md) | História (PT e EN), posicionamento, tom de voz, identidade visual, coleções e o **checklist para qualquer texto do site** |
+| [docs/site-e-acessos.md](docs/site-e-acessos.md) | Como as peças se ligam, status de cada uma, chaves e senhas, custos e limites, decisões pendentes e histórico do banco |
+| [docs/roadmap.md](docs/roadmap.md) | Rotina das sessões do site (D1–D12), cronograma da loja (S1–S10) e o que cada etapa muda no código |
+
+Este README é o passo a passo técnico: rodar, publicar, ligar o Supabase e conferir antes de divulgar.
 
 ```
 index.html                 Home: Hero, I · The hour, II · The grounds, III · The list, rodapé
@@ -13,6 +28,7 @@ assets/img/og-image.jpg    Imagem de prévia do link (1200×630)
 assets/img/favicon.svg     Ícone da aba
 supabase/migrations/…sql   Só referência do banco. O banco já existe: NÃO rode este arquivo
 vercel.json                Headers de segurança e endereços sem .html
+docs/                      Marca, peças e acessos, roadmap (ver Documentação)
 ```
 
 ---
@@ -156,6 +172,8 @@ E-mail repetido não cria linha nova e mostra a mesma mensagem de sucesso, para 
 - [ ] **Lighthouse 90+** nas quatro notas: no Chrome do computador, abra o site numa janela anônima, aperte **F12 › Lighthouse**, escolha **Mobile** e clique em **Analyze page load**. Ou use **pagespeed.web.dev**.
 - [ ] **Teste num iPhone (Safari) e num Android (Chrome)**: abrir, rolar até o fim, tocar em *Join the list*, enviar um cadastro, ver o *Thank you*, abrir *Privacy* e o link do Instagram.
 - [ ] **Cadastros de teste apagados** do Supabase (passo 5).
+- [ ] **Hospedagem com uso comercial:** o plano Hobby da Vercel é só para uso pessoal e não comercial. Passe para o Pro (ou outra hospedagem) antes de divulgar. Veja [docs/site-e-acessos.md](docs/site-e-acessos.md#custos-e-limites).
+- [ ] **Textos revisados** com o checklist de [docs/marca.md](docs/marca.md#checklist-para-qualquer-texto-novo).
 
 ### Onde estão os campos para preencher
 
