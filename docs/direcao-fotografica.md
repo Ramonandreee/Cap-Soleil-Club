@@ -217,6 +217,14 @@ Blue hour on the club terrace. On a small wicker table dressed in ivory linen: a
 
 ## Entrega
 
+### Boutique — proposta de Felipe, 2026-10-03
+
+Os arquivos `src/assets/photos/B1.jpg`, `B2.jpg` e `B3.jpg` preenchem os três espaços de La Boutique, preservando o layout aprovado pelo Felipe. B1 mostra suéter marinho com gola alta, meio zíper e emblema pequeno no peito esquerdo; B2, polo creme de manga curta sobre mesa de pedra ao lado de raquete e quadra de saibro; B3, boné marinho com emblema pequeno sobre calcário. A legenda de B2 passa a “Cotton polo, cream”. Esse recorte prevalece sobre o roteiro anterior; os textos alternativos acompanham as imagens.
+
+São conceitos editoriais gerados pela ferramenta integrada de imagens, a partir da captura do site e do SVG oficial do emblema, sem frases nem data de fundação. O bordado é uma interpretação gerada do emblema, não um arquivo de produção. Originais: 1122×1402 px, sem ampliação artificial, abaixo do mínimo ideal do roteiro; adequados como proposta para os cartões de 22rem, com revisão em telas maiores antes da campanha final.
+
+Originais PNG e prompts ficam no pacote local de entrega `outputs/boutique/`: B1-half-zip-v3, B2-polo-pedra-v3 e B3-v2. Felipe aprovou a composição e autorizou commit e publicação em 2026-10-03. A sincronização dos originais com o Drive será registrada no PR; não considerar o deploy confirmado antes da verificação do site público.
+
 - Pasta no Drive: **05 - Loja e lançamento › Site — capsoleilclub.com › Fotos do site** (criar).
 - Nome: `Foto - <código> - vNN.png` (ex.: `Foto - H1 - v01.png`). Versão nova é arquivo novo (`v02`), como no resto do Drive.
 - Formato: **PNG** ou **JPEG na qualidade máxima**, na maior resolução que a ferramenta der. Sem ampliar artificialmente.
