@@ -1,8 +1,8 @@
 # Site: peças, acessos e decisões
 
 > **Fonte:** [Cap Soleil — Site: projetos e acessos](https://docs.google.com/document/d/1yq_kyPL2lHnK1tnemUPZap-PdTknYysjx57eiz618CU/edit)
-> (Drive › 05 - Loja e lançamento › Site — capsoleilclub.com), de 01/10/2026.
-> O status abaixo foi conferido em **03/10/2026** no GitHub, na Vercel e no Supabase.
+> (Drive › 05 - Loja e lançamento › Site — capsoleilclub.com). Aqui, o **status e os detalhes técnicos têm como fonte o GitHub**, e o Drive guarda um resumo (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
+> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03 · status conferido no GitHub, na Vercel e no Supabase
 
 A página de pré-lançamento existe para montar a lista de espera (**The list**) antes da abertura da Pro Shop.
 O endereço final previsto é **capsoleilclub.com**.
@@ -30,7 +30,9 @@ O código fica no **GitHub**. A **Vercel** está ligada ao repositório e public
 O formulário chama uma função no **Supabase**, que grava a inscrição na tabela `waitlist`.
 **Ninguém consegue ler a lista pela internet**: ela só é vista e exportada (CSV) pelo painel do Supabase.
 
-## Status (03/10/2026)
+## Status
+
+Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabela e a do Drive.
 
 | Peça | Para quê | Onde | Status | Responsável |
 |---|---|---|---|---|
@@ -61,7 +63,8 @@ O formulário chama uma função no **Supabase**, que grava a inscrição na tab
 | Domínio | Confirmar se `capsoleilclub.com` está livre e registrar (Felipe) | `[URL DO SITE]` nas meta tags do `index.html` e do `privacy.html` |
 | Privacidade e contato | Preencher responsável, endereço, e-mail, provedores e data | `privacy.html` e `[EMAIL DE CONTATO]` no `index.html` |
 | Trio de produtos | Decidir no S1 do cronograma | `[TRIO DE PRODUTOS]` em *I · The hour* |
-| Paleta do site × emblema | O site usa verde-clube e saibro; o emblema, azul-marinho, dourado e creme (ver [marca.md](marca.md)) | `assets/css/styles.css`, `og-image.jpg` e `favicon.svg` |
+| Paleta do site × emblema | O site usa verde-clube e saibro; o emblema, azul-marinho `#1F2A44`, dourado `#B89B5E` e creme `#F4EFE6` (ver [identidade-visual.md](identidade-visual.md#no-site)) | `assets/css/styles.css`, `og-image.jpg`, `favicon.svg` e a tabela *No site* |
+| “1954” nas artes | 3 logos alternativos e os 6 pôsteres v01 trazem “1954” (ver [identidade-visual.md](identidade-visual.md#pôsteres--coleção-verão)). Decidir no S1 se a data sai | Nada no site (ele já não tem data); afeta as artes no Drive |
 | Nome do repositório | No Drive o nome previsto era `capsoleilclub`; no GitHub está `Cap-Soleil-Club` | Nada. Se renomear, confira depois se a Vercel continua ligada |
 
 ## Banco de dados: como chegou ao estado atual

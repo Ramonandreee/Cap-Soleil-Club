@@ -9,13 +9,19 @@ Esta é a página única para montar a lista de espera (**The list**) antes da a
 
 ## Documentação
 
-Os conceitos e as decisões vêm do Drive da Cap Soleil, que é a referência viva.
+> **A lei do projeto:** uma mudança só está pronta quando o código, a documentação do GitHub e o Google Drive contam a mesma história.
+> Como fazer isso, sobretudo com os dois sócios mexendo ao mesmo tempo, está em **[docs/como-trabalhamos.md](docs/como-trabalhamos.md)**.
 
 | Documento | O que tem |
 |---|---|
-| [docs/marca.md](docs/marca.md) | História (PT e EN), posicionamento, tom de voz, identidade visual, coleções e o **checklist para qualquer texto do site** |
+| [docs/como-trabalhamos.md](docs/como-trabalhamos.md) | **A lei:** onde mora cada coisa, “se mudou isto, atualize aquilo”, trabalho simultâneo, organização do Drive, sincronização e a verificação automática |
+| [docs/marca.md](docs/marca.md) | História (PT e EN), posicionamento, tom de voz e o **checklist para qualquer texto do site** |
+| [docs/identidade-visual.md](docs/identidade-visual.md) | Emblema e regras de uso, logos alternativos, paletas (marca e site), tipografia, pôsteres, coleções, produtos-alvo e experiência da marca |
 | [docs/site-e-acessos.md](docs/site-e-acessos.md) | Como as peças se ligam, status de cada uma, chaves e senhas, custos e limites, decisões pendentes e histórico do banco |
 | [docs/roadmap.md](docs/roadmap.md) | Rotina das sessões do site (D1–D12), cronograma da loja (S1–S10) e o que cada etapa muda no código |
+| [CLAUDE.md](CLAUDE.md) | As mesmas regras, resumidas para as sessões do Claude |
+
+Todo PR passa pela verificação **Documentação em dia**. Para rodar no computador: `python3 scripts/check_docs.py`.
 
 Este README é o passo a passo técnico: rodar, publicar, ligar o Supabase e conferir antes de divulgar.
 
@@ -28,7 +34,10 @@ assets/img/og-image.jpg    Imagem de prévia do link (1200×630)
 assets/img/favicon.svg     Ícone da aba
 supabase/migrations/…sql   Só referência do banco. O banco já existe: NÃO rode este arquivo
 vercel.json                Headers de segurança e endereços sem .html
-docs/                      Marca, peças e acessos, roadmap (ver Documentação)
+docs/                      Como trabalhamos, marca, identidade visual, peças e acessos, roadmap
+CLAUDE.md                  Regras do projeto para as sessões do Claude
+scripts/check_docs.py      Verificação "Documentação em dia" (roda em todo PR)
+.github/                   Modelo de PR e a verificação automática
 ```
 
 ---

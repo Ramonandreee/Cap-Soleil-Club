@@ -1,8 +1,8 @@
 # A marca Cap Soleil
 
 > **Fonte:** [Cap Soleil — História e Posicionamento](https://docs.google.com/document/d/1wpN9Pdhrv2OlHiEQjlKkS3lsVlQ_kIIqg37IqpgLLbI/edit)
-> (Drive › 01 - Identidade da marca › História e posicionamento), atualizado em 29/09/2026.
-> O Drive é a referência viva. Se ele mudar, atualize este arquivo junto.
+> (Drive › 01 - Identidade da marca › História e posicionamento). O Drive é a fonte; este arquivo é o espelho (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
+> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
 Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da Riviera Francesa, posicionada no luxo silencioso e vendida na Europa.
 
@@ -65,32 +65,11 @@ Nome do perfil: **Cap Soleil Lawn Tennis Club**
 > *When the sea breeze turns cool,*
 > *the Pro Shop is still open ↓*
 
-## Identidade visual
+## Identidade visual, coleções e produtos
 
-**Emblema oficial (aprovado):** duas raquetes de madeira cruzadas em azul-marinho, uma coroa de louros dourada e, no alto, um pequeno sol nascente com raios sobre uma linha de horizonte, em fundo creme.
-Os arquivos ficam em [Drive › 01 - Identidade da marca › Logo › Aprovada](https://drive.google.com/drive/folders/1OQzijM8YUT4S-iaHz75rBe4mUCOepTkq): JPG, SVG e uma versão em SVG para fundo navy.
+Tudo o que é visual está em **[identidade-visual.md](identidade-visual.md)**: o emblema oficial e as regras de uso, os logos alternativos, a paleta da marca e a do site, a tipografia, os pôsteres, as coleções, os produtos-alvo e a experiência da marca.
 
-**Alternativas (não aprovadas)**, em *Logo › Alternativas*: escrita CAP SOLEIL, raquetes e sol (com e sem detalhe), brasão ornamentado com faixa e duas versões com **“Est. 1954”**. Não usar as versões com data. O cronograma (S1) decide se a data sai também dos pôsteres.
-
-| Onde | Cores | Fontes |
-|---|---|---|
-| Emblema oficial | Azul-marinho, dourado e creme | (desenho, sem texto) |
-| Site de pré-lançamento | Off-white `#f5f0e6`, verde-clube `#1f3b2e` e saibro `#b5532b` (ver `assets/css/styles.css`) | Cormorant Garamond (títulos) e Jost (texto) |
-
-> ⚠️ **Decisão pendente:** o site usa verde-clube e saibro, e o emblema usa azul-marinho, dourado e creme.
-> Vale decidir se a paleta do site acompanha o emblema ou se as duas convivem (por exemplo, o emblema em creme sobre o verde).
-
-## Coleções e produtos (conceitos)
-
-Tudo isto está em *Drive › 02 - Coleção e produtos*.
-
-- **Conceitos de coleção:** Essencial, Novos Essenciais, Riviera e Club.
-- **Pôsteres – Coleção Verão:** *Tournoi d’Été*, *L’Art du Tennis*, *L’Heure du Thé*, *Lawn Tennis Club* (fundo navy), *Sous les Pins* e *Un Été sur la Riviera*.
-- **Produtos-alvo (imagem de referência):** boné, camisa de linho e suéter.
-- **Na história:** moletons bordados com o emblema, bonés com o monograma e pôsteres.
-- **Experiência da marca** (*01 - Identidade da marca › Experiência da marca*): embalagem, etiquetas e cartão de membro. O número do cartão (“Nº 0147”) ainda está para revisar.
-
-> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele substitui o `[TRIO DE PRODUTOS]` em `index.html`, seção *I · The hour*.
+> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele substitui o `[TRIO DE PRODUTOS]` em `index.html`, seção *I · The hour*, e entra na [identidade-visual.md](identidade-visual.md#os-3-primeiros-produtos-alvo).
 
 ## Como isso vira texto no site
 

@@ -4,8 +4,8 @@
 > - [Cap Soleil — Rotina de desenvolvimento do site](https://docs.google.com/document/d/1eIJfsOX-VNVHajWGzx5fC0VA6DlKrinB8aup_iHfX7s/edit) (Drive › 05 - Loja e lançamento › Site — capsoleilclub.com)
 > - [Cap Soleil — Cronograma de lançamento](https://docs.google.com/spreadsheets/d/1z4llc4ppFm5Wf4eG5VRcmiSKqUTArQMisDHHiI3ZHMM/edit) (Drive › 07 - Planejamento)
 >
-> Os ☐/✅ do dia a dia e o **Registro** das sessões ficam no Drive.
-> Aqui ficam o mapa e **o que cada etapa muda no código**.
+> Os ☐/✅ do dia a dia e o **Registro** das sessões ficam no Drive (a fonte). Aqui ficam o mapa e **o que cada etapa muda no código**.
+> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
 ## A rotina
 
