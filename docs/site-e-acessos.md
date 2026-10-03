@@ -85,6 +85,25 @@ O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrat
 
 **Na virada para a v2:** copiar o que houver em `public.waitlist` para `club.members` (o trecho já está no fim da migration v2 e pode ser rodado de novo sem duplicar) e, depois, revogar o acesso público à `join_waitlist`.
 
+## Fotos do site
+
+O Felipe gera as fotos no **ChatGPT** a partir do Google Doc *Cap Soleil — Direção fotográfica* e as manda **anexadas na conversa com o Claude** ou na pasta do Drive *Fotos do site*. Ao ouvir “imagens do chat”, o Claude segue [`.claude/skills/fotos-do-chat/SKILL.md`](../.claude/skills/fotos-do-chat/SKILL.md):
+
+1. revisa cada foto;
+2. prepara com `npm run fotos`: recorta na proporção do roteiro, até 3840 px, JPEG qualidade 90, em `src/assets/photos/<código>.jpg`;
+3. coloca no site e testa;
+4. atualiza esta tabela.
+
+O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠️) até chegar uma versão maior.
+
+| Código | Lugar no site | Versão no site | Situação |
+|---|---|---|---|
+| H1, H1m, H2, H2m, H3, H3m | Topo (muda com a hora) | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
+| I1, I2, I3, I4 | *L’Heure* | — | ☐ Aguardando (idem) |
+| R1 | *Les Règles* | — | ☐ Aguardando (idem) |
+| B1, B2, B3 | *Pro Shop* | — | ☐ Aguardando (o lugar já está pronto: basta o arquivo) |
+| L1 | *La Liste* | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
+
 ## Segurança
 
 - **No navegador:** CSP estrita (`public/_headers`; a mesma no `vercel.json` durante a transição, e um teste confere que são iguais), HSTS, `frame-ancestors 'none'`, nenhum script ou estilo escrito direto no HTML, nenhum segredo.

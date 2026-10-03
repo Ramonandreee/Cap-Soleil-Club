@@ -42,7 +42,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 | Texto do site (`src/content/site.ts`, `src/pages/`) | Seção certa da [marca.md](marca.md#como-isso-vira-texto-no-site), se mudar o conceito | Nada, a não ser que a frase venha de um doc do Drive |
 | Cor, fonte, céu do relógio de sol, ilustração, favicon ou og-image | [identidade-visual.md › No site](identidade-visual.md#no-site) | *Cap Soleil — Identidade visual*, se mudar a relação com a marca |
 | Emblema, logo, pôster ou coleção (arquivo novo ou aprovado) | [identidade-visual.md](identidade-visual.md) | O arquivo na pasta certa, com `vNN` novo, e o Google Doc *Identidade visual* |
-| Foto nova ou trocada no site | [direcao-fotografica.md](direcao-fotografica.md#roteiro-lista-de-fotos) (roteiro) e o texto alternativo em `src/lib/photos.ts` | A original em *Fotos do site*, com `vNN` novo e o prompt na descrição |
+| Foto nova ou trocada no site | [site-e-acessos.md › Fotos do site](site-e-acessos.md#fotos-do-site) (situação de cada foto), o texto alternativo em `src/lib/photos.ts` e, se mudar o roteiro, [direcao-fotografica.md](direcao-fotografica.md#roteiro-lista-de-fotos) | A original em *Fotos do site*, com `vNN` novo e o prompt na descrição |
 | Formulário, função `apply`, banco ou Supabase | [README](../README.md) e [site-e-acessos.md](site-e-acessos.md#banco-de-dados) | *Site: projetos e acessos* (status) |
 | Domínio, hospedagem ou link do site | [site-e-acessos.md](site-e-acessos.md#status), README e `SITE_URL` na hospedagem | *Site: projetos e acessos* |
 | Sessão da rotina concluída | [roadmap.md](roadmap.md#sessões-do-site) (coluna Estado) | *Rotina*: ☐ → ✅ e uma linha no Registro |
@@ -141,3 +141,5 @@ python3 scripts/check_docs.py
 
 O arquivo [`CLAUDE.md`](../CLAUDE.md), na raiz, passa estas mesmas regras para qualquer sessão do Claude, do Ramon ou do Felipe.
 Ao pedir uma mudança, o Claude atualiza a documentação no mesmo PR e diz o que precisa mudar no Drive. Se o conector do Google Docs estiver ligado, ele mesmo faz a atualização no Drive.
+
+Para tarefas que se repetem, o Claude tem roteiros prontos em `.claude/skills/`. Hoje há um: **[fotos-do-chat](../.claude/skills/fotos-do-chat/SKILL.md)**. É só dizer “são as imagens do chat”: ele revisa as fotos do ChatGPT, prepara, coloca no site, testa e diz o que muda no Drive.

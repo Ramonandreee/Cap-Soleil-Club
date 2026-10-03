@@ -68,6 +68,7 @@ npm run dev     # abre o site em http://localhost:4321
 | Uma frase do site | `src/content/site.ts` (passe pelo checklist de [docs/marca.md](docs/marca.md#checklist-para-qualquer-texto-novo)) |
 | O e-mail de contato, as horas de acesso antecipado, o Instagram | `src/config.ts` |
 | Uma cor ou uma fonte | `src/styles/tokens.css` e [docs/identidade-visual.md › No site](docs/identidade-visual.md#no-site) |
+| Uma foto do site | `npm run fotos -- <arquivos>` prepara em `src/assets/photos/<código>.jpg`; o texto alternativo fica em `src/lib/photos.ts`. Passo a passo em [`.claude/skills/fotos-do-chat/SKILL.md`](.claude/skills/fotos-do-chat/SKILL.md) |
 | As cores do céu em cada hora | `src/lib/sun.ts` (`PALETTES`) |
 | A política de privacidade ou o aviso legal | `src/pages/privacy.astro` e `src/pages/legal.astro` |
 | O que o formulário aceita | `supabase/functions/_shared/lead.ts` (vale para o site **e** para a função; a função precisa ser publicada de novo, passo 5) |
