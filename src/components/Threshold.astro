@@ -17,7 +17,7 @@ import { THRESHOLD } from '../content/site.ts';
   .threshold { min-height: 100svh; position: relative; display: grid; place-items: start center; padding: clamp(7rem, 15vh, 10rem) var(--gutter) 5rem; color: var(--cream); text-align: center; }
   .threshold__clock { position: absolute; top: 2rem; left: 0; width: 100%; color: var(--cream); font-size: .7rem; }
   .threshold__inner { max-width: 55rem; text-shadow: 0 2px 18px rgb(0 0 0 / .65); }
-  .threshold__mark { width: 5rem; height: auto; margin: 0 auto 1.5rem; }
+  .threshold :global(.threshold__mark) { width: 5rem; height: auto; margin: 0 auto 1.5rem; --emblem-ink: #f4efe6; --emblem-paper: #1f2a44; }
   h1 { margin: 0; font-weight: 400; }
   .threshold__name { display: block; font-size: clamp(2.7rem, 6vw, 5rem); letter-spacing: .15em; text-transform: uppercase; }
   .threshold__club { display: block; font-size: .9rem; letter-spacing: .4em; margin-top: .5rem; }

@@ -219,3 +219,5 @@ Portaria, L’Heure e regras compartilham a mesma quadra de saibro sobre o Medit
 O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial em relevo, marca-d’água e selo dourado. Campos, validação e envio do formulário preservados. Produtos B1–B3 sem alteração.
 
 H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.
+
+O emblema de entrada mede 5 rem e mantém contraste creme sobre a fotografia. Arquivos da integração normalizados para LF.
