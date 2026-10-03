@@ -53,7 +53,7 @@ Estado conferido em **03/10/2026**. As três primeiras sessões já estão adian
 |---|---|---|---|---|
 | D1 | Seg 05/10 | GitHub | ✅ Repositório privado no ar e Felipe convidado | — |
 | D2 | Ter 06/10 | Vercel | ✅ No ar em capsoleilclub.vercel.app | Hospedagem decidida depois: **Cloudflare Pages** ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) |
-| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto e banco v2 (`club`) prontos, função `apply` publicada · ☐ falta o cadastro de teste depois do deploy | Nenhuma. As migrations já foram aplicadas: **não rode de novo** |
+| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto e banco v2 (`club`) prontos, função `apply` publicada · ✅ Cadastro de teste ponta a ponta em 03/10 (site no ar → função `apply` → `club.members`, `club.consents` e `club.events`) | Nenhuma. As migrations já foram aplicadas: **não rode de novo** |
 | D4 | Qui 08/10 | Domínio (com o Felipe) | ☐ | Nada no código: o domínio entra em *Cloudflare Pages › Custom domains*, e `SITE_URL` passa a ser `https://capsoleilclub.com`. A função `apply` já aceita o domínio |
 | D5 | Seg 12/10 | Privacidade e contato | ☐ | Colchetes de `src/pages/privacy.astro` e `legal.astro`; `contactEmail` em `src/config.ts` (ex.: hello@capsoleilclub.com) |
 | D6 | Ter 13/10 | Textos | ☐ | `src/content/site.ts`: revisar as **Regras do Clube**, a **promessa da lista** (48 h, 1 carta por mês) e as legendas da Boutique (trio). Checklist de [marca.md](marca.md#checklist-para-qualquer-texto-novo) |
