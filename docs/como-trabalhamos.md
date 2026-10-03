@@ -55,13 +55,34 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 
 **No GitHub**
 
-1. **Antes de começar,** traga a `main` atualizada (no GitHub Desktop: *Fetch origin › Pull*; no Terminal: `git pull`).
+Os dois mexem ao mesmo tempo e têm a **mesma autoridade**: quem abre o PR faz o merge quando os checks ficam verdes. Para isso não virar conflito:
+
+1. **Comece toda tarefa da `main` do GitHub, não da sua cópia.** Rode `git fetch origin && git switch -c felipe/assunto origin/main`. Pelo Codex ou pelo Claude, peça “comece uma branch nova a partir da `origin/main` atualizada”. Começar de uma `main` velha é a causa nº 1 de conflito.
 2. **Uma tarefa = uma branch = um PR.** Nomeie a branch com o seu nome e o assunto: `ramon/trio-de-produtos`, `felipe/dominio`.
-3. **PRs pequenos e frequentes.** Um PR de uma noite é melhor que um de uma semana: menos conflito e revisão mais fácil.
-4. **Avise no PR o que mudou no Drive.** O modelo de PR já traz a lista.
-5. **O outro sócio revisa** antes do merge, sempre que der. Se for urgente, faça o merge e avise no alinhamento de segunda.
-6. **Se o GitHub acusar conflito,** traga a `main` para a sua branch (botão *Update branch* no PR) e resolva escolhendo, linha a linha, o texto que deve ficar. Na dúvida, chame o outro sócio antes de escolher.
-7. **Nunca** apague a branch do outro, nem force (`--force`) nada na `main`.
+3. **PRs pequenos e curtos.** Abra, espere os checks e faça o merge **no mesmo dia**: branch parada acumula conflito.
+4. **Nunca dê push direto na `main`.** Tudo entra pelo botão de merge do PR: assim os checks rodam antes de ir ao ar.
+5. **Antes do merge,** se o PR disser *This branch is out-of-date*, clique em **Update branch** e espere os checks de novo.
+6. **Mesmo arquivo grande ao mesmo tempo** (`List.astro`, `site.ts`, um doc inteiro): combinem pelo WhatsApp. Um faz o merge, o outro atualiza a branch e só então continua.
+7. **Se o GitHub acusar conflito,** traga a `main` para a sua branch (*Update branch* ou `git merge origin/main`) e resolva **mantendo o trabalho dos dois**. Na dúvida, chame o outro sócio antes de escolher.
+8. **Fim de linha:** o repositório usa o padrão LF (`.gitattributes` e `.editorconfig`). Se a verificação acusar “fim de linha do Windows (CRLF)”, corrija na sua branch com `git add --renormalize . && git commit -m "Normalizar fim de linha"`.
+9. **Depois do merge,** a branch é apagada e a próxima tarefa começa de novo no passo 1.
+10. **Avise no PR o que mudou no Drive.** O modelo de PR já traz a lista.
+11. **Nunca** apague a branch do outro, nem force (`--force`) nada na `main` ou na branch do outro.
+
+**Configurações (uma vez só)**
+
+- **Ramon**, dono do repositório, em *GitHub › Settings › General › Pull Requests*, marque:
+  - **Always suggest updating pull request branches** (mostra o botão *Update branch*);
+  - **Automatically delete head branches** (apaga a branch depois do merge);
+  - **Allow auto-merge** (o PR entra sozinho quando os checks ficam verdes).
+- **Ramon**, em *Settings › Rules › Rulesets › New branch ruleset* para a `main`, enquanto o repositório for público:
+  - **Require a pull request before merging**, com 0 aprovações, para os dois poderem fazer o merge sozinhos;
+  - **Require status checks to pass**: **Documentação em dia** e **Site (testes)**;
+  - **Block force pushes**.
+- **Felipe**, no computador dele, se usar o Git ou o Codex local: `git config --global core.autocrlf true` no Windows (ou `input` no Mac) e `git config --global pull.rebase false`.
+- **Mesma autoridade de verdade:** num repositório de conta pessoal, só o dono (Ramon) muda configurações e aprova apps (Codex, Claude, Cloudflare). Para o Felipe ter os mesmos poderes, o repositório precisa ir para uma **organização gratuita do GitHub** com os dois como *owners*.
+  - Depois da mudança, é preciso reconectar a Cloudflare Pages, a Vercel e os apps do Codex e do Claude.
+  - Combine antes de fazer: o site fica sem publicar até a Cloudflare ser reconectada.
 
 **No Drive**
 
@@ -133,6 +154,7 @@ python3 scripts/check_docs.py
 | Se os links entre os documentos (e as âncoras `#`) existem | Corrija o link |
 | Se o site (`src/`) menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
 | Se cada documento em `docs/` tem a linha **Atualizado em** | Acrescente a linha no topo |
+| Se algum arquivo tem fim de linha do Windows (CRLF), que vira conflito com o trabalho do outro sócio | Na sua branch: `git add --renormalize .` e um commit |
 
 > **Bloquear o merge de verdade:** com o repositório público, o GitHub grátis permite *branch protection*. Em **Settings › Branches › Add rule** (ou *Rulesets*), para a `main`: exigir PR antes do merge e exigir as verificações **Documentação em dia** e **Site (testes)**.
 > Quando o repositório voltar a ser privado (Cloudflare), o GitHub grátis deixa de aplicar essas regras em repositório privado de conta pessoal. A regra continua valendo do mesmo jeito: **PR vermelho não entra.**

@@ -6,19 +6,25 @@ O Codex lê este arquivo; o Claude lê o [`CLAUDE.md`](CLAUDE.md). As regras sã
 
 ## Como uma mudança vai ao ar
 
-1. Trabalhe numa **branch nova** a partir da `main`. **Nunca** faça commit na `main`.
+1. Comece numa **branch nova** a partir da `main` **do GitHub**, recém-baixada. Nunca parta de uma `main` local antiga:
+   ```bash
+   git fetch origin && git switch -c felipe/<assunto> origin/main
+   ```
+   **Nunca** faça commit nem push na `main`. O Ramon mexe no site ao mesmo tempo, e começar de uma `main` velha é o que mais gera conflito.
 2. Abra um **PR**. O GitHub roda dois checks:
    - **Documentação em dia**;
    - **Site (testes)**: tipos, testes, build e testes no navegador.
 
    A **Cloudflare Pages** publica uma **prévia** do PR e comenta o link nele.
-3. Com os dois checks verdes, quem pediu a mudança faz o **merge** no GitHub. A Cloudflare publica a `main` sozinha, em cerca de 1 minuto, em https://cap-soleil-club.pages.dev.
+3. Antes de terminar, rode `git fetch origin`. Se a `main` andou, traga-a com `git merge origin/main` (sem rebase), resolva mantendo o trabalho dos dois e rode as verificações de novo.
+4. Com os dois checks verdes, quem pediu a mudança faz o **merge** no GitHub. A Cloudflare publica a `main` sozinha, em cerca de 1 minuto, em https://cap-soleil-club.pages.dev.
 
 Não existe outro passo de deploy. Não rode `wrangler`, `vercel` nem `supabase … deploy`.
 
 ## Ambiente
 
 - Node **22** (`.node-version`), depois `npm ci`.
+- Fim de linha **LF** (`.gitattributes` e `.editorconfig`). Se `check_docs.py` acusar CRLF, rode `git add --renormalize .` e faça um commit.
 - Antes de abrir o PR, rode:
   - `python3 scripts/check_docs.py`
   - `npm run check`

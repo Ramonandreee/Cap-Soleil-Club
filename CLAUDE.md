@@ -15,7 +15,7 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 
 ## Fluxo de trabalho (dois sócios ao mesmo tempo)
 
-- Nunca faça commit direto na `main`. Uma tarefa = uma branch = um PR. Antes de começar, atualize a partir da `main`.
+- Nunca faça commit nem push direto na `main`. Uma tarefa = uma branch = um PR. Comece toda branch de `origin/main` recém-baixada (`git fetch origin`) e, antes do merge, traga a `main` de novo se ela andou. Os dois sócios mexem ao mesmo tempo e têm a mesma autoridade: regras em [como-trabalhamos › Trabalhando os dois ao mesmo tempo](docs/como-trabalhamos.md#trabalhando-os-dois-ao-mesmo-tempo).
 - Faça PRs pequenos e só faça merge com a verificação **Documentação em dia** verde.
 - Nunca reescreva o histórico da `main` e nunca use force push nela.
 - Em conflito de merge, traga a `main` para a branch e não descarte o trabalho do outro sócio. Na dúvida, pergunte.
