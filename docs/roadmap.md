@@ -83,7 +83,8 @@ Os três números da semana: **visitas, inscrições e taxa** (inscrições ÷ v
 ### Antes de D10 (e-mail)
 
 - **Decisão de 2026-10-03: sem e-mail por enquanto.** Quando houver: o provedor entra na Privacy, e a dupla confirmação usa os campos que o banco já tem (`status`, `confirmed_at`, `member_number`, `invite_code`, `club.consents` com o método `double_opt_in`).
-- O consentimento de hoje é para **Les Lettres du Club**: a abertura da Pro Shop e notícias raras, no máximo uma carta por mês (versão `2026-10-03` em `supabase/functions/_shared/lead.ts`). Se os envios forem além disso, mude o texto **e** crie uma versão nova do consentimento.
+- O consentimento de hoje é para **Les Lettres du Club por e-mail e WhatsApp**: a abertura da Pro Shop e notícias raras, no máximo uma por mês (versão `2026-10-03.2` em `supabase/functions/_shared/lead.ts`; a `2026-10-03` era só e-mail). Se os envios forem além disso, mude o texto **e** crie uma versão nova do consentimento.
+- **WhatsApp:** antes da primeira mensagem, escolher como enviar (WhatsApp Business ou a API da Meta) e nomear o provedor na Privacy, como o de e-mail.
 - Para levar a lista: *Supabase › Table Editor › club › members › Export* (CSV), só quem tem `marketing_consent = true`.
 
 ## Cronograma da loja (resumo)

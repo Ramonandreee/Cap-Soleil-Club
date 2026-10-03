@@ -23,11 +23,16 @@ async function answer(route: Route, status: number, body: unknown) {
   });
 }
 
-async function fillForm(page: Page, { name = "Ana", email = "ana@example.com", country = "FR", consent = true } = {}) {
+async function fillForm(
+  page: Page,
+  { name = "Ana", lastName = "Martin", email = "ana@example.com", country = "FR", phone = "06 12 34 56 78", consent = true } = {},
+) {
   await page.locator("#la-liste").scrollIntoViewIfNeeded();
   await page.fill("#first-name", name);
+  await page.fill("#last-name", lastName);
   await page.fill("#email", email);
   if (country) await page.selectOption("#country", country);
+  await page.fill("#phone", phone);
   if (consent) await page.check("#consent");
   // O servidor recusa envios feitos em menos de 1,2 s (anti-robô).
   await page.waitForTimeout(1300);
@@ -161,10 +166,32 @@ test.describe("the list", () => {
     await page.goto("/");
     await page.fill("#first-name", "Anne-Sophie");
     await expect(page.locator("[data-card-name]")).toHaveText("Anne-Sophie");
+    await page.fill("#last-name", "de la Croix");
+    await expect(page.locator("[data-card-name]")).toHaveText("Anne-Sophie de la Croix");
     await page.selectOption("#country", "IT");
     await expect(page.locator("[data-card-place]")).toHaveText("Italy");
     await page.fill("#first-name", "");
+    await page.fill("#last-name", "");
     await expect(page.locator("[data-card-name]")).toHaveText("Your name");
+  });
+
+  test("puts the country code before the WhatsApp number", async ({ page }) => {
+    await page.goto("/");
+    const code = page.locator("[data-dial]");
+    await expect(code).toBeHidden();
+    await page.selectOption("#country", "BR");
+    await expect(code).toHaveText("+55");
+    await page.fill("#phone", "+33 6 12 34 56 78");
+    await expect(code).toBeHidden();
+    await page.fill("#phone", "11 91234-5678");
+    await expect(code).toHaveText("+55");
+    await page.selectOption("#country", "");
+    await page.locator("#phone").blur();
+    await expect(page.locator("#phone-error")).toHaveText(
+      "Please check the number. Choose your country above, or start with + and the country code.",
+    );
+    await page.selectOption("#country", "BR");
+    await expect(page.locator("#phone-error")).toBeHidden();
   });
 
   test("explains every missing field and focuses the first", async ({ page }) => {
@@ -177,7 +204,9 @@ test.describe("the list", () => {
     await page.locator("#la-liste").scrollIntoViewIfNeeded();
     await page.click("[data-submit]");
     await expect(page.locator("#first-name-error")).toHaveText("Please write your first name.");
+    await expect(page.locator("#last-name-error")).toHaveText("Please write your last name.");
     await expect(page.locator("#email-error")).toHaveText("Please write your email address.");
+    await expect(page.locator("#phone-error")).toHaveText("Please write your WhatsApp number.");
     await expect(page.locator("#consent-error")).toHaveText("Please tick the box to receive the letters.");
     await expect(page.locator("#first-name")).toBeFocused();
     await expect(page.locator("#first-name")).toHaveAttribute("aria-invalid", "true");
@@ -209,10 +238,12 @@ test.describe("the list", () => {
 
     expect(sent).toMatchObject({
       firstName: "  Ana  ",
+      lastName: "Martin",
       email: "ana@example.com",
       country: "FR",
+      phone: "06 12 34 56 78",
       consent: true,
-      consentVersion: "2026-10-03",
+      consentVersion: "2026-10-03.2",
       utm: { source: "instagram", medium: "bio" },
       path: "/?utm_source=instagram&utm_medium=bio&phase=heure",
       phase: "heure",

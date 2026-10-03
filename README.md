@@ -160,9 +160,9 @@ Números do dia por origem, país e aparelho: **SQL Editor** › `select * from 
 ## 6. Teste real depois de publicar
 
 1. Abra o site no celular com `?utm_source=teste`, por exemplo: `https://cap-soleil-club.pages.dev/?utm_source=teste`.
-2. Preencha nome, e-mail (`voce+teste@…`) e país, marque o consentimento e toque em **Put my name down**.
+2. Preencha nome, sobrenome, e-mail (`voce+teste@…`), país e WhatsApp, marque o consentimento e toque em **Put my name down**.
 3. Deve aparecer **“Your name is down.”** e o cartão ganha o selo dourado.
-4. No Supabase, em `club.members`, a linha deve estar lá com `utm_source = teste`, `status = pending`, `marketing_consent = true`, e em `club.consents` a prova do consentimento.
+4. No Supabase, em **Table Editor**, troque o esquema `public` por **`club`** (seletor no alto da lista de tabelas). Em `members`, a linha deve estar lá com `utm_source = teste`, `status = pending`, `marketing_consent = true`, `last_name` e `phone_e164` (ex.: `+5511912345678`), e em `consents` a prova do consentimento.
 5. Apague o teste: em `club.members`, marque a linha e **Delete** (o consentimento e os eventos saem junto).
 
 Se aparecer *“Something went wrong on our side”*, veja **Edge Functions › apply › Logs** no Supabase.

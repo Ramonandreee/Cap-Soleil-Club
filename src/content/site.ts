@@ -72,13 +72,16 @@ export const LIST = {
   },
   fields: {
     firstName: "First name",
+    lastName: "Last name",
     email: "Email",
     country: "Country",
     countryHint: "optional",
     countryEmpty: "Select a country",
+    phone: "WhatsApp",
+    phoneHint: "The code follows the country above. For a number from elsewhere, start with +.",
   },
   consent:
-    "Send me Les Lettres du Club: the opening of the Pro Shop and rare news from the club, at most one a month. I can leave the list at any time.",
+    "Send me Les Lettres du Club by email and WhatsApp: the opening of the Pro Shop and rare news from the club, at most one a month. I can leave the list at any time.",
   privacyLink: "How we look after your details",
   submit: "Put my name down",
   sending: "Sealing…",
@@ -92,12 +95,22 @@ export const LIST = {
       invalid: "Please write your first name using letters.",
       too_long: "Please shorten your first name to 80 characters.",
     },
+    lastName: {
+      required: "Please write your last name.",
+      invalid: "Please write your last name using letters.",
+      too_long: "Please shorten your last name to 80 characters.",
+    },
     email: {
       required: "Please write your email address.",
       invalid: "Please check your email address.",
       too_long: "Please check your email address.",
     },
     country: { required: "Please choose a country.", invalid: "Please choose a country from the list.", too_long: "" },
+    phone: {
+      required: "Please write your WhatsApp number.",
+      invalid: "Please check the number. Choose your country above, or start with + and the country code.",
+      too_long: "Please check the number. Choose your country above, or start with + and the country code.",
+    },
     consent: {
       required: "Please tick the box to receive the letters.",
       invalid: "Please reload the page and tick the box again.",

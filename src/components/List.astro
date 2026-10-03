@@ -50,10 +50,18 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
 
       <div class="list__form">
         <form class="form" data-apply novalidate>
-          <div class="field">
-            <label for="first-name">{LIST.fields.firstName}</label>
-            <input id="first-name" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" spellcheck="false" maxlength={LIMITS.firstName} required aria-describedby="first-name-error" />
-            <p class="field__error" id="first-name-error" hidden></p>
+          <div class="form__names">
+            <div class="field">
+              <label for="first-name">{LIST.fields.firstName}</label>
+              <input id="first-name" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" spellcheck="false" maxlength={LIMITS.firstName} required aria-describedby="first-name-error" />
+              <p class="field__error" id="first-name-error" hidden></p>
+            </div>
+
+            <div class="field">
+              <label for="last-name">{LIST.fields.lastName}</label>
+              <input id="last-name" name="lastName" type="text" autocomplete="family-name" autocapitalize="words" spellcheck="false" maxlength={LIMITS.lastName} required aria-describedby="last-name-error" />
+              <p class="field__error" id="last-name-error" hidden></p>
+            </div>
           </div>
 
           <div class="field">
@@ -72,6 +80,18 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
               {countries.map((c) => <option value={c.code}>{c.name}</option>)}
             </select>
             <p class="field__error" id="country-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="phone">{LIST.fields.phone}</label>
+            <!-- O código do país aparece antes do número quando há país escolhido
+                 e o número não começa com + (src/scripts/apply.ts). -->
+            <div class="phone">
+              <span class="phone__code" id="phone-code" data-dial hidden></span>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength={LIMITS.phone} required aria-describedby="phone-code phone-hint phone-error" />
+            </div>
+            <p class="field__hint field__hint--below" id="phone-hint">{LIST.fields.phoneHint}</p>
+            <p class="field__error" id="phone-error" hidden></p>
           </div>
 
           <!-- Campo-armadilha: invisível para pessoas, isca para robôs. -->
@@ -366,6 +386,74 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
   .field select[aria-invalid="true"] {
     border-color: var(--error-on-navy);
     box-shadow: inset 3px 0 0 var(--error-on-navy);
+  }
+
+  .field__hint--below {
+    margin: 0;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .form__names {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  @media (min-width: 30rem) {
+    .form__names {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* WhatsApp: o código do país fica dentro da caixa, antes do número. */
+  .phone {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--field-border);
+    background: var(--ivory);
+  }
+
+  .phone:focus-within {
+    border-color: var(--gold);
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+  }
+
+  .phone:has(input[aria-invalid="true"]) {
+    border-color: var(--error-on-navy);
+    box-shadow: inset 3px 0 0 var(--error-on-navy);
+  }
+
+  .phone__code {
+    display: flex;
+    align-items: center;
+    padding-left: 0.95rem;
+    color: var(--muted);
+    font-size: 1.125rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .phone__code[hidden] {
+    display: none;
+  }
+
+  .field .phone input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+  }
+
+  .field .phone__code:not([hidden]) + input {
+    padding-left: 0.4rem;
+  }
+
+  .field .phone input:focus {
+    outline: none;
+  }
+
+  .field .phone input[aria-invalid="true"] {
+    box-shadow: none;
   }
 
   .field__error,

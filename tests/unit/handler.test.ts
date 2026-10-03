@@ -12,8 +12,10 @@ import {
 const ORIGIN = "https://capsoleilclub.com";
 const body = {
   firstName: "Ana",
+  lastName: "Martin",
   email: "Ana@Example.com",
   country: "FR",
+  phone: "06 12 34 56 78",
   consent: true,
   consentVersion: CONSENT_VERSION,
   elapsedMs: 4000,
@@ -102,6 +104,8 @@ describe("apply handler", () => {
     expect(calls[3].args).toMatchObject({
       p_email: "ana@example.com",
       p_first_name: "Ana",
+      p_last_name: "Martin",
+      p_phone_e164: "+33612345678",
       p_country_code: "FR",
       p_consent: true,
       p_consent_version: CONSENT_VERSION,
