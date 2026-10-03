@@ -33,7 +33,7 @@ vercel.json                Headers de segurança e endereços sem .html
 Duas coisas são normais nesse teste local:
 
 - O link **Privacy** leva para `/privacy`, que só funciona na Vercel. No computador, abra **http://localhost:8000/privacy.html**.
-- Enquanto o CONFIG não estiver preenchido (passo 4), o formulário responde *"The list is not open just yet"*.
+- O formulário já está ligado ao banco real: **um envio feito no computador cria um cadastro de verdade** na lista. Depois de testar, apague-o em **Table Editor › waitlist** (passo 5).
 
 > No Windows, se `python3` não funcionar, instale o Python em python.org ou use `py -m http.server 8000`.
 
@@ -92,6 +92,11 @@ A partir daqui, **cada commit novo no GitHub publica o site sozinho** em cerca d
 
 ## 4. Ligar o formulário ao Supabase
 
+> ✅ **Já feito.** O CONFIG do `main.js` já está preenchido com a Project URL
+> (`https://anlniqjoaogsuptuvrtk.supabase.co`) e a Publishable key do projeto **Cap Soleil Club**.
+> Neste passo, basta fazer o **cadastro de teste** (mais abaixo). As instruções de colar
+> ficam aqui para quando for preciso trocar a chave ou o projeto.
+
 **Pegar os dois dados no Supabase**
 
 1. Entre em **supabase.com** e abra o projeto **Cap Soleil Club**.
@@ -142,9 +147,9 @@ E-mail repetido não cria linha nova e mostra a mesma mensagem de sucesso, para 
 ## 6. Checklist: antes de pôr o link na bio
 
 - [ ] **Nenhum colchete sobrando no `privacy.html`**: `[RESPONSÁVEL]`, `[ENDEREÇO]`, `[EMAIL DE CONTATO]`, `[PROVEDORES]` e `[DATA]` (veja a tabela abaixo).
-- [ ] **Nenhum colchete sobrando no resto do site**: `[URL DO SITE]`, `[EMAIL DE CONTATO]` e `[TRIO DE PRODUTOS]` no `index.html`, e o CONFIG no `main.js`.
+- [ ] **Nenhum colchete sobrando no resto do site**: `[URL DO SITE]`, `[EMAIL DE CONTATO]` e `[TRIO DE PRODUTOS]` no `index.html`.
       Para procurar tudo de uma vez, no Terminal, dentro da pasta:
-      `grep -rnE "\[(URL DO SITE|EMAIL DE CONTATO|TRIO DE PRODUTOS|RESPONSÁVEL|ENDEREÇO|PROVEDORES|DATA|PROJECT URL|PUBLISHABLE KEY)\]" --include=*.html --include=*.js .`
+      `grep -rnE "\[(URL DO SITE|EMAIL DE CONTATO|TRIO DE PRODUTOS|RESPONSÁVEL|ENDEREÇO|PROVEDORES|DATA)\]" --include=*.html .`
       Se não aparecer nada, está tudo trocado.
 - [ ] **Prévia do link ok no WhatsApp e no Instagram**: mande o link para você mesmo no WhatsApp e numa DM do Instagram. Deve aparecer a imagem verde com a quadra, o título e a descrição.
       Se a prévia vier sem imagem, confira o `[URL DO SITE]` e cole o link em **developers.facebook.com/tools/debug** (clique em *Scrape Again*): WhatsApp e Instagram usam o mesmo leitor da Meta. O WhatsApp guarda prévias antigas; para testar de novo, acrescente `?v=2` no fim do link.
@@ -163,7 +168,6 @@ E-mail repetido não cria linha nova e mostra a mesma mensagem de sucesso, para 
 | `[ENDEREÇO]` | `privacy.html` | Endereço do responsável |
 | `[PROVEDORES]` | `privacy.html` | Lista dos serviços usados. Sugestão no comentário logo acima: Supabase, Vercel, Google Fonts, jsDelivr e o serviço de e-mail |
 | `[DATA]` | `privacy.html` | Data da última atualização, em inglês. Ex.: `3 October 2026` |
-| `[PROJECT URL]` e `[PUBLISHABLE KEY]` | `assets/js/main.js` (CONFIG) | Passo 4 |
 
 ---
 

@@ -6,8 +6,8 @@
  * NUNCA coloque a secret key ou a service_role key neste arquivo: ele é público.
  */
 const CONFIG = {
-  SUPABASE_URL: '[PROJECT URL]',
-  SUPABASE_PUBLISHABLE_KEY: '[PUBLISHABLE KEY]',
+  SUPABASE_URL: 'https://anlniqjoaogsuptuvrtk.supabase.co',
+  SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_3TIndIKUPsNJuCLApjwvAQ_lx40AxjI',
 };
 
 (function () {
