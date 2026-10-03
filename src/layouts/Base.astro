@@ -28,7 +28,8 @@ interface Props {
 
 const { title, description = SITE.description, noindex = false, bodyClass } = Astro.props;
 const fullTitle = title ? `${title} · ${SITE.name}` : SITE.name;
-const canonical = new URL(Astro.url.pathname.replace(/\/index$/, "/"), Astro.site);
+// Com build.format "file", o Astro vê /index.html e /privacy.html; o endereço público é / e /privacy.
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, "").replace(/\/index$/, "/"), Astro.site);
 const ogImage = new URL("/og-image.jpg", Astro.site);
 ---
 

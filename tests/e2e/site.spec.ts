@@ -50,6 +50,16 @@ test.describe("pages", () => {
     });
   }
 
+  test("canonical and share links use clean addresses", async ({ page }) => {
+    for (const [path, clean] of [["/", "/"], ["/privacy", "/privacy"], ["/legal", "/legal"]] as const) {
+      await page.goto(path);
+      const canonical = await page.locator('link[rel="canonical"]').getAttribute("href");
+      const ogUrl = await page.locator('meta[property="og:url"]').getAttribute("content");
+      expect(new URL(canonical!).pathname).toBe(clean);
+      expect(ogUrl).toBe(canonical);
+    }
+  });
+
   test("unknown pages answer 404 with the club page", async ({ page }) => {
     const response = await page.goto("/nowhere");
     expect(response?.status()).toBe(404);

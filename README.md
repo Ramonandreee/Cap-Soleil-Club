@@ -3,8 +3,8 @@
 Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da Riviera Francesa, no luxo silencioso e vendida na Europa.
 Este site é a **portaria de um clube que ainda não abriu**: a pessoa chega na luz real daquela hora na Côte d’Azur, lê as Regras do Clube, vê fragmentos da Pro Shop e põe o nome na lista (**La Liste**).
 
-- **No ar hoje:** https://capsoleilclub.vercel.app (endereço final previsto: capsoleilclub.com).
-- **Hospedagem decidida:** **Cloudflare Pages** com o repositório privado. A troca está no passo 4; até lá, a Vercel continua publicando.
+- **No ar:** https://cap-soleil-club.pages.dev (Cloudflare Pages, desde 03/10/2026). Endereço final previsto: capsoleilclub.com.
+- **Hospedagem:** **Cloudflare Pages**. A Vercel (capsoleilclub.vercel.app) ainda publica a mesma versão até ser desligada (passo 4, item 7).
 - **Site:** [Astro](https://astro.build), que gera páginas estáticas. Tem build com npm e JavaScript pequeno, só para o céu, a rolagem e o formulário.
 - **Lista:** o formulário manda para a função **`apply`** (Supabase Edge Function), que valida e grava no esquema **`club`** do banco (projeto **Cap Soleil Club**, Paris / eu-west-3).
 - **Proposta completa (privada, no Drive):** [Cap Soleil — Proposta do site de lançamento (v2)](https://docs.google.com/document/d/1FAFPsSY93FUrCLoEGsGT61_TLRYatLDxYpNLAzzpWU4/edit).
@@ -86,9 +86,11 @@ Eles **nunca** chamam a função de verdade: o envio é interceptado.
 
 ## 4. Publicar na Cloudflare Pages (a hospedagem decidida)
 
+> ✅ **Feito em 03/10/2026:** o projeto `cap-soleil-club` está no ar. Faltam o item 6 (domínio) e o item 7 (repositório privado e Vercel desligada). Os passos ficam aqui para refazer ou conferir.
+
 Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos dois sócios, mesmo com o repositório **privado**, e cada branch ou PR ganha um link de prévia. O plano grátis permite uso comercial.
 
-1. Entre em **dash.cloudflare.com** (crie a conta da Cap Soleil, se ainda não houver) › **Workers & Pages › Create › Pages › Connect to Git**.
+1. Entre em **dash.cloudflare.com** › **Workers & Pages › Create application**. A Cloudflare abre no caminho de **Workers**: não use. Clique no link do rodapé **“Looking to deploy Pages? Get started”** e depois em **Import an existing Git repository › Get started**.
 2. Autorize o GitHub e escolha `Ramonandreee/Cap-Soleil-Club`. Dê ao projeto o nome **`cap-soleil-club`** (a função `apply` já aceita `cap-soleil-club.pages.dev` e as prévias `*.cap-soleil-club.pages.dev`).
 3. Em **Build settings**:
    - **Framework preset:** Astro

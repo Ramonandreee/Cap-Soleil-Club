@@ -13,7 +13,7 @@ O endereço final previsto é **capsoleilclub.com**. A proposta completa (posici
 Instagram / Threads (@capsoleilclub)
         │  link da bio: …/?utm_source=instagram
         ▼
-Site (Astro, estático) ── Cloudflare Pages (decidido) · hoje: capsoleilclub.vercel.app
+Site (Astro, estático) ── Cloudflare Pages: cap-soleil-club.pages.dev (a Vercel ainda publica até ser desligada)
         │  publicado a cada commit na main · cada PR ganha uma prévia
         │◄─────────────── GitHub: Ramonandreee/Cap-Soleil-Club
         ▼
@@ -38,10 +38,10 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 
 | Peça | Para quê | Onde | Status | Responsável |
 |---|---|---|---|---|
-| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` | ✅ No ar, **público** desde 2026-10-03 (para a Vercel Hobby publicar os commits do Felipe). Volta a ser privado depois da Cloudflare | Ramon |
-| Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ Pronto na branch, com testes. ☐ Entra no ar com o merge do PR | Ramon |
-| Cloudflare Pages | Hospedagem decidida (uso comercial, deploy dos dois sócios com repositório privado) | `cap-soleil-club.pages.dev` | ☐ Criar o projeto ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
-| Vercel | Hospedagem atual, até a troca | https://capsoleilclub.vercel.app | ✅ No ar (v1). O `vercel.json` já sabe construir a v2. Sai depois da Cloudflare | Ramon |
+| GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` | ✅ No ar, **público** desde 2026-10-03 (para a Vercel Hobby publicar os commits do Felipe). ☐ Voltar a ser privado: a Cloudflare já publica | Ramon |
+| Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ No ar desde 03/10/2026 (PR #3) | Ramon |
+| Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
+| Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
 | Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migration `20261003054108_club_v2` | ✅ Aplicado e testado em 2026-10-03 (sem cadastros) | Ramon |
 | Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 1, `verify_jwt = false`) e respondendo | Ramon |
 | Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Ainda ligada ao site v1, vazia. Aposentar depois da virada | Ramon |
