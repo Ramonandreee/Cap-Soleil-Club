@@ -243,10 +243,10 @@ O Claude baixa da pasta, revisa com o controle de qualidade, recorta para cada t
 - Tudo dentro da CSP do site: nenhum estilo escrito no HTML; o placeholder desfocado é uma imagem `data:` (permitida).
 
 
-## Experiência fotográfica aprovada em 2026-10-03
+## Experiência aprovada em 2026-10-03
 
-A portaria, L’Heure e as regras compartilham uma mesma quadra de saibro sobre o Mediterrâneo. A rolagem faz a luz passar de H2 (dia) a H1 (fim de tarde) e H3 (hora azul). O cabeçalho único entra do alto antes de L’Heure e fica fixo ao encaixar no topo; depois do encaixe, sua posição deixa de ser recalculada. A preferência por movimento reduzido troca as fases sem interpolação.
+Portaria, L’Heure e regras compartilham a mesma quadra de saibro sobre o Mediterrâneo. A rolagem passa de H2 (dia) a H1 (fim de tarde) e H3 (hora azul), respeitando movimento reduzido. O cabeçalho único entra do alto antes de L’Heure e permanece fixo após encaixar no topo, sem recalcular sua posição.
 
-O cartão mantém a proporção física 85,6 × 54 mm, com cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial com efeito de impressão em relevo, marca-d’água e selo dourado. Nome e país continuam acompanhando o formulário real, cujos campos e envio permanecem preservados. Fotos B1–B3 mantidas sem alteração.
+O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial em relevo, marca-d’água e selo dourado. Campos, validação e envio do formulário preservados. Produtos B1–B3 sem alteração.
 
-As fotos H1–H3 foram geradas com image_gen integrado, em 1672 × 941 px, sem ampliação artificial. A aprovação aceita esta resolução para a primeira publicação, abaixo do mínimo inicialmente planejado. Os arquivos originais e os prompts são arquivados no Drive. No celular o enquadramento usa recorte responsivo; versões verticais próprias permanecem uma melhoria futura.
+H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.

@@ -41,9 +41,10 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | GitHub | Código e histórico | `Ramonandreee/Cap-Soleil-Club` | ✅ No ar, **público** desde 2026-10-03 (para a Vercel Hobby publicar os commits do Felipe). ☐ Voltar a ser privado: a Cloudflare já publica | Ramon |
 | Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ No ar desde 03/10/2026 (PR #3) | Ramon |
 | Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
+| Codex (ChatGPT) | O Felipe muda o site pelo ChatGPT: o Codex abre o PR e o merge publica | `AGENTS.md` e o app *ChatGPT Codex Connector* no GitHub | ☐ Conectar ([passos](como-trabalhamos.md#com-o-chatgpt-codex)) | Felipe e Ramon |
 | Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
 | Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2` e `20261003210000_club_apply_name_phone` | ✅ Aplicado e testado em 2026-10-03; cadastro de teste ponta a ponta feito e apagado | Ramon |
-| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (`verify_jwt = false`) e respondendo. A versão com sobrenome e WhatsApp é publicada logo depois do merge do PR que muda o formulário | Ramon |
+| Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 2, com sobrenome e WhatsApp, desde 2026-10-03; `verify_jwt = false`) e respondendo | Ramon |
 | Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Ainda ligada ao site v1, vazia. Aposentar depois da virada | Ramon |
 | Turnstile | Anti-robô da Cloudflare (opcional) | Cloudflare › Turnstile | ☐ Não ligado ([README › passo 7](../README.md#7-ligar-o-turnstile-anti-robô-da-cloudflare-opcional)) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
@@ -84,6 +85,25 @@ No Drive (pasta *Site — capsoleilclub.com*) estão os dois SQLs que criaram a 
 O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrations/20261001000000_waitlist.sql) junta os dois no estado final. Os arquivos em `supabase/migrations/` são o **histórico do que já foi aplicado: não rode de novo**.
 
 **Na virada para a v2:** copiar o que houver em `public.waitlist` para `club.members` (o trecho já está no fim da migration v2 e pode ser rodado de novo sem duplicar) e, depois, revogar o acesso público à `join_waitlist`.
+
+## Fotos do site
+
+O Felipe gera as fotos no **ChatGPT** a partir do Google Doc *Cap Soleil — Direção fotográfica* e as manda **anexadas na conversa com o Claude** ou na pasta do Drive *Fotos do site*. Ao ouvir “imagens do chat”, o Claude segue [`.claude/skills/fotos-do-chat/SKILL.md`](../.claude/skills/fotos-do-chat/SKILL.md):
+
+1. revisa cada foto;
+2. prepara com `npm run fotos`: recorta na proporção do roteiro, até 3840 px, JPEG qualidade 90, em `src/assets/photos/<código>.jpg`;
+3. coloca no site e testa;
+4. atualiza esta tabela.
+
+O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠️) até chegar uma versão maior.
+
+| Código | Lugar no site | Versão no site | Situação |
+|---|---|---|---|
+| H1, H1m, H2, H2m, H3, H3m | Topo (muda com a hora) | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
+| I1, I2, I3, I4 | *L’Heure* | — | ☐ Aguardando (idem) |
+| R1 | *Les Règles* | — | ☐ Aguardando (idem) |
+| B1, B2, B3 | *Pro Shop* | B1 v3, B2 v3, B3 v2 (ChatGPT, 1122×1402, publicadas pelo Felipe) | ⚠️ Provisórias, no ar desde 03/10. Abaixo do mínimo do roteiro (2000 px); antes da campanha, pedem versão maior, emblema fiel ao oficial e saibro menos laranja em B2 |
+| L1 | *La Liste* | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
 
 ## Segurança
 
@@ -138,3 +158,22 @@ O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrat
 
 A loja (Shopify) assume `capsoleilclub.com` e o site de pré-lançamento sai do ar (ou vira a página do clube).
 A lista sai de `club.members` (*Table Editor › club › members › Export › CSV*, só quem tem `marketing_consent = true`) para a ferramenta de e-mail, para a carta **“the gates are open”**.
+
+
+### Fotos integradas em 2026-10-03
+
+| Código | Versão | Situação | Data |
+|---|---|---|---|
+| H1 | v01 | ⚠️ Provisória, 1672 × 941 px; fim de tarde | 2026-10-03 |
+| H2 | v01 | ⚠️ Provisória, 1672 × 941 px; dia | 2026-10-03 |
+| H3 | v01 | ⚠️ Provisória, 1672 × 941 px; hora azul | 2026-10-03 |
+
+
+
+## Experiência aprovada em 2026-10-03
+
+Portaria, L’Heure e regras compartilham a mesma quadra de saibro sobre o Mediterrâneo. A rolagem passa de H2 (dia) a H1 (fim de tarde) e H3 (hora azul), respeitando movimento reduzido. O cabeçalho único entra do alto antes de L’Heure e permanece fixo após encaixar no topo, sem recalcular sua posição.
+
+O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial em relevo, marca-d’água e selo dourado. Campos, validação e envio do formulário preservados. Produtos B1–B3 sem alteração.
+
+H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.

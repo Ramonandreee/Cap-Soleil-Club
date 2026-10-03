@@ -68,6 +68,7 @@ npm run dev     # abre o site em http://localhost:4321
 | Uma frase do site | `src/content/site.ts` (passe pelo checklist de [docs/marca.md](docs/marca.md#checklist-para-qualquer-texto-novo)) |
 | O e-mail de contato, as horas de acesso antecipado, o Instagram | `src/config.ts` |
 | Uma cor ou uma fonte | `src/styles/tokens.css` e [docs/identidade-visual.md › No site](docs/identidade-visual.md#no-site) |
+| Uma foto do site | `npm run fotos -- <arquivos>` prepara em `src/assets/photos/<código>.jpg`; o texto alternativo fica em `src/lib/photos.ts`. Passo a passo em [`.claude/skills/fotos-do-chat/SKILL.md`](.claude/skills/fotos-do-chat/SKILL.md) |
 | As cores do céu em cada hora | `src/lib/sun.ts` (`PALETTES`) |
 | A política de privacidade ou o aviso legal | `src/pages/privacy.astro` e `src/pages/legal.astro` |
 | O que o formulário aceita | `supabase/functions/_shared/lead.ts` (vale para o site **e** para a função; a função precisa ser publicada de novo, passo 5) |
@@ -89,7 +90,7 @@ Eles **nunca** chamam a função de verdade: o envio é interceptado.
 
 > ✅ **Feito em 03/10/2026:** o projeto `cap-soleil-club` está no ar. Faltam o item 6 (domínio) e o item 7 (repositório privado e Vercel desligada). Os passos ficam aqui para refazer ou conferir.
 
-Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos dois sócios, mesmo com o repositório **privado**, e cada branch ou PR ganha um link de prévia. O plano grátis permite uso comercial.
+Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos dois sócios, mesmo com o repositório **privado**, e cada branch ou PR ganha um link de prévia. O plano grátis permite uso comercial. Isso vale também para os PRs que o Felipe abre pelo ChatGPT ([Com o ChatGPT (Codex)](docs/como-trabalhamos.md#com-o-chatgpt-codex)).
 
 1. Entre em **dash.cloudflare.com** › **Workers & Pages › Create application**. A Cloudflare abre no caminho de **Workers**: não use. Clique no link do rodapé **“Looking to deploy Pages? Get started”** e depois em **Import an existing Git repository › Get started**.
 2. Autorize o GitHub e escolha `Ramonandreee/Cap-Soleil-Club`. Dê ao projeto o nome **`cap-soleil-club`** (a função `apply` já aceita `cap-soleil-club.pages.dev` e as prévias `*.cap-soleil-club.pages.dev`).

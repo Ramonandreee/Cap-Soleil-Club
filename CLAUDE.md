@@ -19,6 +19,7 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 - Faça PRs pequenos e só faça merge com a verificação **Documentação em dia** verde.
 - Nunca reescreva o histórico da `main` e nunca use force push nela.
 - Em conflito de merge, traga a `main` para a branch e não descarte o trabalho do outro sócio. Na dúvida, pergunte.
+- O Felipe também trabalha pelo **Codex do ChatGPT**, que lê o [`AGENTS.md`](AGENTS.md). Esse arquivo manda seguir este aqui; só o que valer apenas para o Codex vai lá. O merge na `main` publica o site, venha de onde vier ([como-trabalhamos › Com o ChatGPT (Codex)](docs/como-trabalhamos.md#com-o-chatgpt-codex)).
 
 ## Regras da marca
 
@@ -27,6 +28,7 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 - Tom calmo e curto, sem linguagem de venda (nada de “shop now”, “sale” ou urgência). A loja se chama **Pro Shop**. Use o checklist em [docs/marca.md](docs/marca.md#checklist-para-qualquer-texto-novo).
 - Identidade visual em [docs/identidade-visual.md](docs/identidade-visual.md). Emblema: azul-marinho `#1F2A44`, dourado `#B89B5E` e creme `#F4EFE6`. As cores do site estão nos tokens de `src/styles/tokens.css`.
 - **A lista é captação de lead.** O formulário pede **nome, sobrenome, e-mail e WhatsApp** (obrigatórios) e o país (opcional, completa o código do WhatsApp). Não tire nem afrouxe nenhum desses campos sem os dois sócios decidirem. Campo novo = coluna em `club.members`, regra em `supabase/functions/_shared/lead.ts`, migration nova, Privacy e, se o uso dos dados mudar, uma versão nova do consentimento.
+- **Imagens do chat.** O Felipe gera as fotos do site no ChatGPT. Quando alguém disser que chegaram “imagens do chat” (ou fotos novas do roteiro), siga [`.claude/skills/fotos-do-chat/SKILL.md`](.claude/skills/fotos-do-chat/SKILL.md): revisar com a direção fotográfica, preparar com `npm run fotos`, colocar no site, testar e dizer o que muda no Drive.
 - Os textos do site ficam em `src/content/site.ts`. O conceito é *Le Club suit le soleil* (o céu segue o sol real do Cap d’Antibes); a proposta completa está no Drive.
 
 ## Técnico
