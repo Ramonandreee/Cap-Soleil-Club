@@ -102,7 +102,7 @@ O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠
 | H1, H1m, H2, H2m, H3, H3m | Topo (muda com a hora) | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
 | I1, I2, I3, I4 | *L’Heure* | — | ☐ Aguardando (idem) |
 | R1 | *Les Règles* | — | ☐ Aguardando (idem) |
-| B1, B2, B3 | *Pro Shop* | — | ☐ Aguardando (o lugar já está pronto: basta o arquivo) |
+| B1, B2, B3 | *Pro Shop* | B1 v3, B2 v3, B3 v2 (ChatGPT, 1122×1402, publicadas pelo Felipe) | ⚠️ Provisórias, no ar desde 03/10. Abaixo do mínimo do roteiro (2000 px); antes da campanha, pedem versão maior, emblema fiel ao oficial e saibro menos laranja em B2 |
 | L1 | *La Liste* | — | ☐ Aguardando (o lugar é montado com a primeira foto) |
 
 ## Segurança

@@ -47,8 +47,8 @@ export const PHOTOS: Record<PhotoId, PhotoSlot> = {
   I3: { alt: "A hand pouring tea into a gold-rimmed cup on a linen-covered terrace table, wooden rackets beside it.", focus: "left", ...SCENE },
   I4: { alt: "Two friends at a stone balustrade just after sunset, a cable-knit sweater over his shoulders, looking at the sea.", focus: "center", ...SCENE },
   R1: { alt: "Folded tennis whites, a wooden racket and a striped towel on a teak bench in dappled shade.", focus: "center", ...STILL },
-  B1: { alt: "The club emblem embroidered in navy and gold thread on a cream cable-knit sweater.", focus: "center", ...STILL },
-  B2: { alt: "The collar and mother-of-pearl buttons of a white linen shirt against a sunlit stone wall.", focus: "center", ...STILL },
+  B1: { alt: "A navy half-zip pullover with a small cream and gold club emblem on the left chest, draped over a wicker chair on a sunlit terrace.", focus: "center", ...STILL },
+  B2: { alt: "A cream cotton polo with a small navy and gold emblem on a limestone table beside a wooden racket and clay tennis court.", focus: "center", ...STILL },
   B3: { alt: "A navy cap with a stitched brim resting on a limestone ledge in late sun.", focus: "center", ...STILL },
   L1: { alt: "A cream envelope sealed with gold wax beside a lit lantern on a terrace table at blue hour.", focus: "right", ...SCENE },
 };

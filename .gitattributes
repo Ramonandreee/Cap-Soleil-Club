@@ -1,0 +1,15 @@
+# Fim de linha LF em todos os arquivos de texto, venha a mudança do Mac, do
+# Windows, do Claude ou do Codex. Sem isso, um arquivo inteiro aparece como
+# alterado e os PRs entram em conflito.
+* text=auto eol=lf
+
+# Binários: nunca mexer.
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
