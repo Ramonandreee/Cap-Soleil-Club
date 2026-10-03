@@ -238,3 +238,7 @@ a:hover {
     transition-duration: 1ms !important;
   }
 }
+
+/* Hierarquia mais leve, mantendo as fontes e a paleta da marca. */
+.act-title { font-size: clamp(2.375rem, 4vw, 3.5rem); }
+.act-title__numeral, .act-title__dot { font-size: 1rem; }

@@ -12,4 +12,10 @@ import { HOUR } from '../content/site.ts';
   .hour__lines { list-style: none; padding: 0; margin: 0; }
   .hour__line { min-height: 90svh; display: grid; place-items: center; padding: 4rem var(--gutter); }
   .hour__line p { max-width: 46rem; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.4; font-style: italic; text-align: center; margin: 0; }
+
+/* Refinamento editorial aprovado: respiro, proporção e alinhamento. */
+.hour { padding-top: 5.9375rem; }
+.hour__line { min-height: 67svh; padding: 4.375rem var(--gutter); }
+.hour__line p { max-width: 40rem; font-family: var(--serif-display); font-size: clamp(1.875rem, 3.3vw, 2.875rem); line-height: 1.45; }
+@media(max-width:43.75rem) { .hour__line { min-height: 63svh; } }
 </style>
