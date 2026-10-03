@@ -14,13 +14,35 @@ import { LIST } from "../content/site.ts";
 </header>
 
 <script>
-  const bar = document.querySelector<HTMLElement>("[data-masthead]");
-  const threshold = document.querySelector("#seuil");
-  if (bar && threshold && "IntersectionObserver" in window) {
-    new IntersectionObserver(([entry]) => {
-      bar.classList.toggle("is-shown", !entry.isIntersecting);
-    }, { threshold: 0.02 }).observe(threshold);
+  const bar = document.querySelector<HTMLElement>('[data-masthead]');
+  const hour = document.querySelector<HTMLElement>('#heure');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  let settled = false;
+  function paint() {
+    frame = 0;
+    if (!bar || !hour) return;
+    const start = hour.getBoundingClientRect().top + scrollY - innerHeight * .55;
+    const distance = scrollY - start;
+    if (distance < 0) {
+      if (settled || bar.classList.contains('is-shown')) {
+        bar.classList.remove('is-shown');
+        bar.style.transform = '';
+      }
+      settled = false;
+      return;
+    }
+    const offset = reduce.matches ? 0 : Math.min(0, -bar.offsetHeight + distance * .65);
+    if (settled && offset === 0) return;
+    bar.classList.add('is-shown');
+    bar.style.transform = offset === 0 ? 'none' : `translateY(${offset}px)`;
+    settled = offset === 0;
   }
+  function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', () => { settled = false; schedule(); });
+  reduce.addEventListener('change', () => { settled = false; schedule(); });
+  paint();
 </script>
 
 <style>
@@ -33,13 +55,13 @@ import { LIST } from "../content/site.ts";
     color: var(--cream);
     visibility: hidden;
     transform: translateY(-100%);
-    transition: transform 0.6s var(--ease), visibility 0s linear 0.6s;
+    transition: none;
   }
 
   .masthead.is-shown {
     visibility: visible;
     transform: none;
-    transition: transform 0.6s var(--ease), visibility 0s;
+    transition: none;
   }
 
   .masthead__inner {

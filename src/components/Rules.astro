@@ -4,7 +4,7 @@ import { RULES } from "../content/site.ts";
 const numerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
 ---
 
-<section class="rules" id="regles" aria-labelledby="rules-title">
+<section class="rules on-dark" id="regles" aria-labelledby="rules-title">
   <div class="rules__inner">
     <header class="act-head" data-reveal>
       <svg class="ornament" aria-hidden="true" focusable="false"><use href="#sun-rule"></use></svg>
@@ -27,7 +27,8 @@ const numerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
 <style>
   .rules {
-    background: var(--cream);
+    background: linear-gradient(transparent, var(--navy-deep));
+    color: var(--cream);
     padding: clamp(5rem, 14vw, 9rem) var(--gutter);
   }
 
@@ -38,7 +39,7 @@ const numerals = ["I", "II", "III", "IV", "V", "VI", "VII"];
 
   .rules__subtitle {
     margin: 0;
-    color: var(--muted);
+    color: var(--on-navy-muted);
     font-style: italic;
   }
 
