@@ -120,6 +120,8 @@ Fica em [Experiência da marca](https://drive.google.com/drive/folders/1dZqfarv0
 
 ## No site
 
+> **Fotografia:** a direção fotográfica da marca (luz, cor, elenco, figurino, roteiro e prompts) está em [direcao-fotografica.md](direcao-fotografica.md). Ela vale para o site e para o Instagram.
+
 Esta seção **tem como fonte o código**. Se mudar uma cor (`src/styles/tokens.css`) ou uma fonte (`src/layouts/Base.astro`), atualize esta seção na mesma mudança; a verificação automática do GitHub cobra isso.
 
 > **Decisão (2026-10-03):** o site segue a **paleta oficial do emblema** (azul-marinho, dourado e creme). O saibro, o mar e os pinheiros dos pôsteres entram só como cores de apoio da ilustração.

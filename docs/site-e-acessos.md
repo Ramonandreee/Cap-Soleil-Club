@@ -109,7 +109,7 @@ O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrat
 | Base técnica | **Astro** (site estático com build) |
 | E-mail e dupla confirmação | **Sem e-mail por enquanto.** O banco já tem os campos de confirmação, número de membro e convites, para quando houver |
 | Hospedagem e repositório | **Cloudflare Pages + repositório privado** |
-| Imagens | **Ilustração + texturas** agora; ensaio fotográfico para a Pro Shop depois |
+| Imagens | ~~Ilustração + texturas~~ → **fotografia editorial** (decisão revista em 2026-10-03): gerada pelos sócios com os prompts de [direcao-fotografica.md](direcao-fotografica.md), revisada e otimizada pelo Claude. As ilustrações ficam até as fotos chegarem |
 | Telefone | Não coletar no lançamento (a coluna fica pronta) |
 | Número de membro | Não aparece na tela (só por e-mail e no cartão privado, quando houver e-mail) |
 | Idioma | Inglês com toques de francês |

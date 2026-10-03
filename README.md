@@ -19,6 +19,7 @@ Este site é a **portaria de um clube que ainda não abriu**: a pessoa chega na 
 | [docs/como-trabalhamos.md](docs/como-trabalhamos.md) | **A lei:** onde mora cada coisa, “se mudou isto, atualize aquilo”, trabalho simultâneo, organização do Drive, sincronização e a verificação automática |
 | [docs/marca.md](docs/marca.md) | História (PT e EN), posicionamento, tom de voz e o **checklist para qualquer texto do site** |
 | [docs/identidade-visual.md](docs/identidade-visual.md) | Emblema e regras de uso, logos alternativos, paletas (marca e site), tipografia, pôsteres, coleções, produtos-alvo, experiência da marca e o **relógio de sol** do site |
+| [docs/direcao-fotografica.md](docs/direcao-fotografica.md) | **Direção fotográfica** da marca (site, Instagram, campanhas): luz, cor, lentes, elenco, figurino, o roteiro de fotos do site e os **prompts de produção** |
 | [docs/site-e-acessos.md](docs/site-e-acessos.md) | Como as peças se ligam, status, banco de dados, segurança, chaves e senhas, custos e decisões pendentes |
 | [docs/roadmap.md](docs/roadmap.md) | Rotina das sessões do site (D1–D12), cronograma da loja (S1–S10) e o que cada etapa muda no código |
 | [CLAUDE.md](CLAUDE.md) | As mesmas regras, resumidas para as sessões do Claude |

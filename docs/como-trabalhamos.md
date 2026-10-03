@@ -22,6 +22,8 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 |---|---|---|
 | História, posicionamento e tom de voz | Drive: *Cap Soleil — História e Posicionamento* | [docs/marca.md](marca.md) |
 | Identidade visual: emblema, logos, paleta da marca, pôsteres, coleções, experiência | Drive: *01 - Identidade da marca*, *02 - Coleção e produtos* e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) | [docs/identidade-visual.md](identidade-visual.md) |
+| Direção fotográfica (luz, cor, elenco, figurino, roteiro e prompts) | Drive: *Cap Soleil — Direção fotográfica* (**a criar**; até lá, o GitHub) | [docs/direcao-fotografica.md](direcao-fotografica.md) |
+| Fotos do site (originais) | Drive: *05 - Loja e lançamento › Site — capsoleilclub.com › Fotos do site* | `src/assets/photos/` (as escolhidas, já tratadas) |
 | Cores, fontes e gráficos **do site** | GitHub: `src/styles/tokens.css`, `src/lib/sun.ts`, os componentes em `src/components/` e [identidade-visual.md › No site](identidade-visual.md#no-site) | — |
 | Textos do site (inglês) | GitHub: `src/content/site.ts` | Drive: o doc de origem, quando a frase vem de lá (ex.: a história) |
 | Código, configuração, banco e segurança do site | GitHub (código, [README](../README.md) e [site-e-acessos.md](site-e-acessos.md)) | Drive: *Site: projetos e acessos* (só status e links) |
@@ -40,6 +42,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 | Texto do site (`src/content/site.ts`, `src/pages/`) | Seção certa da [marca.md](marca.md#como-isso-vira-texto-no-site), se mudar o conceito | Nada, a não ser que a frase venha de um doc do Drive |
 | Cor, fonte, céu do relógio de sol, ilustração, favicon ou og-image | [identidade-visual.md › No site](identidade-visual.md#no-site) | *Cap Soleil — Identidade visual*, se mudar a relação com a marca |
 | Emblema, logo, pôster ou coleção (arquivo novo ou aprovado) | [identidade-visual.md](identidade-visual.md) | O arquivo na pasta certa, com `vNN` novo, e o Google Doc *Identidade visual* |
+| Foto nova ou trocada no site | [direcao-fotografica.md](direcao-fotografica.md#roteiro-lista-de-fotos) (roteiro) e o texto alternativo em `src/lib/photos.ts` | A original em *Fotos do site*, com `vNN` novo e o prompt na descrição |
 | Formulário, função `apply`, banco ou Supabase | [README](../README.md) e [site-e-acessos.md](site-e-acessos.md#banco-de-dados) | *Site: projetos e acessos* (status) |
 | Domínio, hospedagem ou link do site | [site-e-acessos.md](site-e-acessos.md#status), README e `SITE_URL` na hospedagem | *Site: projetos e acessos* |
 | Sessão da rotina concluída | [roadmap.md](roadmap.md#sessões-do-site) (coluna Estado) | *Rotina*: ☐ → ✅ e uma linha no Registro |
@@ -104,6 +107,7 @@ Cada documento em `docs/` traz no topo:
 | [identidade-visual.md](identidade-visual.md) | *01 - Identidade da marca*, *02 - Coleção e produtos* e *Cap Soleil — Identidade visual* | 2026-10-03 |
 | [site-e-acessos.md](site-e-acessos.md) | *Cap Soleil — Site: projetos e acessos* | 2026-10-03 |
 | [roadmap.md](roadmap.md) | *Cap Soleil — Rotina de desenvolvimento do site* e *Cronograma de lançamento* | 2026-10-03 |
+| [direcao-fotografica.md](direcao-fotografica.md) | *Cap Soleil — Direção fotográfica* (a criar) | — |
 
 ### Revisão semanal (5 minutos, no alinhamento de segunda)
 

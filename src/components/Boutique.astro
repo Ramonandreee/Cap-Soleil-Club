@@ -1,5 +1,6 @@
 ---
 // Ato III · La Boutique: fragmentos da Pro Shop em close, sem preço e sem nome de produto.
+import Photo from "./Photo.astro";
 import { BOUTIQUE } from "../content/site.ts";
 const [embroidered, knit, brim] = BOUTIQUE.fragments;
 ---
@@ -17,7 +18,8 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
     <ul class="boutique__fragments" role="list">
       <li data-reveal>
         <figure class="fragment">
-          <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
+          <Photo id="B1" class="fragment__photo" sizes="(min-width: 48rem) 22rem, 90vw">
+            <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
             <defs>
               <pattern id="knit-navy" width="12" height="14" patternUnits="userSpaceOnUse">
                 <path d="M0 0L6 7L12 0M0 7L6 14L12 7" fill="none" stroke="#2b3858" stroke-width="2.4"></path>
@@ -31,24 +33,28 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
             <image href="/img/emblema-navy.svg" x="48" y="78" width="144" height="144" filter="url(#thread-shadow)"></image>
             <path class="fragment__frame" d="M12.5 12.5H227.5V287.5H12.5Z"></path>
           </svg>
+          </Photo>
           <figcaption><span class="caps">Nº {embroidered.no}</span> — {embroidered.caption}</figcaption>
         </figure>
       </li>
       <li data-reveal>
         <figure class="fragment">
-          <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
+          <Photo id="B2" class="fragment__photo" sizes="(min-width: 48rem) 22rem, 90vw">
+            <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
             <rect x=".5" y=".5" width="239" height="299" fill="#fbf8f2" stroke="#ece4d4"></rect>
             <path class="fragment__ribs" d="M16 0V300M224 0V300M82 96V300M158 96V300"></path>
             <path class="fragment__cable" d="M44 24Q64 33 44 42Q24 51 44 60Q64 69 44 78Q24 87 44 96Q64 105 44 114Q24 123 44 132Q64 141 44 150Q24 159 44 168Q64 177 44 186Q24 195 44 204Q64 213 44 222Q24 231 44 240Q64 249 44 258Q24 267 44 276Q64 285 44 294Q24 297 44 300M44 24Q24 33 44 42Q64 51 44 60Q24 69 44 78Q64 87 44 96Q24 105 44 114Q64 123 44 132Q24 141 44 150Q64 159 44 168Q24 177 44 186Q64 195 44 204Q24 213 44 222Q64 231 44 240Q24 249 44 258Q64 267 44 276Q24 285 44 294Q64 297 44 300M120 150Q140 159 120 168Q100 177 120 186Q140 195 120 204Q100 213 120 222Q140 231 120 240Q100 249 120 258Q140 267 120 276Q100 285 120 294Q140 297 120 300M120 150Q100 159 120 168Q140 177 120 186Q100 195 120 204Q140 213 120 222Q100 231 120 240Q140 249 120 258Q100 267 120 276Q140 285 120 294Q100 297 120 300M196 24Q216 33 196 42Q176 51 196 60Q216 69 196 78Q176 87 196 96Q216 105 196 114Q176 123 196 132Q216 141 196 150Q176 159 196 168Q216 177 196 186Q176 195 196 204Q216 213 196 222Q176 231 196 240Q216 249 196 258Q176 267 196 276Q216 285 196 294Q176 297 196 300M196 24Q176 33 196 42Q216 51 196 60Q176 69 196 78Q216 87 196 96Q176 105 196 114Q216 123 196 132Q176 141 196 150Q216 159 196 168Q176 177 196 186Q216 195 196 204Q176 213 196 222Q216 231 196 240Q176 249 196 258Q216 267 196 276Q176 285 196 294Q216 297 196 300"></path>
             <path class="fragment__vneck fragment__vneck--outer" d="M58 0L120 124L182 0"></path>
             <path class="fragment__vneck fragment__vneck--inner" d="M76 0L120 92L164 0"></path>
           </svg>
+          </Photo>
           <figcaption><span class="caps">Nº {knit.no}</span> — {knit.caption}</figcaption>
         </figure>
       </li>
       <li data-reveal>
         <figure class="fragment">
-          <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
+          <Photo id="B3" class="fragment__photo" sizes="(min-width: 48rem) 22rem, 90vw">
+            <svg viewBox="0 0 240 300" aria-hidden="true" focusable="false">
             <defs>
               <pattern id="linen" width="6" height="6" patternUnits="userSpaceOnUse">
                 <path d="M0 .5H6M.5 0V6" stroke="#b9a885" stroke-width=".6" stroke-opacity=".7"></path>
@@ -66,6 +72,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
             <path class="fragment__stitch" d="M158 197C184 192 208 193 220 199M160 202C184 199 204 199 214 202"></path>
             <path class="fragment__frame fragment__frame--ink" d="M12.5 12.5H227.5V287.5H12.5Z"></path>
           </svg>
+          </Photo>
           <figcaption><span class="caps">Nº {brim.no}</span> — {brim.caption}</figcaption>
         </figure>
       </li>
@@ -109,10 +116,15 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
     margin: 0 auto;
   }
 
-  .fragment > svg {
+  .fragment > svg,
+  .fragment > :global(.fragment__photo) {
     width: 100%;
     height: auto;
     box-shadow: 0 1px 2px rgb(31 42 68 / 0.12), 0 18px 40px -24px rgb(31 42 68 / 0.45);
+  }
+
+  .fragment > :global(.fragment__photo) {
+    aspect-ratio: 4 / 5;
   }
 
   .fragment figcaption {
