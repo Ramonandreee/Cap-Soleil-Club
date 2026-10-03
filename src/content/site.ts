@@ -49,7 +49,7 @@ export const BOUTIQUE = {
   note: `Members of the list are let in ${hoursInWords(SITE.earlyAccessHours)} before anyone else.`,
   fragments: [
     { no: "01", caption: "Embroidered, Riviera" },
-    { no: "02", caption: "Cable knit, cream" },
+    { no: "02", caption: "Cotton polo, cream" },
     { no: "03", caption: "Stitched brim, navy" },
   ],
 };
