@@ -1,0 +1,44 @@
+---
+import Photo from './Photo.astro';
+import Threshold from './Threshold.astro';
+import Hour from './Hour.astro';
+import Rules from './Rules.astro';
+---
+<div class="court-journey" data-court-journey>
+  <div class="court-backdrop" aria-hidden="true">
+    <div class="court-layer court-day"><Photo id="H2" priority decorative /></div>
+    <div class="court-layer court-evening" data-court-evening><Photo id="H1" decorative /></div>
+    <div class="court-layer court-night" data-court-night><Photo id="H3" decorative /></div>
+    <div class="court-shade"></div>
+  </div>
+  <Threshold /><Hour /><Rules />
+</div>
+<script>
+  const journey = document.querySelector<HTMLElement>('[data-court-journey]');
+  const evening = document.querySelector<HTMLElement>('[data-court-evening]');
+  const night = document.querySelector<HTMLElement>('[data-court-night]');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+  function paint() {
+    frame = 0;
+    if (!journey || !evening || !night) return;
+    const span = Math.max(1, journey.offsetHeight - innerHeight);
+    const t = Math.max(0, Math.min(1, -journey.getBoundingClientRect().top / span));
+    evening.style.opacity = String(reduced.matches ? Number(t >= .25) : Math.min(1, t / .5));
+    night.style.opacity = String(reduced.matches ? Number(t >= .65) : Math.max(0, Math.min(1, (t - .45) / .45)));
+  }
+  function schedule() { if (!frame) frame = requestAnimationFrame(paint); }
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  reduced.addEventListener('change', schedule);
+  paint();
+</script>
+<style>
+  .court-journey { position: relative; isolation: isolate; color: var(--cream); background: var(--navy-deep); }
+  .court-backdrop { position: absolute; inset: 0; z-index: -1; }
+  .court-layer, .court-shade { position: sticky; top: 0; height: 100svh; width: 100%; }
+  .court-layer:not(:first-child), .court-shade { margin-top: -100svh; }
+  .court-layer :global(.photo) { height: 100%; }
+  .court-evening, .court-night { opacity: 0; }
+  .court-shade { background: linear-gradient(180deg, rgb(14 21 35 / .60), rgb(14 21 35 / .38) 45%, rgb(14 21 35 / .65)); }
+</style>

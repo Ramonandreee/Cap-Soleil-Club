@@ -210,3 +210,12 @@ Lento (0,6 a 1,6 s), com curva suave, sem quique. Um movimento por tela: o emble
 | Imagens usadas no site | Repositório: `public/img/` (e `public/` para favicon e og-image) | nomes curtos, sem acento |
 
 Uma versão nova de arte é sempre um **arquivo novo** (`v02`, `v03`…), nunca uma substituição. Uma versão aposentada vai para *99 - Arquivo*. Ver [como-trabalhamos.md](como-trabalhamos.md#organização-do-drive).
+
+
+## Experiência aprovada em 2026-10-03
+
+Portaria, L’Heure e regras compartilham a mesma quadra de saibro sobre o Mediterrâneo. A rolagem passa de H2 (dia) a H1 (fim de tarde) e H3 (hora azul), respeitando movimento reduzido. O cabeçalho único entra do alto antes de L’Heure e permanece fixo após encaixar no topo, sem recalcular sua posição.
+
+O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial em relevo, marca-d’água e selo dourado. Campos, validação e envio do formulário preservados. Produtos B1–B3 sem alteração.
+
+H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.

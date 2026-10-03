@@ -29,11 +29,12 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
         <div class="card" data-card>
           <div class="card__face">
             <div class="card__top">
-              <img class="card__emblem" src="/img/emblema.svg" alt="" width="56" height="56" loading="lazy" />
+              <img class="card__emblem" src="/img/emblema-navy.svg" alt="" width="56" height="56" loading="lazy" />
               <p class="card__club">Cap Soleil<span>Lawn Tennis Club</span></p>
               <p class="card__list">{LIST.title}</p>
             </div>
-            <div class="card__middle">
+            <div class="card__watermark" aria-hidden="true"><img src="/img/emblema-navy.svg" alt="" width="100" height="100" loading="lazy" /></div>
+          <div class="card__middle">
               <p class="card__label">{LIST.card.proposed}</p>
               <p class="card__name is-empty" data-card-name>{LIST.card.namePlaceholder}</p>
             </div>
@@ -584,4 +585,16 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
       padding-top: 1rem;
     }
   }
+
+  .card { width: min(100%, 28.75rem); aspect-ratio: 85.6 / 54; border-radius: 7px; border: 1px solid rgb(184 155 94 / .4); background: linear-gradient(125deg, var(--ivory), var(--cream)); box-shadow: 0 24px 45px rgb(0 0 0 / .3), 0 3px 0 rgb(184 155 94 / .7), inset 0 1px 0 white; transform: rotate(-3deg); isolation: isolate; }
+  .card::before { content: ''; position: absolute; inset: 0; border-radius: inherit; z-index: -1; opacity: .16; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' opacity='.19' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .card__face { position: relative; border-radius: 3px; }
+  .card__emblem { filter: sepia(.25) drop-shadow(0 1px 0 white) drop-shadow(0 -1px 0 rgb(139 113 63 / .4)); opacity: .88; }
+  .card__club { text-shadow: 0 1px 0 white; }
+  .card__watermark { position: absolute; right: 5cqi; bottom: 10cqi; width: 23cqi; opacity: .055; pointer-events: none; }
+  .card__watermark img { width: 100%; height: auto; }
+  .card__seal { top: auto; bottom: 3cqi; right: 3cqi; width: 10cqi; margin: 0; opacity: .8; transform: none; background: linear-gradient(135deg, #dbc68f, var(--gold) 55%, #d8c38a); box-shadow: inset 0 0 0 1px #9d803e, inset 0 0 0 3px #dac68f, inset 0 0 0 4px #a68b52, 0 1px 0 white; }
+  .card__seal img { width: 60%; filter: sepia(1) drop-shadow(0 1px 0 #f4e2ad) drop-shadow(0 -1px 0 #765a2e); opacity: .75; }
+  .card__foot { padding-right: 10cqi; }
+  .card.is-sealed .card__seal { transform: none; }
 </style>
