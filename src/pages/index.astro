@@ -1,0 +1,33 @@
+---
+import Base from "../layouts/Base.astro";
+import Masthead from "../components/Masthead.astro";
+import Threshold from "../components/Threshold.astro";
+import Hour from "../components/Hour.astro";
+import Rules from "../components/Rules.astro";
+import Boutique from "../components/Boutique.astro";
+import List from "../components/List.astro";
+import Footer from "../components/Footer.astro";
+import { SITE } from "../config.ts";
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.name,
+  url: new URL("/", Astro.site).href,
+  logo: new URL("/img/emblema.svg", Astro.site).href,
+  sameAs: [SITE.instagram],
+};
+---
+
+<Base>
+  <script type="application/ld+json" slot="head" is:inline set:html={JSON.stringify(organization)} />
+  <Masthead />
+  <main id="main">
+    <Threshold />
+    <Hour />
+    <Rules />
+    <Boutique />
+    <List />
+  </main>
+  <Footer />
+</Base>

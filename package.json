@@ -1,0 +1,35 @@
+{
+  "name": "cap-soleil-club",
+  "private": true,
+  "type": "module",
+  "description": "Cap Soleil Lawn Tennis Club: site de pr\u00e9-lan\u00e7amento (Astro) e fun\u00e7\u00e3o de candidatura (Supabase).",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "docs": "python3 scripts/check_docs.py",
+    "verify": "npm run docs && npm run check && npm test && npm run build && npm run test:e2e"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/eb-garamond": "^5.3.0",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "1.56.1",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.3"
+  },
+  "overrides": {
+    "playwright-core": "1.56.1"
+  }
+}

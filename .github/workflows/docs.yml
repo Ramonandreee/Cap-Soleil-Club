@@ -1,0 +1,41 @@
+# Verificação "Documentação em dia" (regras em docs/como-trabalhamos.md).
+# Roda em todo PR e em todo push na main. Só usa Python, que já vem no runner.
+name: Documentação em dia
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    name: Documentação em dia
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Listar os arquivos alterados no PR
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          git diff --name-only "origin/${BASE_REF}...HEAD" > "$RUNNER_TEMP/changed.txt"
+          echo "Arquivos alterados neste PR:"
+          cat "$RUNNER_TEMP/changed.txt"
+
+      - name: Verificar a documentação
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            export CHANGED_FILES_PATH="$RUNNER_TEMP/changed.txt"
+          fi
+          python3 scripts/check_docs.py

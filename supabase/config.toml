@@ -1,0 +1,9 @@
+# Configuração do Supabase CLI para este repositório.
+# Projeto: "Cap Soleil Club" (ref anlniqjoaogsuptuvrtk, Paris eu-west-3).
+# Publicar a função:  supabase functions deploy apply --project-ref anlniqjoaogsuptuvrtk
+project_id = "cap-soleil-club"
+
+[functions.apply]
+# O site chama a função sem chave. A segurança fica no código da função
+# (origem, validação, limites de tentativas e Turnstile).
+verify_jwt = false

@@ -1,0 +1,81 @@
+---
+// Barra discreta que aparece depois da portaria (ato 0), com o caminho para a lista.
+import { LIST } from "../content/site.ts";
+---
+
+<header class="masthead on-dark" data-masthead aria-label="Cap Soleil">
+  <div class="masthead__inner">
+    <a class="masthead__brand" href="#seuil">
+      <img src="/img/emblema-navy.svg" alt="" width="32" height="32" loading="lazy" />
+      <span>Cap Soleil</span>
+    </a>
+    <a class="masthead__link caps" href="#la-liste">{LIST.title}</a>
+  </div>
+</header>
+
+<script>
+  const bar = document.querySelector<HTMLElement>("[data-masthead]");
+  const threshold = document.querySelector("#seuil");
+  if (bar && threshold && "IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      bar.classList.toggle("is-shown", !entry.isIntersecting);
+    }, { threshold: 0.02 }).observe(threshold);
+  }
+</script>
+
+<style>
+  .masthead {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+    background: rgb(20 28 48 / 0.94);
+    border-bottom: 1px solid rgb(184 155 94 / 0.35);
+    color: var(--cream);
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform 0.6s var(--ease), visibility 0s linear 0.6s;
+  }
+
+  .masthead.is-shown {
+    visibility: visible;
+    transform: none;
+    transition: transform 0.6s var(--ease), visibility 0s;
+  }
+
+  .masthead__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--wide);
+    margin-inline: auto;
+    padding: 0.55rem var(--gutter);
+  }
+
+  .masthead__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--serif-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .masthead__brand img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .masthead__link {
+    padding: 0.5rem 0;
+    color: var(--gold);
+    font-size: 0.75rem;
+    text-decoration: none;
+  }
+
+  .masthead a:hover {
+    color: var(--gold);
+  }
+</style>

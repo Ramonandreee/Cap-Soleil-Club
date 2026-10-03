@@ -1,0 +1,36 @@
+---
+// Mentions légales (aviso legal exigido na França para sites profissionais).
+// Os [COLCHETES] dependem da entidade jurídica (decisão em aberto).
+import Legal from "../layouts/Legal.astro";
+import { SITE } from "../config.ts";
+const email = SITE.contactEmail || "[EMAIL DE CONTATO]";
+---
+
+<Legal title="Legal notice" description="Publisher, hosting and credits of the Cap Soleil website.">
+  <h1>Legal notice</h1>
+  <p class="legal__updated">Mentions légales · Last updated: 3 October 2026</p>
+
+  <h2>Publisher</h2>
+  <p>
+    This website is published by <span class="placeholder">[RESPONSÁVEL]</span>,
+    <span class="placeholder">[FORMA JURÍDICA E REGISTRO]</span>, <span class="placeholder">[ENDEREÇO]</span>.
+    Contact: <a href={`mailto:${email}`}>{email}</a>.
+  </p>
+  <p>Director of publication: <span class="placeholder">[DIRETOR DA PUBLICAÇÃO]</span>.</p>
+
+  <h2>Hosting</h2>
+  <p>Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, United States.</p>
+  <p>The list is stored by Supabase, Inc. in the European Union (Paris, France).</p>
+
+  <h2>Intellectual property</h2>
+  <p>
+    The name Cap Soleil, the club emblem, the illustrations and the texts on this website belong to
+    <span class="placeholder">[RESPONSÁVEL]</span>. Please ask before using them.
+  </p>
+  <p>
+    The typefaces Cormorant Garamond and EB Garamond are used under the SIL Open Font License.
+  </p>
+
+  <h2>Personal data</h2>
+  <p>See the <a href="/privacy">privacy notice</a>.</p>
+</Legal>

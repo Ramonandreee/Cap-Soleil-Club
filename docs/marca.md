@@ -1,8 +1,8 @@
 # A marca Cap Soleil
 
 > **Fonte:** [Cap Soleil — História e Posicionamento](https://docs.google.com/document/d/1wpN9Pdhrv2OlHiEQjlKkS3lsVlQ_kIIqg37IqpgLLbI/edit)
-> (Drive › 01 - Identidade da marca › História e posicionamento), atualizado em 29/09/2026.
-> O Drive é a referência viva. Se ele mudar, atualize este arquivo junto.
+> (Drive › 01 - Identidade da marca › História e posicionamento). O Drive é a fonte; este arquivo é o espelho (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
+> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
 Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da Riviera Francesa, posicionada no luxo silencioso e vendida na Europa.
 
@@ -65,32 +65,11 @@ Nome do perfil: **Cap Soleil Lawn Tennis Club**
 > *When the sea breeze turns cool,*
 > *the Pro Shop is still open ↓*
 
-## Identidade visual
+## Identidade visual, coleções e produtos
 
-**Emblema oficial (aprovado):** duas raquetes de madeira cruzadas em azul-marinho, uma coroa de louros dourada e, no alto, um pequeno sol nascente com raios sobre uma linha de horizonte, em fundo creme.
-Os arquivos ficam em [Drive › 01 - Identidade da marca › Logo › Aprovada](https://drive.google.com/drive/folders/1OQzijM8YUT4S-iaHz75rBe4mUCOepTkq): JPG, SVG e uma versão em SVG para fundo navy.
+Tudo o que é visual está em **[identidade-visual.md](identidade-visual.md)**: o emblema oficial e as regras de uso, os logos alternativos, a paleta da marca e a do site, a tipografia, os pôsteres, as coleções, os produtos-alvo e a experiência da marca.
 
-**Alternativas (não aprovadas)**, em *Logo › Alternativas*: escrita CAP SOLEIL, raquetes e sol (com e sem detalhe), brasão ornamentado com faixa e duas versões com **“Est. 1954”**. Não usar as versões com data. O cronograma (S1) decide se a data sai também dos pôsteres.
-
-| Onde | Cores | Fontes |
-|---|---|---|
-| Emblema oficial | Azul-marinho, dourado e creme | (desenho, sem texto) |
-| Site de pré-lançamento | Off-white `#f5f0e6`, verde-clube `#1f3b2e` e saibro `#b5532b` (ver `assets/css/styles.css`) | Cormorant Garamond (títulos) e Jost (texto) |
-
-> ⚠️ **Decisão pendente:** o site usa verde-clube e saibro, e o emblema usa azul-marinho, dourado e creme.
-> Vale decidir se a paleta do site acompanha o emblema ou se as duas convivem (por exemplo, o emblema em creme sobre o verde).
-
-## Coleções e produtos (conceitos)
-
-Tudo isto está em *Drive › 02 - Coleção e produtos*.
-
-- **Conceitos de coleção:** Essencial, Novos Essenciais, Riviera e Club.
-- **Pôsteres – Coleção Verão:** *Tournoi d’Été*, *L’Art du Tennis*, *L’Heure du Thé*, *Lawn Tennis Club* (fundo navy), *Sous les Pins* e *Un Été sur la Riviera*.
-- **Produtos-alvo (imagem de referência):** boné, camisa de linho e suéter.
-- **Na história:** moletons bordados com o emblema, bonés com o monograma e pôsteres.
-- **Experiência da marca** (*01 - Identidade da marca › Experiência da marca*): embalagem, etiquetas e cartão de membro. O número do cartão (“Nº 0147”) ainda está para revisar.
-
-> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele substitui o `[TRIO DE PRODUTOS]` em `index.html`, seção *I · The hour*.
+> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele entra nas legendas de *III · La Boutique* (`src/content/site.ts`) e na [identidade-visual.md](identidade-visual.md#os-3-primeiros-produtos-alvo).
 
 ## Como isso vira texto no site
 
@@ -104,15 +83,18 @@ Tudo isto está em *Drive › 02 - Coleção e produtos*.
 - [ ] A loja aparece como **Pro Shop**.
 - [ ] Não há nada de ostentação (iates, carros, logo como status).
 
-### Seções do site e o conceito por trás
+### Os atos do site e o conceito por trás
 
-| Seção | Conceito da marca | Texto atual |
+O site v2 é *Le Club suit le soleil*: a portaria de um clube que ainda não abriu, na luz real daquela hora na Côte d’Azur. Todos os textos estão em `src/content/site.ts`.
+
+| Ato | Conceito da marca | Texto atual |
 |---|---|---|
-| Hero | A hora do fim da tarde | “Clay, white and the last of the sun.” |
-| I · The hour | A história, em versão curta | O momento do jogo e a ideia da marca; a frase dos produtos é `[TRIO DE PRODUTOS]` |
-| II · The grounds | O território: saibro, sol, branco | “Sun, clay and white.” |
-| III · The list | A Pro Shop que ainda vai abrir | “The Pro Shop opens soon…” |
-| Botão | Chamada para ação | “Join the list”. É funcional; a regra pede uma frase conceitual. Reavaliar na sessão D6 (Textos). |
+| 0 · *Le Seuil* (a portaria) | O clube existe, discreto, e ainda não abriu | “A lawn tennis club on the Riviera. Not yet open.” Na hora dourada: “The courts close at sunset. The list does not.” À noite: “The club is closed for the night. The list remains open.” |
+| I · *L’Heure* | A história oficial (*In English*, acima), uma frase por tela | “Every summer afternoon on the Côte d’Azur has its hour.” … “Cap Soleil is that hour, made into a club.” |
+| II · *Les Règles* | Valores do clube, sem falar de produto | Cinco regras (**proposta para os sócios revisarem**): *Whites are worn on court. Nobody hurries the last set. Tea is poured at five. The sun decides when we stop. Nothing to prove.* |
+| III · *La Boutique* | A Pro Shop em fragmentos, sem catálogo nem preço | “The Pro Shop opens to the list first.” Legendas no estilo *Nº 01 — Embroidered, Riviera* |
+| IV · *La Liste* | Entrar para o clube, não “se cadastrar” | Chamada: “Put your name down”. Botão: “Put my name down”. Sucesso: “Your name is down. When the Pro Shop opens, the list hears first.” |
+| Promessa da lista | Exclusividade por processo, sem urgência | Acesso à Pro Shop **48 horas** antes e *Les Lettres du Club*, **no máximo uma por mês** (proposta; é promessa pública) |
 
 **Ideias do território que o site ainda não usa** (boas para a revisão de textos da sessão D6): pinheiros-mansos, o Mediterrâneo lá embaixo, chá no terraço, a brisa que pede um suéter sobre os ombros, Cannes–Antibes e a Riviera dos anos 1950.
 Uma época (“1950s Riviera”) pode aparecer; uma data de fundação, não.
