@@ -1,7 +1,7 @@
 # Direção fotográfica Cap Soleil
 
-> **Fonte:** este arquivo, até virar o Google Doc *Cap Soleil — Direção fotográfica* (Drive › 01 - Identidade da marca). Quando o doc existir, ele passa a ser a fonte e este arquivo vira o espelho (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
-> **Atualizado em:** 2026-10-03
+> **Fonte:** o Google Doc [Cap Soleil — Direção fotográfica](https://docs.google.com/document/d/1dLr6m-h7s_Ibe2cCZMgjK5hsHVVu4LXlHL9POmkCyDY/edit) (Drive › 01 - Identidade da marca). Este arquivo é o espelho: mudou lá, mude aqui (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
+> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 > Vale para o site, o Instagram, campanhas, anúncios, vídeos, impressos, embalagens e eventos.
 
 ## Em uma frase

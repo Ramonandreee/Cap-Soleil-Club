@@ -22,7 +22,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 |---|---|---|
 | História, posicionamento e tom de voz | Drive: *Cap Soleil — História e Posicionamento* | [docs/marca.md](marca.md) |
 | Identidade visual: emblema, logos, paleta da marca, pôsteres, coleções, experiência | Drive: *01 - Identidade da marca*, *02 - Coleção e produtos* e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) | [docs/identidade-visual.md](identidade-visual.md) |
-| Direção fotográfica (luz, cor, elenco, figurino, roteiro e prompts) | Drive: *Cap Soleil — Direção fotográfica* (**a criar**; até lá, o GitHub) | [docs/direcao-fotografica.md](direcao-fotografica.md) |
+| Direção fotográfica (luz, cor, elenco, figurino, roteiro e prompts) | Drive: o Google Doc [Cap Soleil — Direção fotográfica](https://docs.google.com/document/d/1dLr6m-h7s_Ibe2cCZMgjK5hsHVVu4LXlHL9POmkCyDY/edit) (01 - Identidade da marca) | [docs/direcao-fotografica.md](direcao-fotografica.md) |
 | Fotos do site (originais) | Drive: *05 - Loja e lançamento › Site — capsoleilclub.com › Fotos do site* | `src/assets/photos/` (as escolhidas, já tratadas) |
 | Cores, fontes e gráficos **do site** | GitHub: `src/styles/tokens.css`, `src/lib/sun.ts`, os componentes em `src/components/` e [identidade-visual.md › No site](identidade-visual.md#no-site) | — |
 | Textos do site (inglês) | GitHub: `src/content/site.ts` | Drive: o doc de origem, quando a frase vem de lá (ex.: a história) |
@@ -107,7 +107,7 @@ Cada documento em `docs/` traz no topo:
 | [identidade-visual.md](identidade-visual.md) | *01 - Identidade da marca*, *02 - Coleção e produtos* e *Cap Soleil — Identidade visual* | 2026-10-03 |
 | [site-e-acessos.md](site-e-acessos.md) | *Cap Soleil — Site: projetos e acessos* | 2026-10-03 |
 | [roadmap.md](roadmap.md) | *Cap Soleil — Rotina de desenvolvimento do site* e *Cronograma de lançamento* | 2026-10-03 |
-| [direcao-fotografica.md](direcao-fotografica.md) | *Cap Soleil — Direção fotográfica* (a criar) | — |
+| [direcao-fotografica.md](direcao-fotografica.md) | *Cap Soleil — Direção fotográfica* | 2026-10-03 |
 
 ### Revisão semanal (5 minutos, no alinhamento de segunda)
 
