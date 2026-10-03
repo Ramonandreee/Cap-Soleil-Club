@@ -220,4 +220,4 @@ O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim textu
 
 H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.
 
-O emblema de entrada mede 5 rem e mantém contraste creme sobre a fotografia, independentemente da hora do relógio.
+O emblema de entrada mede 5 rem e mantém contraste creme sobre a fotografia. Arquivos da integração normalizados para LF.

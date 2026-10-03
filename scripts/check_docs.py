@@ -16,6 +16,7 @@ Só usa a biblioteca padrão do Python (sem npm, sem pip).
 
 import os
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -157,7 +158,29 @@ def check_pull_request():
         )
 
 
+def check_line_endings():
+    """Fim de linha do Windows (CRLF) transforma uma mudança pequena no arquivo
+    inteiro e faz os PRs dos dois sócios entrarem em conflito. O .gitattributes
+    converte sozinho; isto pega o que escapar (upload pelo site do GitHub, branch
+    criada antes dele)."""
+    try:
+        listing = subprocess.run(
+            ["git", "ls-files", "--eol"], cwd=ROOT, capture_output=True, text=True, check=True
+        ).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return  # fora de um repositório git: nada a conferir
+    bad = [line.split("\t", 1)[1] for line in listing.splitlines()
+           if "\t" in line and line.split()[0] in ("i/crlf", "i/mixed")]
+    if bad:
+        errors.append(
+            "Fim de linha do Windows (CRLF) em: " + ", ".join(bad[:8]) + ("…" if len(bad) > 8 else "") + ". "
+            "Corrija na sua branch com: git add --renormalize . && git commit -m \"Normalizar fim de linha\" "
+            "(ver docs/como-trabalhamos.md › Trabalhando os dois ao mesmo tempo)."
+        )
+
+
 def main():
+    check_line_endings()
     check_links()
     check_identity()
     check_brand()
