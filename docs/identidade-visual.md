@@ -226,3 +226,8 @@ O emblema de entrada mede 5 rem e mantém contraste creme sobre a fotografia. Ar
 ## Refinamento editorial aprovado em 2026-10-03
 
 Títulos e emblema de entrada mais leves, maior respiro sobre a paisagem, frases de L’Heure em quadros de 67 svh (63 svh no celular), boutique em creme da paleta oficial com os três produtos alinhados e legendas à esquerda sob uma linha dourada fina. Cartão inclinado apenas um grau, com sombra suave; inscrição com espaçamento consistente. Fontes, cores oficiais, fotografias, cabeçalho estável, transição dia/noite e formulário real preservados.
+
+
+### Aproximação dos produtos — 2026-10-03
+
+As três fotografias da boutique ampliam suavemente 6,5% ao passar o mouse ou receber foco pelo teclado. O zoom permanece dentro da moldura, sem deslocar legendas nem mostrar lupa. Em aparelhos com movimento reduzido, não há ampliação.
