@@ -221,3 +221,8 @@ O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim textu
 H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.
 
 O emblema de entrada mede 5 rem e mantém contraste creme sobre a fotografia. Arquivos da integração normalizados para LF.
+
+
+## Refinamento editorial aprovado em 2026-10-03
+
+Títulos e emblema de entrada mais leves, maior respiro sobre a paisagem, frases de L’Heure em quadros de 67 svh (63 svh no celular), boutique em creme da paleta oficial com os três produtos alinhados e legendas à esquerda sob uma linha dourada fina. Cartão inclinado apenas um grau, com sombra suave; inscrição com espaçamento consistente. Fontes, cores oficiais, fotografias, cabeçalho estável, transição dia/noite e formulário real preservados.

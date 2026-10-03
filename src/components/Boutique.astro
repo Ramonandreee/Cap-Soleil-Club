@@ -207,4 +207,15 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
       margin-top: 4rem;
     }
   }
+
+/* Refinamento editorial aprovado: respiro, proporção e alinhamento. */
+.boutique { background: var(--cream); padding-block: clamp(4.5rem, 8vw, 6.5625rem); }
+.boutique__intro { color: var(--muted); font-size: 1.4375rem; }
+.boutique__fragments { gap: 1.875rem; }
+.fragment { max-width: none; }
+.fragment > svg, .fragment > :global(.fragment__photo) { box-shadow: none; }
+.fragment figcaption { text-align: left; padding: 1.25rem 0 .9375rem; margin-top: 0; border-bottom: 1px solid rgb(184 155 94 / .32); }
+.boutique__note { font-size: 1.0625rem; margin-top: 3.5rem; }
+@media(min-width:48rem) { .boutique__fragments li:nth-child(2) { margin-top: 0; } }
+@media(max-width:47.999rem) { .fragment { max-width: 26rem; } }
 </style>
