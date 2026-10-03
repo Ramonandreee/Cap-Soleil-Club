@@ -142,4 +142,33 @@ python3 scripts/check_docs.py
 O arquivo [`CLAUDE.md`](../CLAUDE.md), na raiz, passa estas mesmas regras para qualquer sessão do Claude, do Ramon ou do Felipe.
 Ao pedir uma mudança, o Claude atualiza a documentação no mesmo PR e diz o que precisa mudar no Drive. Se o conector do Google Docs estiver ligado, ele mesmo faz a atualização no Drive.
 
-Para tarefas que se repetem, o Claude tem roteiros prontos em `.claude/skills/`. Hoje há um: **[fotos-do-chat](../.claude/skills/fotos-do-chat/SKILL.md)**. É só dizer “são as imagens do chat”: ele revisa as fotos do ChatGPT, prepara, coloca no site, testa e diz o que muda no Drive.
+## Com o ChatGPT (Codex)
+
+O Felipe também pode mudar o site pelo **Codex**, que fica dentro do ChatGPT (na web, no app do computador e no celular).
+- O Codex lê o [`AGENTS.md`](../AGENTS.md), que manda seguir o mesmo `CLAUDE.md`, inclusive o roteiro das fotos.
+- Ele abre um PR. O **merge publica o site**: a Cloudflare põe a `main` no ar sozinha, venha a mudança do Claude, do Codex ou do site do GitHub.
+
+**Uma vez só:**
+
+1. **Plano:** o Codex na nuvem precisa do ChatGPT **Plus** ou superior.
+2. **GitHub (Felipe):** no ChatGPT, abra o Codex e conecte o GitHub com a conta `felipe44moreira44-dot`. Ela já é colaboradora do repositório, com permissão de escrita.
+3. **App no repositório (Ramon):** o repositório é da conta do Ramon, então é ele quem aprova o app ***ChatGPT Codex Connector***.
+   - Ao conectar, o Felipe pede o acesso.
+   - O Ramon aprova pela notificação do GitHub ou em *GitHub › Settings › Applications*, liberando só `Cap-Soleil-Club`.
+4. **Ambiente (Felipe):** no Codex, *Work in › Cloud › Select environment › Create environment*. Escolha `Ramonandreee/Cap-Soleil-Club` e escreva:
+   > Prepare este repositório. Use Node 22 e rode npm ci. Tente instalar o Chromium do Playwright (npx playwright install chromium). Depois rode python3 scripts/check_docs.py, npm run check, npm test e npm run build. Não publique nada.
+
+   Em *Allow domains*, escolha **Package managers**. Revise o relatório e clique em **Publish**. Se o Chromium não instalar, tudo bem: os testes no navegador rodam no PR.
+
+**No dia a dia:**
+
+1. Nova tarefa nesse ambiente: “são as imagens do chat” (com as imagens anexadas, ou pedindo para o Codex gerar) ou qualquer outra mudança.
+2. O Codex faz a mudança, roda as verificações e abre o PR (*Create PR* na tarefa).
+3. No PR, espere **Documentação em dia** e **Site (testes)** ficarem verdes e confira a prévia da Cloudflare (link no comentário).
+4. **Merge pull request.** Em cerca de 1 minuto a mudança está em https://cap-soleil-club.pages.dev.
+
+Banco, função `apply` e chaves continuam com o Ramon (Claude): o Codex não tem acesso ao Supabase.
+
+## Roteiros prontos
+
+Para tarefas que se repetem, há roteiros prontos em `.claude/skills/`, que valem para o Claude e para o Codex. Hoje há um: **[fotos-do-chat](../.claude/skills/fotos-do-chat/SKILL.md)**. É só dizer “são as imagens do chat”: ele revisa as fotos do ChatGPT, prepara, coloca no site, testa e diz o que muda no Drive.

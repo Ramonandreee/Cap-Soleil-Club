@@ -10,3 +10,6 @@ playwright-report/
 
 # Python (scripts/check_docs.py)
 __pycache__/
+
+# Originais das fotos do ChatGPT, antes do npm run fotos (moram no Drive)
+fotos-do-chat/

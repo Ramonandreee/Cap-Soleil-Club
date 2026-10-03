@@ -19,6 +19,7 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 - Faça PRs pequenos e só faça merge com a verificação **Documentação em dia** verde.
 - Nunca reescreva o histórico da `main` e nunca use force push nela.
 - Em conflito de merge, traga a `main` para a branch e não descarte o trabalho do outro sócio. Na dúvida, pergunte.
+- O Felipe também trabalha pelo **Codex do ChatGPT**, que lê o [`AGENTS.md`](AGENTS.md). Esse arquivo manda seguir este aqui; só o que valer apenas para o Codex vai lá. O merge na `main` publica o site, venha de onde vier ([como-trabalhamos › Com o ChatGPT (Codex)](docs/como-trabalhamos.md#com-o-chatgpt-codex)).
 
 ## Regras da marca
 

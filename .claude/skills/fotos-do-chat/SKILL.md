@@ -7,15 +7,18 @@ description: Use quando o Felipe ou o Ramon disserem que chegaram "imagens do ch
 
 O Felipe gera as fotos do site no **ChatGPT**, seguindo o Google Doc *Cap Soleil — Direção fotográfica* (espelho: [docs/direcao-fotografica.md](../../../docs/direcao-fotografica.md)). Quando ele disser "são as imagens do chat", faça tudo abaixo **sem pedir instruções**. Pergunte só o que este roteiro manda perguntar.
 
+Este roteiro vale para o **Claude** e para o **Codex** do ChatGPT (ver [`AGENTS.md`](../../../AGENTS.md)). Onde ele diz "Claude", entenda "você".
+
 ## 1. Ache os arquivos
 
-Elas podem chegar de três jeitos. Use o primeiro que existir:
+Elas podem chegar de quatro jeitos. Use o primeiro que existir:
 
-1. **Anexadas na conversa.** Use o caminho do arquivo que a mensagem indicar. Se a imagem aparecer só na conversa, sem arquivo no disco, dá para revisar olhando; para salvar no site, peça o arquivo pelo Drive.
-2. **Drive**, na pasta *05 - Loja e lançamento › Site — capsoleilclub.com › Fotos do site*. Com o conector do Google Drive, procure pela pasta, baixe os arquivos novos (`download_file_content`) e salve no scratchpad. Sem o conector, peça para anexar na conversa.
-3. **GitHub:** não use para as originais. PNG grande fica para sempre no histórico do repositório; a original mora no Drive.
+1. **Geradas na própria tarefa** (o Codex do ChatGPT gera imagens). Salve direto em `fotos-do-chat/`.
+2. **Anexadas na conversa.** Use o caminho do arquivo que a mensagem indicar. Se a imagem aparecer só na conversa, sem arquivo no disco, dá para revisar olhando; para salvar no site, peça o arquivo pelo Drive.
+3. **Drive**, na pasta *05 - Loja e lançamento › Site — capsoleilclub.com › Fotos do site*. Com o conector do Google Drive, procure pela pasta, baixe os arquivos novos (`download_file_content`) e salve no scratchpad. Sem o conector, peça para anexar na conversa.
+4. **GitHub:** não use para as originais. PNG grande fica para sempre no histórico do repositório; a original mora no Drive.
 
-Trabalhe com cópias no scratchpad. **Nunca** faça commit das PNGs originais.
+Junte as originais em **`fotos-do-chat/`**, na raiz do repositório. A pasta é ignorada pelo git, então as PNGs nunca entram num commit. A original oficial fica no Drive.
 
 ## 2. Descubra o código de cada imagem
 
@@ -26,7 +29,7 @@ Os códigos do roteiro são H1, H1m, H2, H2m, H3, H3m, I1–I4, R1, B1–B3 e L1
 
 ## 3. Revise cada uma (controle de qualidade)
 
-Abra cada imagem (ferramenta Read) e passe por:
+Abra e olhe cada imagem (no Claude, com a ferramenta Read) e passe por:
 
 - **[Controle de qualidade](../../../docs/direcao-fotografica.md#controle-de-qualidade-antes-de-salvar)** e a lista **[Nunca](../../../docs/direcao-fotografica.md#nunca)** da direção fotográfica.
 - **Defeitos típicos do ChatGPT:**
@@ -53,8 +56,8 @@ Só seguem para o site as ✅ e ⚠️. Mande o parecer antes de continuar se ho
 ## 4. Prepare os arquivos
 
 ```bash
-npm run fotos -- --conferir <pasta ou arquivos>     # relatório, sem salvar
-npm run fotos -- <pasta ou arquivos>                # salva em src/assets/photos/<código>.jpg
+npm run fotos -- --conferir fotos-do-chat/          # relatório, sem salvar
+npm run fotos -- fotos-do-chat/                     # salva em src/assets/photos/<código>.jpg
 npm run fotos -- arquivo.png --codigo=I3 --foco=left  # nome sem código, ou outro foco
 ```
 
