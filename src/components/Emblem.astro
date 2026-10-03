@@ -1,0 +1,61 @@
+---
+// O emblema oficial embutido no HTML (sem pedir imagem): aparece no primeiro
+// quadro e troca de cores com o céu. Lê public/img/emblema-navy.svg no build e
+// troca o azul-marinho e o creme por variáveis CSS:
+//   --emblem-ink    linhas das raquetes (creme sobre céu escuro, azul sobre céu claro)
+//   --emblem-paper  preenchimento das raquetes (o contrário)
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
+interface Props {
+  class?: string;
+}
+
+// O build sempre roda na raiz do projeto (npm run build).
+const source = readFileSync(join(process.cwd(), "public/img/emblema-navy.svg"), "utf8");
+const roles: Record<string, string> = { "#F4EFE6": "ink", "#1F2A44": "paper" };
+
+const inner = source
+  .replace(/^[\s\S]*?<svg[^>]*>/, "")
+  .replace(/<\/svg>\s*$/, "")
+  .replace(/<title>[\s\S]*?<\/title>/, "")
+  .replace(/<(\w+)([^<>]*?)(\/?)>/g, (tag, name: string, attrs: string, selfClosing: string) => {
+    const classes: string[] = [];
+    const rest = attrs.replace(/\s(fill|stroke)="(#[0-9A-Fa-f]{6})"/g, (match, prop: string, color: string) => {
+      const role = roles[color.toUpperCase()];
+      if (!role) return match;
+      classes.push(`e-${role}-${prop[0]}`);
+      return "";
+    });
+    return classes.length ? `<${name}${rest} class="${classes.join(" ")}"${selfClosing}>` : tag;
+  });
+
+const viewBox = source.match(/viewBox="([^"]+)"/)?.[1] ?? "0 0 744 744";
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["emblem", className]} viewBox={viewBox} aria-hidden="true" focusable="false" set:html={inner} />
+
+<style>
+  .emblem {
+    --emblem-ink: #f4efe6;
+    --emblem-paper: #1f2a44;
+    display: block;
+  }
+
+  .emblem :global(.e-ink-f) {
+    fill: var(--emblem-ink);
+  }
+
+  .emblem :global(.e-ink-s) {
+    stroke: var(--emblem-ink);
+  }
+
+  .emblem :global(.e-paper-f) {
+    fill: var(--emblem-paper);
+  }
+
+  .emblem :global(.e-paper-s) {
+    stroke: var(--emblem-paper);
+  }
+</style>

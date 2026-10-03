@@ -1,0 +1,53 @@
+/* Cap Soleil Lawn Tennis Club: tokens da identidade visual do site.
+   Paleta oficial do emblema (azul-marinho, dourado, creme) e cores de apoio
+   dos pôsteres. Toda cor nova entra aqui e em docs/identidade-visual.md › No site
+   (a verificação "Documentação em dia" confere). */
+
+:root {
+  /* Marca (valores do SVG oficial do emblema) */
+  --navy: #1f2a44;
+  --gold: #b89b5e;          /* decoração; texto só sobre o azul-marinho */
+  --cream: #f4efe6;         /* fundo principal */
+
+  /* Derivadas */
+  --cream-2: #ece4d4;       /* fundo alternado */
+  --ivory: #fbf8f2;         /* cartão e campos */
+  --navy-2: #2b3858;        /* linhas e hover sobre o azul-marinho */
+  --navy-deep: #141c30;     /* rodapé e fundo da candidatura */
+  --muted: #4b5468;         /* texto secundário sobre creme (AA) */
+  --gold-deep: #8a6e3b;     /* dourado para texto grande sobre creme */
+  --gold-ink: #6e5527;      /* dourado para texto pequeno e foco sobre creme (AA) */
+  --on-navy-muted: #c9c2b3; /* texto secundário sobre o azul-marinho */
+  --field-border: #7f8494;  /* borda dos campos (3:1) */
+  --error: #a3481f;         /* erros do formulário sobre creme */
+  --error-on-navy: #f0a983; /* erros do formulário sobre o azul-marinho */
+
+  /* Ilustração (cores de apoio dos pôsteres) */
+  --clay: #b5532b;
+  --sea: #24395a;
+  --pine: #0e1513;
+  --ground: #1b2726;
+  --stone: #c9b998;
+
+  --serif-display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --serif-text: "EB Garamond", Garamond, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --wide: 72rem;
+  --measure: 34rem;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --slow: 900ms;
+}
+
+/* As cores do céu mudam com a hora: registradas para poderem fazer transição. */
+@property --sky-top { syntax: "<color>"; inherits: true; initial-value: #1f2a44; }
+@property --sky-low { syntax: "<color>"; inherits: true; initial-value: #2e3550; }
+@property --glow { syntax: "<color>"; inherits: true; initial-value: #c98b56; }
+@property --sea { syntax: "<color>"; inherits: true; initial-value: #24395a; }
+@property --coast { syntax: "<color>"; inherits: true; initial-value: #18223a; }
+@property --ground { syntax: "<color>"; inherits: true; initial-value: #1b2726; }
+@property --sun { syntax: "<color>"; inherits: true; initial-value: #b89b5e; }
+@property --glow-opacity { syntax: "<number>"; inherits: true; initial-value: 0.42; }
+@property --court-lines { syntax: "<number>"; inherits: true; initial-value: 0.9; }
+@property --lamp { syntax: "<number>"; inherits: true; initial-value: 0; }
+@property --stars { syntax: "<number>"; inherits: true; initial-value: 0; }

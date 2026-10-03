@@ -1,0 +1,419 @@
+---
+// Ato 0 · Le Seuil (a portaria): o céu da hora real no Cap d'Antibes.
+// Sem JavaScript, mostra L'Heure (a hora dourada), a imagem da marca.
+import Emblem from "./Emblem.astro";
+import { THRESHOLD } from "../content/site.ts";
+
+// Estrelas em posições fixas (gerador simples com semente), só aparecem à noite.
+let seed = 7;
+const rand = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+// O centro (emblema e textos) fica sem estrelas, para nada encostar nas letras.
+const stars = Array.from({ length: 70 }, () => ({
+  cx: Math.round(rand() * 1000 * 10) / 10,
+  cy: Math.round(rand() * 560 * 10) / 10,
+  r: Math.round((0.6 + rand() * 1.2) * 10) / 10,
+}))
+  .filter((s) => s.cx < 320 || s.cx > 680 || s.cy < 30)
+  .slice(0, 46);
+---
+
+<section class="threshold on-dark" id="seuil" data-sky data-phase="heure" data-ink="dark" aria-labelledby="club-name">
+  <svg class="threshold__stars" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMin slice" aria-hidden="true" focusable="false">
+    {stars.map((s) => <circle cx={s.cx} cy={s.cy} r={s.r} />)}
+  </svg>
+
+  <p class="threshold__clock caps" data-clock hidden>
+    <span>Côte d’Azur</span><span aria-hidden="true"> · </span><time data-clock-time></time><span aria-hidden="true"> · </span><span data-clock-phase></span>
+  </p>
+
+  <div class="threshold__inner">
+    <div class="threshold__emblem">
+      <Emblem class="threshold__mark" />
+    </div>
+    <h1 class="threshold__title" id="club-name">
+      <span class="threshold__name">Cap Soleil</span>
+      <span class="threshold__club">Lawn Tennis Club</span>
+    </h1>
+    <p class="threshold__line">{THRESHOLD.line}</p>
+    <p class="threshold__phase-line" data-phase-line hidden></p>
+    <a class="button button--gold threshold__cta" href="#la-liste">{THRESHOLD.cta}</a>
+  </div>
+
+  <svg class="scene" viewBox="0 0 2000 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="scene-glow" cx="1000" cy="150" r="150" gradientUnits="userSpaceOnUse" gradientTransform="translate(1000 150) scale(5.2 1) translate(-1000 -150)">
+        <stop class="scene__glow-stop" offset="0" stop-opacity="1"></stop>
+        <stop class="scene__glow-stop" offset=".5" stop-opacity=".28"></stop>
+        <stop class="scene__glow-stop" offset="1" stop-opacity="0"></stop>
+      </radialGradient>
+      <radialGradient id="scene-lamp">
+        <stop offset="0" stop-color="#f6d9a0" stop-opacity=".9"></stop>
+        <stop offset="1" stop-color="#f6d9a0" stop-opacity="0"></stop>
+      </radialGradient>
+      <clipPath id="scene-above-horizon"><rect x="-1000" y="-600" width="4000" height="750"></rect></clipPath>
+    </defs>
+    <g class="scene__follow">
+      <rect class="scene__glow" x="-1000" width="4000" height="150" fill="url(#scene-glow)"></rect>
+    </g>
+    <g clip-path="url(#scene-above-horizon)">
+      <g class="scene__sun">
+        <circle cx="1000" cy="150" r="46"></circle>
+        <path class="scene__rays" d="M937 138.9L897.6 131.9M939.9 128.1L919.2 120.6M944.6 118L909.9 98M951 108.9L934.1 94.7M958.9 101L933.2 70.3M968 94.6L957 75.5M978.1 89.9L964.4 52.3M988.9 87L985.1 65.3M1000 86L1000 46M1011.1 87L1014.9 65.3M1021.9 89.9L1035.6 52.3M1032 94.6L1043 75.5M1041.1 101L1066.8 70.3M1049 108.9L1065.9 94.7M1055.4 118L1090.1 98M1060.1 128.1L1080.8 120.6M1063 138.9L1102.4 131.9"></path>
+      </g>
+    </g>
+    <path class="scene__coast" d="M0 150V132C90 122 170 118 260 121C360 124 430 136 520 150ZM1330 150C1420 140 1500 128 1590 117C1690 104 1790 109 1880 121C1930 127 1970 134 2000 138V150Z"></path>
+    <rect class="scene__sea" y="150" width="2000" height="62"></rect>
+    <g class="scene__follow">
+      <path class="scene__glitter" d="M954 158H1046M965 166H1035M973 175H1027M980 185H1020M986 196H1014"></path>
+    </g>
+    <rect class="scene__ground" y="210" width="2000" height="290"></rect>
+    <rect class="scene__terrace" y="205" width="2000" height="7"></rect>
+    <g class="scene__lamp">
+      <circle cx="1236" cy="196" r="42" fill="url(#scene-lamp)"></circle>
+      <circle cx="1236" cy="196" r="3.2" fill="#f6d9a0"></circle>
+      <path d="M1236 199V212" stroke="#0e1513" stroke-width="2"></path>
+    </g>
+    <g class="scene__court">
+      <polygon class="scene__clay" points="873.7 208.1 1126.3 208.1 1824.6 640 175.4 640"></polygon>
+      <polygon class="scene__shadow" points="834.2 276.5 1165.8 276.5 1220.7 325.1 779.3 325.1"></polygon>
+      <path class="scene__lines" d="M670.3 470L1329.7 470M909.4 223.4L1090.6 223.4M670.3 470L909.4 223.4M1329.7 470L1090.6 223.4M752.6 470L932.1 223.4M1247.4 470L1067.9 223.4M846.3 341.3L1153.7 341.3M918.4 242.1L1081.6 242.1M1000 341.3L1000 242.1M1000 470L1000 460.8"></path>
+      <polygon class="scene__net" points="834.2 276.5 1165.8 276.5 1165.8 248.8 1000 252.8 834.2 248.8"></polygon>
+      <path class="scene__net-tape" d="M834.2 248.8L1000 252.8L1165.8 248.8M834.2 276.5L834.2 248.8M1165.8 276.5L1165.8 248.8"></path>
+    </g>
+    <g class="scene__pines">
+      <g><path d="M291 500C270 337.1 238 178 242 132L250 132C254 178 282 337.1 309 500Z"></path><path class="scene__branches" d="M246 172Q178.5 146 111 134M246 172Q214.5 146 183 134M246 172Q254.5 146 263 134M246 172Q290.5 146 335 134M246 172Q326.5 146 407 134"></path><ellipse cx="107.3" cy="119.4" rx="84.2" ry="29.7"></ellipse><ellipse cx="206.9" cy="121" rx="90.4" ry="33"></ellipse><ellipse cx="290" cy="116.3" rx="93.4" ry="30.8"></ellipse><ellipse cx="399.4" cy="114.1" rx="75.1" ry="32.6"></ellipse><ellipse cx="62.3" cy="128.3" rx="46.4" ry="15.8"></ellipse><ellipse cx="427.8" cy="123.7" rx="47" ry="18"></ellipse><ellipse cx="157.9" cy="87.6" rx="72.5" ry="29.5"></ellipse><ellipse cx="261" cy="83.9" rx="91.7" ry="31.6"></ellipse><ellipse cx="346" cy="89.9" rx="72.6" ry="26.1"></ellipse><ellipse cx="233.8" cy="59.3" rx="70.3" ry="25.1"></ellipse><ellipse cx="326.8" cy="63.3" rx="53.9" ry="23.9"></ellipse></g>
+      <g><path d="M521 500C512 360.5 487.5 230 491.5 184L499.5 184C503.5 230 524 360.5 539 500Z"></path><path class="scene__branches" d="M495.5 224Q454.6 198 413.6 186M495.5 224Q476.1 198 456.8 186M495.5 224Q500.1 198 504.8 186M495.5 224Q521.8 198 548 186M495.5 224Q543.4 198 591.2 186"></path><ellipse cx="427.2" cy="179.3" rx="43.7" ry="17.1"></ellipse><ellipse cx="477.6" cy="181" rx="54.4" ry="17.9"></ellipse><ellipse cx="530.8" cy="179.2" rx="53.6" ry="17.3"></ellipse><ellipse cx="580.3" cy="177.2" rx="47.7" ry="20.4"></ellipse><ellipse cx="398.2" cy="182.7" rx="23.5" ry="10.3"></ellipse><ellipse cx="603.9" cy="179.6" rx="23.7" ry="10.5"></ellipse><ellipse cx="444.9" cy="161.7" rx="48.2" ry="18.8"></ellipse><ellipse cx="499.7" cy="156" rx="55.9" ry="18.5"></ellipse><ellipse cx="560.2" cy="163.3" rx="47.3" ry="16.2"></ellipse><ellipse cx="488.4" cy="144" rx="43.1" ry="17.6"></ellipse><ellipse cx="538.6" cy="145.2" rx="34.6" ry="16.7"></ellipse></g>
+      <g><path d="M1691 500C1718 336.2 1746 176 1750 130L1758 130C1762 176 1730 336.2 1709 500Z"></path><path class="scene__branches" d="M1754 170Q1673.9 144 1593.8 132M1754 170Q1711.7 144 1669.4 132M1754 170Q1753.7 144 1753.4 132M1754 170Q1791.5 144 1829 132M1754 170Q1829.3 144 1904.6 132"></path><ellipse cx="1593.4" cy="114.3" rx="81.8" ry="33.7"></ellipse><ellipse cx="1698.8" cy="115.5" rx="84.2" ry="35.2"></ellipse><ellipse cx="1787.3" cy="114.4" rx="100.7" ry="32.8"></ellipse><ellipse cx="1899.1" cy="113.8" rx="82.1" ry="30.7"></ellipse><ellipse cx="1556.3" cy="125.2" rx="42.4" ry="21.4"></ellipse><ellipse cx="1948.2" cy="117.7" rx="46.3" ry="20.4"></ellipse><ellipse cx="1645.9" cy="80.1" rx="90.1" ry="32.8"></ellipse><ellipse cx="1760.8" cy="81.3" rx="104.4" ry="38"></ellipse><ellipse cx="1846.5" cy="87.4" rx="78.9" ry="33.7"></ellipse><ellipse cx="1724.1" cy="49.7" rx="65.3" ry="26.7"></ellipse><ellipse cx="1819.4" cy="54.2" rx="65.1" ry="25.1"></ellipse></g>
+      <g><path d="M1481 500C1491.2 361.4 1499.7 232 1503.7 186L1511.7 186C1515.7 232 1503.2 361.4 1499 500Z"></path><path class="scene__branches" d="M1507.7 226Q1466.8 200 1425.8 188M1507.7 226Q1486.5 200 1465.4 188M1507.7 226Q1508.5 200 1509.4 188M1507.7 226Q1528.3 200 1549 188M1507.7 226Q1548.1 200 1588.6 188"></path><ellipse cx="1425.6" cy="179.5" rx="43.1" ry="15.6"></ellipse><ellipse cx="1471" cy="182.7" rx="52.1" ry="17.8"></ellipse><ellipse cx="1536.1" cy="181" rx="48.7" ry="16"></ellipse><ellipse cx="1574" cy="179.5" rx="39.3" ry="18.2"></ellipse><ellipse cx="1409.6" cy="186.3" rx="24.6" ry="9"></ellipse><ellipse cx="1605.1" cy="184.6" rx="24" ry="11.3"></ellipse><ellipse cx="1463.3" cy="163.7" rx="44.9" ry="17.4"></ellipse><ellipse cx="1509.5" cy="161.8" rx="52.6" ry="16.5"></ellipse><ellipse cx="1567.6" cy="167.5" rx="42.2" ry="15"></ellipse><ellipse cx="1494.6" cy="149.7" rx="40.8" ry="15.7"></ellipse><ellipse cx="1535.9" cy="150.3" rx="33.9" ry="13.2"></ellipse></g>
+    </g>
+  </svg>
+</section>
+
+<script>
+  import "../scripts/sky.ts";
+</script>
+
+<style>
+  .threshold {
+    --sun-x: 0;
+    --sun-y: 0;
+    --glitter: 0.7;
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-top) 25%, var(--sky-low) 100%);
+    color: var(--cream);
+  }
+
+  /* Transições só depois do primeiro quadro: a luz inicial entra pronta
+     (animar o céu na abertura custaria caro em celulares). */
+  .threshold.is-settled {
+    transition:
+      --sky-top 1.6s var(--ease),
+      --sky-low 1.6s var(--ease),
+      --glow 1.6s var(--ease),
+      --glow-opacity 1.6s var(--ease),
+      --sea 1.6s var(--ease),
+      --coast 1.6s var(--ease),
+      --ground 1.6s var(--ease),
+      --sun 1.6s var(--ease),
+      --court-lines 1.6s var(--ease),
+      --lamp 1.6s var(--ease),
+      --stars 1.6s var(--ease),
+      color 1.6s var(--ease);
+  }
+
+  .threshold[data-ink="light"] {
+    color: var(--navy);
+  }
+
+  .threshold__stars {
+    position: absolute;
+    inset: 0 0 auto;
+    width: 100%;
+    height: 70%;
+    fill: #f4efe6;
+    opacity: var(--stars);
+    pointer-events: none;
+  }
+
+  .threshold__clock {
+    position: absolute;
+    top: 1.25rem;
+    right: var(--gutter);
+    left: var(--gutter);
+    z-index: 1;
+    margin: 0;
+    color: var(--gold);
+    font-size: 0.6875rem;
+    letter-spacing: 0.28em;
+    text-align: center;
+  }
+
+  .threshold[data-ink="light"] .threshold__clock,
+  .threshold[data-ink="light"] .threshold__club {
+    color: var(--gold-ink);
+  }
+
+  .threshold__clock time {
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  .threshold__inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    max-width: 48rem;
+    margin-inline: auto;
+    padding: 4.5rem var(--gutter) 2rem;
+    text-align: center;
+  }
+
+  .threshold__emblem {
+    width: clamp(7rem, 30vw, 11rem);
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .threshold__emblem :global(.threshold__mark) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .threshold[data-ink="light"] .threshold__emblem :global(.threshold__mark) {
+    --emblem-ink: #1f2a44;
+    --emblem-paper: #f4efe6;
+  }
+
+  .threshold__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.9rem, 2vw, 1.3rem);
+  }
+
+  .threshold__name {
+    padding-left: 0.12em; /* compensa o espaçamento depois da última letra */
+    font-size: clamp(2.35rem, 9.6vw, 5.5rem);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .threshold__club {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--gold);
+    font-family: var(--serif-text);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.36em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .threshold__club::before,
+  .threshold__club::after {
+    content: "";
+    width: clamp(1.5rem, 6vw, 3rem);
+    height: 1px;
+    background: currentColor;
+  }
+
+  .threshold__club::after {
+    margin-left: -0.36em;
+  }
+
+  .threshold__line,
+  .threshold__phase-line {
+    max-width: 26ch;
+    margin: 1.5rem auto 0;
+    font-family: var(--serif-display);
+    font-size: clamp(1.35rem, 4.6vw, 1.85rem);
+    font-style: italic;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .threshold__phase-line {
+    max-width: 34ch;
+    margin-top: 0.4rem;
+    color: var(--gold);
+    font-size: clamp(1.1rem, 3.6vw, 1.4rem);
+  }
+
+  .threshold[data-ink="light"] .threshold__phase-line {
+    color: var(--gold-ink);
+  }
+
+  .threshold__cta {
+    margin-top: 2.25rem;
+  }
+
+  .threshold[data-ink="light"] .threshold__cta {
+    border-color: var(--gold-ink);
+  }
+
+  .threshold[data-ink="light"] .threshold__cta:hover {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--cream);
+  }
+
+  /* Ilustração */
+  .scene {
+    width: 100%;
+    overflow: visible; /* o sol do meio-dia sobe acima do desenho */
+    /* Nunca mais larga que 4:1, para o sol não ser cortado em telas largas */
+    height: max(clamp(12rem, 34vh, 24rem), 25vw);
+  }
+
+  .scene__sun {
+    fill: var(--sun);
+    transform: translate(calc(var(--sun-x) * 1px), calc(var(--sun-y) * 1px));
+  }
+
+  .is-settled .scene__sun {
+    transition: transform 1.6s var(--ease);
+  }
+
+  .scene__rays {
+    fill: none;
+    stroke: var(--sun);
+    stroke-linecap: round;
+    stroke-width: 2.5;
+  }
+
+  .scene__follow {
+    transform: translateX(calc(var(--sun-x) * 1px));
+  }
+
+  .is-settled .scene__follow {
+    transition: transform 1.6s var(--ease);
+  }
+
+  .scene__glow {
+    opacity: var(--glow-opacity);
+  }
+
+  .scene__glow-stop {
+    stop-color: var(--glow);
+  }
+
+  .scene__coast {
+    fill: var(--coast);
+  }
+
+  .scene__sea {
+    fill: var(--sea);
+  }
+
+  .scene__glitter {
+    fill: none;
+    stroke: var(--sun);
+    stroke-linecap: round;
+    stroke-opacity: var(--glitter);
+    stroke-width: 2.5;
+  }
+
+  .scene__ground {
+    fill: var(--ground);
+  }
+
+  .scene__terrace {
+    fill: var(--stone);
+    fill-opacity: 0.85;
+  }
+
+  .scene__lamp {
+    opacity: var(--lamp);
+  }
+
+  .scene__clay {
+    fill: var(--clay);
+  }
+
+  .scene__shadow {
+    fill: var(--navy);
+    fill-opacity: 0.22;
+  }
+
+  .scene__lines,
+  .scene__net-tape {
+    fill: none;
+    stroke: var(--ivory);
+    stroke-linecap: square;
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .scene__lines {
+    stroke-opacity: var(--court-lines);
+  }
+
+  .scene__net {
+    fill: var(--navy);
+    fill-opacity: 0.6;
+  }
+
+  .scene__pines {
+    fill: var(--pine);
+  }
+
+  .scene__branches {
+    fill: none;
+    stroke: var(--pine);
+    stroke-linecap: round;
+    stroke-width: 5;
+  }
+
+  /* O emblema surge uma vez, de baixo para cima, como o sol nascendo. */
+  @media (prefers-reduced-motion: no-preference) {
+    .threshold__emblem {
+      animation: rise 1.6s var(--ease) both;
+    }
+
+    /* O título entra sem animação: é o primeiro texto que a pessoa vê (LCP). */
+    .threshold__cta {
+      animation: fade 1.2s var(--ease) 0.6s both;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      clip-path: inset(100% 0 0 0);
+      opacity: 0.2;
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .threshold__clock {
+      left: auto;
+      text-align: right;
+    }
+  }
+</style>

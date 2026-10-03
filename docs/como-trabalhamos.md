@@ -22,9 +22,11 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 |---|---|---|
 | História, posicionamento e tom de voz | Drive: *Cap Soleil — História e Posicionamento* | [docs/marca.md](marca.md) |
 | Identidade visual: emblema, logos, paleta da marca, pôsteres, coleções, experiência | Drive: *01 - Identidade da marca*, *02 - Coleção e produtos* e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) | [docs/identidade-visual.md](identidade-visual.md) |
-| Cores, fontes e gráficos **do site** | GitHub: `assets/css/styles.css`, `index.html` e [identidade-visual.md › No site](identidade-visual.md#no-site) | — |
+| Cores, fontes e gráficos **do site** | GitHub: `src/styles/tokens.css`, `src/lib/sun.ts`, os componentes em `src/components/` e [identidade-visual.md › No site](identidade-visual.md#no-site) | — |
+| Textos do site (inglês) | GitHub: `src/content/site.ts` | Drive: o doc de origem, quando a frase vem de lá (ex.: a história) |
 | Código, configuração, banco e segurança do site | GitHub (código, [README](../README.md) e [site-e-acessos.md](site-e-acessos.md)) | Drive: *Site: projetos e acessos* (só status e links) |
-| Status das peças (GitHub, Vercel, Supabase, domínio) | GitHub: [site-e-acessos.md](site-e-acessos.md#status) | Drive: *Site: projetos e acessos* |
+| Proposta do site v2 (conceito, experiência, decisões) | Drive: *Cap Soleil — Proposta do site de lançamento (v2)* | [roadmap.md](roadmap.md) (só o que vira código) |
+| Status das peças (GitHub, Cloudflare, Vercel, Supabase, domínio) | GitHub: [site-e-acessos.md](site-e-acessos.md#status) | Drive: *Site: projetos e acessos* |
 | Rotina e sessões do site (☐/✅ e Registro) | Drive: *Cap Soleil — Rotina de desenvolvimento do site* | [docs/roadmap.md](roadmap.md) (mapa e impacto no código) |
 | Cronograma da loja (S1–S10) | Drive: planilha *Cap Soleil — Cronograma de lançamento* | [docs/roadmap.md](roadmap.md) (resumo) |
 | Fornecedores, financeiro, jurídico e Instagram | Drive (pastas 03, 04 e 06) | — (não vai para o GitHub) |
@@ -35,15 +37,16 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 
 | Mudou… | No GitHub, atualize | No Drive, atualize |
 |---|---|---|
-| Texto do site (`index.html`, `privacy.html`) | Seção certa da [marca.md](marca.md#como-isso-vira-texto-no-site), se mudar o conceito | Nada, a não ser que a frase venha de um doc do Drive |
-| Cor, fonte, ilustração, favicon ou og-image | [identidade-visual.md › No site](identidade-visual.md#no-site) | *Cap Soleil — Identidade visual*, se mudar a relação com a marca |
+| Texto do site (`src/content/site.ts`, `src/pages/`) | Seção certa da [marca.md](marca.md#como-isso-vira-texto-no-site), se mudar o conceito | Nada, a não ser que a frase venha de um doc do Drive |
+| Cor, fonte, céu do relógio de sol, ilustração, favicon ou og-image | [identidade-visual.md › No site](identidade-visual.md#no-site) | *Cap Soleil — Identidade visual*, se mudar a relação com a marca |
 | Emblema, logo, pôster ou coleção (arquivo novo ou aprovado) | [identidade-visual.md](identidade-visual.md) | O arquivo na pasta certa, com `vNN` novo, e o Google Doc *Identidade visual* |
-| Formulário, banco ou Supabase | [README](../README.md) e [site-e-acessos.md](site-e-acessos.md) | *Site: projetos e acessos* (status) |
-| Domínio, hospedagem ou link do site | [site-e-acessos.md](site-e-acessos.md#status), README e meta tags | *Site: projetos e acessos* |
+| Formulário, função `apply`, banco ou Supabase | [README](../README.md) e [site-e-acessos.md](site-e-acessos.md#banco-de-dados) | *Site: projetos e acessos* (status) |
+| Domínio, hospedagem ou link do site | [site-e-acessos.md](site-e-acessos.md#status), README e `SITE_URL` na hospedagem | *Site: projetos e acessos* |
 | Sessão da rotina concluída | [roadmap.md](roadmap.md#sessões-do-site) (coluna Estado) | *Rotina*: ☐ → ✅ e uma linha no Registro |
 | Decisão tomada (trio, paleta, 1954, hospedagem…) | Tire de “Decisões pendentes” e registre onde ela vale | O doc de origem (*História*, *Rotina*, *Cronograma*…) |
 | História, posicionamento ou tom de voz | [marca.md](marca.md) | *Cap Soleil — História e Posicionamento* (a fonte) |
-| Política de privacidade ou provedores | `privacy.html` e [site-e-acessos.md](site-e-acessos.md) | *Site: projetos e acessos* |
+| Política de privacidade, aviso legal ou provedores | `src/pages/privacy.astro`, `src/pages/legal.astro` e [site-e-acessos.md](site-e-acessos.md) | *Site: projetos e acessos* |
+| Script, fonte ou serviço externo novo | CSP em `public/_headers` **e** `vercel.json`, a Privacy e [site-e-acessos.md](site-e-acessos.md#segurança) | *Site: projetos e acessos* |
 
 ## Trabalhando os dois ao mesmo tempo
 
@@ -111,7 +114,9 @@ Cada documento em `docs/` traz no topo:
 
 ## Verificação automática
 
-Todo PR roda a verificação **“Documentação em dia”** (`.github/workflows/docs.yml`). Você também pode rodá-la no seu computador, na pasta do projeto:
+Todo PR roda duas verificações: **“Documentação em dia”** (`.github/workflows/docs.yml`, descrita abaixo) e **“Site (testes)”** (`.github/workflows/site.yml`: tipos, testes de unidade, build e testes no navegador com a CSP de produção; ver [README › Testar antes do PR](../README.md#3-testar-antes-do-pr)).
+
+A de documentação você também pode rodar no seu computador, na pasta do projeto:
 
 ```bash
 python3 scripts/check_docs.py
@@ -119,14 +124,14 @@ python3 scripts/check_docs.py
 
 | Ela confere | Se falhar |
 |---|---|
-| Se o PR mexe no site (`index.html`, `privacy.html`, `assets/`, `vercel.json`, `.vercelignore` ou `supabase/`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
-| Se toda cor de `:root` no `styles.css` e toda fonte do Google Fonts aparecem em [identidade-visual.md › No site](identidade-visual.md#no-site) | Inclua a cor ou a fonte na tabela |
+| Se o PR mexe no site (`src/`, `public/`, `supabase/`, `astro.config.mjs`, `package.json`, `tsconfig.json` ou `vercel.json`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
+| Se toda cor de `:root` em `src/styles/tokens.css` e toda fonte `@fontsource` de `src/layouts/Base.astro` aparecem em [identidade-visual.md › No site](identidade-visual.md#no-site) | Inclua a cor ou a fonte na tabela |
 | Se os links entre os documentos (e as âncoras `#`) existem | Corrija o link |
-| Se o site menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
+| Se o site (`src/`) menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
 | Se cada documento em `docs/` tem a linha **Atualizado em** | Acrescente a linha no topo |
 
-> **Bloquear o merge de verdade:** com o repositório público, o GitHub grátis permite *branch protection*. Em **Settings › Branches › Add rule** (ou *Rulesets*), para a `main`: exigir PR antes do merge e exigir a verificação **Documentação em dia**.
-> Enquanto isso não estiver ligado, a regra é: **PR vermelho não entra.**
+> **Bloquear o merge de verdade:** com o repositório público, o GitHub grátis permite *branch protection*. Em **Settings › Branches › Add rule** (ou *Rulesets*), para a `main`: exigir PR antes do merge e exigir as verificações **Documentação em dia** e **Site (testes)**.
+> Quando o repositório voltar a ser privado (Cloudflare), o GitHub grátis deixa de aplicar essas regras em repositório privado de conta pessoal. A regra continua valendo do mesmo jeito: **PR vermelho não entra.**
 
 ## Com o Claude
 

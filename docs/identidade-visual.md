@@ -1,7 +1,7 @@
 # Identidade visual Cap Soleil
 
 > **Fonte:** Drive › [01 - Identidade da marca](https://drive.google.com/drive/folders/1jiWUrwR6iFXIYnnAePwqRuGFMRYCwFCd) e [02 - Coleção e produtos](https://drive.google.com/drive/folders/1fBppQcaIvW5glW1dHiPuoTvNlQejR-3r), e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) (01 - Identidade da marca), que tem este mesmo conteúdo.
-> A seção **[No site](#no-site)** tem como fonte este repositório (`assets/css/styles.css`), e uma verificação automática confere que ela está em dia.
+> A seção **[No site](#no-site)** tem como fonte este repositório (`src/styles/tokens.css`, `src/lib/sun.ts` e os componentes), e uma verificação automática confere que ela está em dia.
 > **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
 ## Em uma frase
@@ -120,50 +120,79 @@ Fica em [Experiência da marca](https://drive.google.com/drive/folders/1dZqfarv0
 
 ## No site
 
-Esta seção **tem como fonte o código**. Se mudar uma cor ou uma fonte no `styles.css` ou no `<head>` das páginas, atualize esta tabela na mesma mudança; a verificação automática do GitHub cobra isso.
+Esta seção **tem como fonte o código**. Se mudar uma cor (`src/styles/tokens.css`) ou uma fonte (`src/layouts/Base.astro`), atualize esta seção na mesma mudança; a verificação automática do GitHub cobra isso.
 
 > **Decisão (2026-10-03):** o site segue a **paleta oficial do emblema** (azul-marinho, dourado e creme). O saibro, o mar e os pinheiros dos pôsteres entram só como cores de apoio da ilustração.
+> **Site v2 (2026-10-03):** o conceito é *Le Club suit le soleil*: a luz do site segue o sol real do Cap d’Antibes (ver [O relógio de sol](#o-relógio-de-sol)). Proposta completa no Drive: *Cap Soleil — Proposta do site de lançamento (v2)*.
 
-### Cores do site (`assets/css/styles.css`, `:root`)
+### Cores do site (`src/styles/tokens.css`, `:root`)
 
 | Token | Hex | Uso | Contraste |
 |---|---|---|---|
-| `--navy` | `#1f2a44` | Azul-marinho da marca: texto principal, hero, rodapé, botões | 12,5:1 sobre `--cream` |
-| `--gold` | `#b89b5e` | Dourado da marca: fios, ornamentos, sol; texto só sobre o azul-marinho | 5,4:1 sobre `--navy` (2,3:1 sobre creme: nunca texto) |
-| `--cream` | `#f4efe6` | Creme da marca: fundo principal | — |
-| `--cream-2` | `#ece4d4` | Fundo alternado (*The grounds*) | — |
-| `--ivory` | `#fbf8f2` | Cartão da lista, linhas da quadra | — |
-| `--navy-2` | `#2b3858` | Linhas e estados sobre o azul-marinho | — |
-| `--muted` | `#4b5468` | Texto secundário | 6,6:1 sobre `--cream` |
+| `--navy` | `#1f2a44` | Azul-marinho da marca: texto principal, céu de *L’Heure*, rodapé | 12,5:1 sobre `--cream` |
+| `--gold` | `#b89b5e` | Dourado da marca: fios, ornamentos, sol, botão principal; texto só sobre o azul-marinho | 5,4:1 sobre `--navy` (2,3:1 sobre creme: nunca texto) |
+| `--cream` | `#f4efe6` | Creme da marca: fundo de *Les Règles* e texto sobre o azul-marinho | — |
+| `--cream-2` | `#ece4d4` | Fundo de *La Boutique* | — |
+| `--ivory` | `#fbf8f2` | Cartão de membro, campos, linhas da quadra | — |
+| `--navy-2` | `#2b3858` | Linhas e pontos do tricô sobre o azul-marinho | — |
+| `--navy-deep` | `#141c30` | Fundo de *La Liste* e da barra do topo | 14,8:1 com `--cream` |
+| `--muted` | `#4b5468` | Texto secundário sobre creme | 6,6:1 sobre `--cream` |
 | `--gold-deep` | `#8a6e3b` | Numerais romanos (texto grande) | 4,2:1 sobre `--cream` |
 | `--gold-ink` | `#6e5527` | Dourado para texto pequeno e foco sobre fundo claro | 5,8:1 sobre `--cream` |
 | `--on-navy-muted` | `#c9c2b3` | Texto secundário sobre o azul-marinho | 8,1:1 |
 | `--field-border` | `#7f8494` | Borda dos campos | 3,5:1 sobre `--ivory` |
-| `--error` | `#a3481f` | Mensagens de erro do formulário | 5,2:1 sobre `--cream` |
-| `--clay` | `#b5532b` | Saibro da quadra (ilustração e quadro *Clay*) | — |
+| `--error` | `#a3481f` | Erro sobre fundo claro | 5,2:1 sobre `--cream` |
+| `--error-on-navy` | `#f0a983` | Erro do formulário sobre `--navy-deep` | 8,6:1 |
+| `--clay` | `#b5532b` | Saibro da quadra (ilustração) | — |
 | `--sea` | `#24395a` | Mar ao entardecer (ilustração) | — |
 | `--pine` | `#0e1513` | Silhueta dos pinheiros-mansos (ilustração) | — |
-| `--ground` | `#1b2726` | Jardim do terraço (ilustração) | — |
-| `--stone` | `#c9b998` | Mureta de pedra do terraço (ilustração) | — |
+| `--ground` | `#1b2726` | Jardim e terraço (ilustração) | — |
+| `--stone` | `#c9b998` | Mureta de pedra e linho (ilustração) | — |
 
-A meta é contraste **AA**: 4,5:1 para texto e 3:1 para texto grande e bordas.
+A meta é contraste **AA**: 4,5:1 para texto e 3:1 para texto grande e bordas. Os testes do site conferem com o axe em várias horas do dia.
 
-### Fontes do site (Google Fonts, `display=swap`)
+### O relógio de sol
+
+O céu do topo (*Le Seuil*) segue a posição real do sol no Cap d’Antibes (43,56° N, 7,12° E), calculada no navegador. São seis estados, com as cores em `src/lib/sun.ts` (`PALETTES`):
+
+| Estado | Quando | Céu | Texto |
+|---|---|---|---|
+| *Aube* | Sol entre −6° e 0°, de manhã | Azul-marinho com rosa no horizonte | Creme |
+| *Matin* | Manhã, até 1 h antes do meio-dia solar | Claro, perolado | Azul-marinho |
+| *Midi* | Perto do meio-dia e à tarde | Claro, creme no horizonte | Azul-marinho |
+| ***L’Heure*** | Tarde, sol abaixo de 6°: a hora dourada | **Azul-marinho com brilho de saibro: a imagem da marca** | Creme |
+| *Crépuscule* | Sol entre 0° e −6°, à tarde | Azul profundo com rosa | Creme |
+| *Nuit* | Sol abaixo de −6° | Quase preto, estrelas, a luz do terraço acesa, linhas da quadra apagadas | Creme |
+
+- Sem JavaScript, ou antes do cálculo, o site mostra *L’Heure*.
+- O sol nasce à esquerda e se põe no centro, sobre o mar. Em *L’Heure* aparece a frase extra *“The courts close at sunset. The list does not.”*; em *Nuit*, *“The club is closed for the night. The list remains open.”*
+- No ato *I · L’Heure*, a rolagem leva a luz de *L’Heure* até *Nuit*.
+- Para ver uma hora específica (revisão, fotos): `/?phase=nuit` (ou `aube`, `matin`, `midi`, `heure`, `crepuscule`).
+
+### Fontes do site (servidas pelo próprio site, pacotes `@fontsource`)
 
 | Família | Pesos | Uso |
 |---|---|---|
-| Cormorant Garamond | 500, 600 e 500 itálico | Nome CAP SOLEIL (caixa-alta espaçada), títulos, numerais romanos, frase do hero |
+| Cormorant Garamond | 500, 600 e 500 itálico | Nome CAP SOLEIL (caixa-alta espaçada), títulos dos atos, frases da história e das regras, nome no cartão |
 | EB Garamond | 400, 500 e 400 itálico | Texto corrido, rótulos e botões em versalete espaçado, como nos materiais da marca |
+
+Só os subconjuntos latino e latino estendido, com `font-display: swap`. Sem Google Fonts: nenhum serviço de fora recebe o IP de quem visita.
 
 ### Elementos gráficos do site
 
-- **Emblema oficial** em SVG: `assets/img/emblema.svg` (fundo claro) e `assets/img/emblema-navy.svg` (fundo azul-marinho). São cópias fiéis dos vetores do Drive (*Logo › Aprovada*). Aparecem no hero, no cartão da lista, no rodapé e na barra da página Privacy.
-- **Ornamento do sol:** o sol nascente do emblema entre dois fios dourados, em cima de cada título de seção (símbolo `#sun-rule` no `index.html`).
-- **Ilustração do hero:** o entardecer na Riviera, no estilo dos pôsteres. Tem o sol de raios do emblema sobre o mar, o brilho na água, a costa ao fundo, a mureta de pedra, pinheiros-mansos e a quadra de saibro em perspectiva. É um SVG desenhado direto no `index.html`.
-- **Três quadros de *The grounds*:** *Sun* (sol dourado sobre o azul-marinho), *Clay* (linhas da quadra no saibro) e *White* (suéter de tricô com tranças e gola V azul-marinho e dourada, como nas coleções).
-- **`assets/img/og-image.jpg`:** prévia do link (1200×630). Fundo azul-marinho, emblema, CAP SOLEIL, *Lawn Tennis Club* e moldura dupla dourada, como nos pôsteres.
-- **`assets/img/favicon.svg`:** versão simplificada do emblema para tamanhos pequenos (raquetes creme e sol dourado sobre azul-marinho).
-- **`assets/img/apple-touch-icon.png`:** o emblema completo sobre azul-marinho (180×180), para a tela de início do iPhone.
+- **Emblema oficial** em SVG: `public/img/emblema.svg` (fundo claro) e `public/img/emblema-navy.svg` (fundo azul-marinho), cópias fiéis dos vetores do Drive (*Logo › Aprovada*). No topo, o emblema vai **embutido no HTML** (`src/components/Emblem.astro`) e troca as cores das raquetes conforme o céu; o desenho é o mesmo arquivo. Ele surge uma vez, de baixo para cima, como o sol nascendo.
+- **Ornamento do sol:** o sol nascente do emblema entre dois fios dourados, em cima de cada título de ato (símbolo `#sun-rule` em `src/layouts/Base.astro`).
+- **Ilustração do topo:** o entardecer na Riviera, no estilo dos pôsteres: sol de raios sobre o mar, brilho na água, costa, mureta de pedra, pinheiros-mansos e a quadra de saibro em perspectiva. À noite, estrelas e uma luz no terraço (`src/components/Threshold.astro`).
+- **Ilustração de *I · L’Heure*:** o sol grande se pondo entre dois pinheiros, o mar e a balaustrada do terraço (`src/components/Hour.astro`).
+- **Fragmentos de *La Boutique*:** *Nº 01* emblema bordado sobre tricô azul-marinho; *Nº 02* tricô creme com tranças e gola V azul-marinho e dourada; *Nº 03* boné azul-marinho de perfil, com o sol bordado e a aba pespontada, sobre linho. São ilustrações, sem preço e sem nome de produto, até o ensaio fotográfico da Pro Shop.
+- **Cartão de membro (*La Liste*):** na proporção de um cartão de verdade (85,6 × 54), marfim com moldura dupla dourada. O nome digitado aparece em Cormorant itálico; no envio, um **selo dourado** com o emblema fecha o cartão.
+- **`public/og-image.jpg`:** prévia do link (1200×630). Fundo azul-marinho, emblema, CAP SOLEIL, *Lawn Tennis Club* e moldura dupla dourada, como nos pôsteres.
+- **`public/favicon.svg`:** versão simplificada do emblema para tamanhos pequenos.
+- **`public/apple-touch-icon.png`:** o emblema completo sobre azul-marinho (180×180), para a tela de início do iPhone.
+
+### Movimento
+
+Lento (0,6 a 1,6 s), com curva suave, sem quique. Um movimento por tela: o emblema que surge, as frases que se acendem na rolagem, o selo que fecha o cartão. Com *reduzir movimento* ligado no aparelho, nada anima.
 
 ## Onde fica cada arquivo
 
@@ -176,6 +205,6 @@ A meta é contraste **AA**: 4,5:1 para texto e 3:1 para texto grande e bordas.
 | Conceitos de coleção | 02 - Coleção e produtos › Conceitos de coleção | `Coleção - Nome - vNN.ext` |
 | Produtos-alvo | 02 - Coleção e produtos › Produtos-alvo | `Produtos-alvo - Nome - vNN.ext` |
 | Pôsteres | 02 - Coleção e produtos › Pôsteres – Coleção Verão | `Pôster - Nome - vNN.ext` |
-| Imagens usadas no site | Repositório: `assets/img/` | nomes curtos, sem acento |
+| Imagens usadas no site | Repositório: `public/img/` (e `public/` para favicon e og-image) | nomes curtos, sem acento |
 
 Uma versão nova de arte é sempre um **arquivo novo** (`v02`, `v03`…), nunca uma substituição. Uma versão aposentada vai para *99 - Arquivo*. Ver [como-trabalhamos.md](como-trabalhamos.md#organização-do-drive).

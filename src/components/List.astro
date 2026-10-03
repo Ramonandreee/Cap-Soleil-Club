@@ -1,0 +1,499 @@
+---
+// Ato IV · La Liste: a candidatura. O cartão de membro se compõe enquanto a
+// pessoa digita e é selado no envio. Lógica em src/scripts/apply.ts.
+import { COUNTRY_CODES, LIMITS } from "../../supabase/functions/_shared/lead.ts";
+import { LIST } from "../content/site.ts";
+
+const names = new Intl.DisplayNames(["en"], { type: "region" });
+const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? code })).sort((a, b) =>
+  a.name.localeCompare(b.name, "en"),
+);
+---
+
+<section class="list on-dark" id="la-liste" aria-labelledby="list-title">
+  <div class="list__inner">
+    <header class="act-head" data-reveal>
+      <svg class="ornament" aria-hidden="true" focusable="false"><use href="#sun-rule"></use></svg>
+      <h2 class="act-title" id="list-title">
+        <span class="act-title__numeral">{LIST.numeral}</span><span class="act-title__dot" aria-hidden="true">·</span><span>{LIST.title}</span>
+      </h2>
+    </header>
+
+    <div class="list__grid">
+      <div class="list__intro">
+        <h3 class="list__heading">{LIST.heading}</h3>
+        {LIST.intro.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="list__card" aria-hidden="true">
+        <div class="card" data-card>
+          <div class="card__face">
+            <div class="card__top">
+              <img class="card__emblem" src="/img/emblema.svg" alt="" width="56" height="56" loading="lazy" />
+              <p class="card__club">Cap Soleil<span>Lawn Tennis Club</span></p>
+              <p class="card__list">{LIST.title}</p>
+            </div>
+            <div class="card__middle">
+              <p class="card__label">{LIST.card.proposed}</p>
+              <p class="card__name is-empty" data-card-name>{LIST.card.namePlaceholder}</p>
+            </div>
+            <div class="card__foot">
+              <span class="card__place" data-card-place data-default={LIST.card.place}>{LIST.card.place}</span>
+              <span>{LIST.card.numberLabel} <span class="card__dots">· · · ·</span></span>
+            </div>
+          </div>
+          <div class="card__seal" data-seal>
+            <img src="/img/emblema-navy.svg" alt="" width="64" height="64" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="list__form">
+        <form class="form" data-apply novalidate>
+          <div class="field">
+            <label for="first-name">{LIST.fields.firstName}</label>
+            <input id="first-name" name="firstName" type="text" autocomplete="given-name" autocapitalize="words" spellcheck="false" maxlength={LIMITS.firstName} required aria-describedby="first-name-error" />
+            <p class="field__error" id="first-name-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="email">{LIST.fields.email}</label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength={LIMITS.email} required aria-describedby="email-error email-suggestion" />
+            <p class="field__suggestion" id="email-suggestion" hidden>
+              {LIST.errors.suggestion} <button type="button" class="field__suggest" data-suggestion></button>?
+            </p>
+            <p class="field__error" id="email-error" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="country">{LIST.fields.country} <span class="field__hint">({LIST.fields.countryHint})</span></label>
+            <select id="country" name="country" autocomplete="country" aria-describedby="country-error">
+              <option value="">{LIST.fields.countryEmpty}</option>
+              {countries.map((c) => <option value={c.code}>{c.name}</option>)}
+            </select>
+            <p class="field__error" id="country-error" hidden></p>
+          </div>
+
+          <!-- Campo-armadilha: invisível para pessoas, isca para robôs. -->
+          <div class="hp" aria-hidden="true">
+            <label for="website">Leave this field empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="consent">
+            <input id="consent" name="consent" type="checkbox" required aria-describedby="consent-error" />
+            <label for="consent">{LIST.consent} <a href="/privacy">{LIST.privacyLink}</a>.</label>
+            <p class="field__error" id="consent-error" hidden></p>
+          </div>
+
+          <div class="form__turnstile" data-turnstile hidden></div>
+
+          <button class="button button--solid form__submit" type="submit" disabled data-submit>
+            <span data-submit-label>{LIST.submit}</span>
+          </button>
+
+          <!-- Some quando o JavaScript carrega (src/scripts/apply.ts). -->
+          <p class="form__note" data-nojs>{LIST.noscript}</p>
+        </form>
+
+        <div class="list__status" role="status" aria-live="polite" tabindex="-1" data-status></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import "../scripts/apply.ts";
+</script>
+
+<style>
+  .list {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: clamp(5rem, 14vw, 9rem) var(--gutter);
+  }
+
+  .list__inner {
+    max-width: var(--wide);
+    margin-inline: auto;
+  }
+
+  .list__grid {
+    display: grid;
+    grid-template-areas: "intro" "card" "form";
+    gap: 2.5rem;
+  }
+
+  .list__intro {
+    grid-area: intro;
+    max-width: 34rem;
+    color: var(--on-navy-muted);
+  }
+
+  .list__intro p:last-child {
+    margin-bottom: 0;
+  }
+
+  .list__form {
+    grid-area: form;
+  }
+
+  /* ---------- Cartão de membro (proporção de cartão de verdade, 85,6 × 54) ---------- */
+
+  .list__card {
+    grid-area: card;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    position: relative;
+    width: min(90%, 27rem); /* folga para o selo, que passa da borda */
+    aspect-ratio: 85.6 / 54;
+    padding: 0.55rem;
+    background: var(--ivory);
+    color: var(--navy);
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.75);
+    transform: rotate(-1.5deg);
+    transition: transform 1.2s var(--ease);
+    container-type: inline-size;
+  }
+
+  .card.is-sealed {
+    transform: rotate(0deg);
+  }
+
+  .card__face {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    padding: 4.2cqi 5cqi 3.6cqi;
+    border: 1px solid var(--gold);
+    outline: 1px solid var(--gold);
+    outline-offset: -5px;
+  }
+
+  .card__top {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 3cqi;
+  }
+
+  .card__emblem {
+    width: 12cqi;
+    height: auto;
+  }
+
+  .card__club {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2cqi;
+    margin: 0;
+    font-family: var(--serif-display);
+    font-size: 5.2cqi;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .card__club span,
+  .card__list,
+  .card__label,
+  .card__foot {
+    font-family: var(--serif-text);
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+  }
+
+  .card__club span {
+    color: var(--gold-ink);
+    font-size: 2.3cqi;
+    letter-spacing: 0.3em;
+  }
+
+  .card__list {
+    align-self: start;
+    margin: 0;
+    color: var(--gold-ink);
+    font-size: 2.4cqi;
+  }
+
+  .card__middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .card__label {
+    margin: 0 0 1cqi;
+    color: var(--muted);
+    font-size: 2.4cqi;
+  }
+
+  .card__name {
+    margin: 0;
+    overflow: hidden;
+    padding-bottom: 0.8cqi;
+    border-bottom: 1px solid rgb(31 42 68 / 0.25);
+    font-family: var(--serif-display);
+    font-size: 8.4cqi;
+    font-style: italic;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .card__name.is-empty {
+    color: rgb(31 42 68 / 0.6);
+  }
+
+  .card__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: var(--gold-ink);
+    font-size: 2.4cqi;
+  }
+
+  .card__place {
+    color: var(--muted);
+    font-family: var(--serif-display);
+    font-size: 3.6cqi;
+    font-style: italic;
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  .card__dots {
+    letter-spacing: 0.1em;
+  }
+
+  .card__seal {
+    position: absolute;
+    top: 50%;
+    right: -6%;
+    display: grid;
+    place-items: center;
+    width: 22%;
+    aspect-ratio: 1;
+    margin-top: -11%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d3b97f, var(--gold) 55%, #8a6e3b);
+    box-shadow: 0 6px 14px -4px rgb(0 0 0 / 0.55), inset 0 0 0 3px rgb(110 85 39 / 0.45);
+    opacity: 0;
+    transform: scale(1.6) rotate(-18deg);
+  }
+
+  .card__seal img {
+    width: 74%;
+    height: auto;
+  }
+
+  .card.is-sealed .card__seal {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+    transition: opacity 0.5s var(--ease), transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  }
+
+  /* ---------- Formulário ---------- */
+
+  .list__heading {
+    margin-bottom: 1.25rem;
+    color: var(--cream);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-style: italic;
+  }
+
+  .form {
+    display: grid;
+    gap: 1.35rem;
+    max-width: 34rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .field label {
+    color: var(--cream);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .field__hint {
+    color: var(--on-navy-muted);
+    letter-spacing: 0.1em;
+    text-transform: none;
+    font-style: italic;
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    min-height: 3.25rem;
+    padding: 0.7rem 0.95rem;
+    border: 1px solid var(--field-border);
+    border-radius: 0;
+    background: var(--ivory);
+    color: var(--navy);
+    font: inherit;
+    font-size: 1.125rem;
+    appearance: none;
+  }
+
+  .field select {
+    padding-right: 2.5rem;
+    background-image: url("/img/chevron.svg");
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 14px 9px;
+  }
+
+  .field input:focus,
+  .field select:focus {
+    border-color: var(--gold);
+    outline: 2px solid var(--gold);
+    outline-offset: 1px;
+  }
+
+  .field input[aria-invalid="true"],
+  .field select[aria-invalid="true"] {
+    border-color: var(--error-on-navy);
+    box-shadow: inset 3px 0 0 var(--error-on-navy);
+  }
+
+  .field__error,
+  .consent .field__error {
+    margin: 0;
+    color: var(--error-on-navy);
+    font-size: 0.95rem;
+  }
+
+  .field__suggestion {
+    margin: 0;
+    color: var(--on-navy-muted);
+    font-size: 0.95rem;
+  }
+
+  .field__suggest {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--cream);
+    font: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-underline-offset: 0.2em;
+    cursor: pointer;
+  }
+
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .consent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.4rem 0.9rem;
+    align-items: start;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .consent input {
+    width: 1.35rem;
+    height: 1.35rem;
+    margin: 0.15rem 0 0;
+    accent-color: var(--gold);
+  }
+
+  .consent label {
+    color: var(--on-navy-muted);
+  }
+
+  .consent label a {
+    color: var(--cream);
+  }
+
+  .consent label a:hover {
+    color: var(--gold);
+  }
+
+  .consent .field__error {
+    grid-column: 2;
+  }
+
+  .form__submit {
+    margin-top: 0.5rem;
+  }
+
+  .form__note {
+    margin: 0;
+    color: var(--on-navy-muted);
+  }
+
+  .list__status:empty {
+    display: none;
+  }
+
+  .list__status {
+    max-width: 34rem;
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.25rem;
+    border-left: 2px solid var(--gold);
+    background: rgb(244 239 230 / 0.06);
+  }
+
+  .list__status:focus {
+    outline: none;
+  }
+
+  .list__status.is-error {
+    border-left-color: var(--error-on-navy);
+  }
+
+  .list__status :global(p) {
+    margin: 0;
+  }
+
+  .list__status.is-success {
+    margin-top: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+
+  .list__status :global(.list__status-title) {
+    margin-bottom: 0.5rem !important;
+    font-family: var(--serif-display);
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 56rem) {
+    .list__grid {
+      grid-template-areas: "card intro" "card form";
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      column-gap: clamp(3rem, 6vw, 5rem);
+    }
+
+    .list__card {
+      position: sticky;
+      top: 7rem;
+      align-self: start;
+      padding-top: 1rem;
+    }
+  }
+</style>

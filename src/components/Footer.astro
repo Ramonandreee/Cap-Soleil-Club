@@ -1,0 +1,101 @@
+---
+import { SITE } from "../config.ts";
+import { FOOTER } from "../content/site.ts";
+---
+
+<footer class="footer on-dark">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img class="footer__emblem" src="/img/emblema-navy.svg" alt="" width="72" height="72" loading="lazy" />
+      <p class="footer__name">Cap Soleil <span>Lawn Tennis Club</span></p>
+      <p class="footer__place">{FOOTER.place}</p>
+    </div>
+    <ul class="footer__links" role="list">
+      <li><a href={SITE.instagram}>Instagram <span class="footer__handle">{SITE.instagramHandle}</span></a></li>
+      {SITE.contactEmail && <li><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>}
+      <li><a href="/privacy">{FOOTER.privacy}</a></li>
+      <li><a href="/legal">{FOOTER.legal}</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy);
+    border-top: 1px solid rgb(184 155 94 / 0.3);
+    color: var(--cream);
+    padding: 3.5rem var(--gutter) 3rem;
+  }
+
+  .footer__inner {
+    display: grid;
+    gap: 2rem;
+    justify-items: center;
+    max-width: var(--wide);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .footer__brand {
+    display: grid;
+    justify-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer__emblem {
+    width: 4.5rem;
+    height: auto;
+  }
+
+  .footer__name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin: 0;
+    font-family: var(--serif-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .footer__name span {
+    color: var(--gold);
+    font-family: var(--serif-text);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.32em;
+  }
+
+  .footer__place {
+    margin: 0;
+    color: var(--on-navy-muted);
+    font-style: italic;
+  }
+
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1rem;
+  }
+
+  .footer__links a {
+    display: inline-block;
+    padding: 0.4rem 0;
+    color: var(--cream);
+  }
+
+  .footer__links a:hover {
+    color: var(--gold);
+  }
+
+  .footer__handle {
+    color: var(--on-navy-muted);
+  }
+</style>

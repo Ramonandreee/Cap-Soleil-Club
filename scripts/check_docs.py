@@ -22,11 +22,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 IDENTITY = DOCS / "identidade-visual.md"
-CSS = ROOT / "assets" / "css" / "styles.css"
-PAGES = [ROOT / "index.html", ROOT / "privacy.html"]
+CSS = ROOT / "src" / "styles" / "tokens.css"
+FONTS_FROM = ROOT / "src" / "layouts" / "Base.astro"
+SITE_SOURCES = ROOT / "src"
 
 # Arquivos que mudam o site e arquivos que contam como documentação.
-SITE_PATHS = ("index.html", "privacy.html", "vercel.json", ".vercelignore", "assets/", "supabase/")
+SITE_PATHS = (
+    "src/", "public/", "supabase/", "astro.config.mjs", "package.json", "vercel.json", "tsconfig.json",
+)
 DOC_PATHS = ("README.md", "CLAUDE.md", "docs/")
 
 FOUNDING_DATE = re.compile(r"\bEst\.?\s*(?:1[89]|20)\d{2}\b|\bEstablished\b|\bFounded\s+in\b", re.I)
@@ -93,7 +96,7 @@ def check_identity():
     root = re.search(r":root\s*\{(.*?)\}", CSS.read_text("utf-8"), re.S)
     tokens = re.findall(r"(--[\w-]+)\s*:\s*(#[0-9a-fA-F]{3,8})\b", root.group(1) if root else "")
     if not tokens:
-        errors.append("assets/css/styles.css: não encontrei as cores do :root")
+        errors.append(f"{rel(CSS)}: não encontrei as cores do :root")
     for name, value in tokens:
         if name.lower() not in doc or value.lower() not in doc:
             errors.append(
@@ -101,10 +104,13 @@ def check_identity():
                 "Atualize a tabela de cores."
             )
 
-    families = set()
-    for page in PAGES:
-        for href in re.findall(r'href="(https://fonts\.googleapis\.com/[^"]+)"', page.read_text("utf-8")):
-            families.update(f.split(":")[0].replace("+", " ") for f in re.findall(r"family=([^&]+)", href))
+    # As fontes vêm do npm (@fontsource/<família>) e são importadas no layout.
+    families = {
+        slug.replace("-", " ")
+        for slug in re.findall(r'["\']@fontsource/([a-z0-9-]+)/', FONTS_FROM.read_text("utf-8"))
+    }
+    if not families:
+        errors.append(f"{rel(FONTS_FROM)}: não encontrei as fontes (@fontsource)")
     for family in sorted(families):
         if family.lower() not in doc:
             errors.append(
@@ -116,7 +122,7 @@ def check_identity():
 # ---------- Regras da marca ----------
 
 def check_brand():
-    site_files = [*PAGES, *sorted((ROOT / "assets" / "js").glob("*.js"))]
+    site_files = sorted(p for p in SITE_SOURCES.rglob("*") if p.suffix in (".astro", ".ts", ".css", ".html", ".md"))
     for path in site_files:
         for n, line in enumerate(path.read_text("utf-8").splitlines(), 1):
             hit = FOUNDING_DATE.search(line)

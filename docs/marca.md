@@ -69,7 +69,7 @@ Nome do perfil: **Cap Soleil Lawn Tennis Club**
 
 Tudo o que é visual está em **[identidade-visual.md](identidade-visual.md)**: o emblema oficial e as regras de uso, os logos alternativos, a paleta da marca e a do site, a tipografia, os pôsteres, as coleções, os produtos-alvo e a experiência da marca.
 
-> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele substitui o `[TRIO DE PRODUTOS]` em `index.html`, seção *I · The hour*, e entra na [identidade-visual.md](identidade-visual.md#os-3-primeiros-produtos-alvo).
+> **Trio do lançamento: em aberto** (cronograma, S1). Quando for decidido, ele entra nas legendas de *III · La Boutique* (`src/content/site.ts`) e na [identidade-visual.md](identidade-visual.md#os-3-primeiros-produtos-alvo).
 
 ## Como isso vira texto no site
 
@@ -83,15 +83,18 @@ Tudo o que é visual está em **[identidade-visual.md](identidade-visual.md)**: 
 - [ ] A loja aparece como **Pro Shop**.
 - [ ] Não há nada de ostentação (iates, carros, logo como status).
 
-### Seções do site e o conceito por trás
+### Os atos do site e o conceito por trás
 
-| Seção | Conceito da marca | Texto atual |
+O site v2 é *Le Club suit le soleil*: a portaria de um clube que ainda não abriu, na luz real daquela hora na Côte d’Azur. Todos os textos estão em `src/content/site.ts`.
+
+| Ato | Conceito da marca | Texto atual |
 |---|---|---|
-| Hero | A hora do fim da tarde | “Clay, white and the last of the sun.” |
-| I · The hour | A história, em versão curta | O momento do jogo e a ideia da marca; a frase dos produtos é `[TRIO DE PRODUTOS]` |
-| II · The grounds | O território: saibro, sol, branco | “Sun, clay and white.” |
-| III · The list | A Pro Shop que ainda vai abrir | “The Pro Shop opens soon…” |
-| Botão | Chamada para ação | “Join the list”. É funcional; a regra pede uma frase conceitual. Reavaliar na sessão D6 (Textos). |
+| 0 · *Le Seuil* (a portaria) | O clube existe, discreto, e ainda não abriu | “A lawn tennis club on the Riviera. Not yet open.” Na hora dourada: “The courts close at sunset. The list does not.” À noite: “The club is closed for the night. The list remains open.” |
+| I · *L’Heure* | A história oficial (*In English*, acima), uma frase por tela | “Every summer afternoon on the Côte d’Azur has its hour.” … “Cap Soleil is that hour, made into a club.” |
+| II · *Les Règles* | Valores do clube, sem falar de produto | Cinco regras (**proposta para os sócios revisarem**): *Whites are worn on court. Nobody hurries the last set. Tea is poured at five. The sun decides when we stop. Nothing to prove.* |
+| III · *La Boutique* | A Pro Shop em fragmentos, sem catálogo nem preço | “The Pro Shop opens to the list first.” Legendas no estilo *Nº 01 — Embroidered, Riviera* |
+| IV · *La Liste* | Entrar para o clube, não “se cadastrar” | Chamada: “Put your name down”. Botão: “Put my name down”. Sucesso: “Your name is down. When the Pro Shop opens, the list hears first.” |
+| Promessa da lista | Exclusividade por processo, sem urgência | Acesso à Pro Shop **48 horas** antes e *Les Lettres du Club*, **no máximo uma por mês** (proposta; é promessa pública) |
 
 **Ideias do território que o site ainda não usa** (boas para a revisão de textos da sessão D6): pinheiros-mansos, o Mediterrâneo lá embaixo, chá no terraço, a brisa que pede um suéter sobre os ombros, Cannes–Antibes e a Riviera dos anos 1950.
 Uma época (“1950s Riviera”) pode aparecer; uma data de fundação, não.

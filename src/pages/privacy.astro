@@ -1,0 +1,82 @@
+---
+// Política de privacidade (GDPR e LGPD). Os [COLCHETES] dependem da entidade
+// jurídica (decisão em aberto, ver docs/roadmap.md) e precisam ser preenchidos
+// antes de divulgar o site.
+import Legal from "../layouts/Legal.astro";
+import { SITE, TURNSTILE_SITE_KEY } from "../config.ts";
+const email = SITE.contactEmail || "[EMAIL DE CONTATO]";
+---
+
+<Legal title="Privacy" description="What happens to the details you leave on the Cap Soleil list.">
+  <h1>Privacy</h1>
+  <p class="legal__updated">Last updated: 3 October 2026</p>
+
+  <p>
+    This notice explains what happens to the details you leave on the list at {SITE.name}. It is written to meet the
+    EU General Data Protection Regulation (GDPR) and Brazil’s Lei Geral de Proteção de Dados (LGPD).
+  </p>
+
+  <h2>Who looks after your data</h2>
+  <p>
+    <span class="placeholder">[RESPONSÁVEL]</span>, <span class="placeholder">[ENDEREÇO]</span>, is responsible for your
+    data (the “controller”). You can reach us at <a href={`mailto:${email}`}>{email}</a>.
+  </p>
+
+  <h2>What we collect</h2>
+  <p>When you put your name down:</p>
+  <ul>
+    <li>your first name and email address;</li>
+    <li>your country, if you choose to give it;</li>
+    <li>a record of your consent: the version of the text you agreed to, and when;</li>
+    <li>how you found us: the campaign tags in the link you followed (for example “instagram”), the website that sent you, and the page you arrived on;</li>
+    <li>the kind of device (phone, tablet or computer), the language of your browser, and the hour of the day on the site.</li>
+  </ul>
+  <p>
+    We use no cookies, no analytics and no advertising trackers. We do not store your IP address. To stop abuse, we keep
+    a scrambled, one-way code made from your IP address and email for a short time, and delete it within a day.
+  </p>
+
+  <h2>Why we collect it</h2>
+  <p>
+    To send you Les Lettres du Club: the opening of the Pro Shop and rare news from the club, at most one letter a month.
+    We do this on the basis of your consent (GDPR article 6(1)(a); LGPD article 7, I). Keeping the list safe from abuse
+    is in our legitimate interest (GDPR article 6(1)(f); LGPD article 7, IX). We do not sell your details or share them
+    with anyone for their own use.
+  </p>
+
+  <h2>Where it is kept</h2>
+  <p>
+    Your details are stored by Supabase in the European Union (Paris, France), protected by encryption and access
+    controls. Only the club can read the list.
+  </p>
+  <p>
+    This website is delivered by Cloudflare.{TURNSTILE_SITE_KEY && " To tell people from automated programs, the form uses Cloudflare Turnstile, which does not use cookies for tracking."}
+    Like any website, these providers briefly handle technical data such as your IP address in order to deliver the page.
+    Where a provider is outside the EU or Brazil, it is bound by the safeguards those laws require, such as the European
+    Commission’s standard contractual clauses.
+  </p>
+  <p>We do not send letters yet. Before the first one, we will name the email provider here.</p>
+
+  <h2>How long we keep it</h2>
+  <p>
+    For as long as you stay on the list. You can leave at any time, and we delete your details within 30 days of being
+    asked. If the club stops writing to the list, we delete it.
+  </p>
+
+  <h2>Your rights</h2>
+  <p>
+    You may ask to see the details we hold about you, correct them, have them deleted, take a copy, object to their use,
+    or withdraw your consent at any time. Withdrawing consent does not affect anything done before.
+  </p>
+  <p>
+    To do any of this, write to <a href={`mailto:${email}`}>{email}</a> from the address you signed up with. We will
+    reply within 15 days.
+  </p>
+  <p>
+    If you are not happy with our answer, you can complain to your data protection authority: the ANPD in Brazil, or the
+    supervisory authority where you live in the EU (in France, the CNIL).
+  </p>
+
+  <h2>Changes</h2>
+  <p>If this notice changes, we will update it here and change the date at the top.</p>
+</Legal>

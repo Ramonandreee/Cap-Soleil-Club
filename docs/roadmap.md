@@ -7,13 +7,24 @@
 > Os ☐/✅ do dia a dia e o **Registro** das sessões ficam no Drive (a fonte). Aqui ficam o mapa e **o que cada etapa muda no código**.
 > **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
 
-## Próxima fase: o site v2 (produto real)
+## O site v2 (produto real)
 
 A proposta completa do site v2 está no Drive: [Cap Soleil — Proposta do site de lançamento (v2)](https://docs.google.com/document/d/1FAFPsSY93FUrCLoEGsGT61_TLRYatLDxYpNLAzzpWU4/edit) (pasta *Site — capsoleilclub.com*).
 Ela cobre posicionamento, benchmark, conceito, arquitetura da experiência, identidade digital, captação, banco de dados, arquitetura técnica e as decisões em aberto.
 
 > Ela fica **só no Drive** de propósito. Com o repositório público, plano de lançamento e mecânicas não devem ficar abertos no GitHub.
 > Aqui entra só o que vira código, conforme as decisões forem tomadas.
+
+**Estado em 2026-10-03:**
+
+| Etapa da proposta | Estado |
+|---|---|
+| Fundação: Astro, tokens, componentes, relógio de sol, testes e CI | ✅ Pronto na branch (entra no ar com o merge) |
+| Dados: banco v2 (esquema `club`) e função `apply` | ✅ No Supabase, testados. ☐ Turnstile (opcional) |
+| Experiência: os cinco atos, o cartão de membro e o selo | ✅ Pronto. ☐ Revisão dos textos pelos sócios (Regras do Clube e promessa da lista) |
+| Hospedagem: Cloudflare Pages e repositório privado | ☐ Criar o projeto ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) |
+| E-mail: dupla confirmação, número de membro, convites, cartas | ☐ Depois (decisão: sem e-mail por enquanto; o banco já está pronto) |
+| Lançamento: analytics, domínio, páginas legais preenchidas, testes em aparelhos | ☐ Ver as sessões D4–D12 |
 
 ## A rotina
 
@@ -41,38 +52,39 @@ Estado conferido em **03/10/2026**. As três primeiras sessões já estão adian
 | Sessão | Data sugerida | Tema | Estado | O que muda no repositório |
 |---|---|---|---|---|
 | D1 | Seg 05/10 | GitHub | ✅ Repositório privado no ar e Felipe convidado | — |
-| D2 | Ter 06/10 | Vercel | ✅ No ar em capsoleilclub.vercel.app | Trocar `[URL DO SITE]` pelo link da Vercel até o domínio ficar pronto |
-| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto, tabela e CONFIG prontos · ☐ falta o cadastro de teste | Nenhuma. **Não rode a migration**: o banco já existe |
-| D4 | Qui 08/10 | Domínio (com o Felipe) | ☐ | Nada no código: o domínio entra em *Vercel › Settings › Domains*. Depois, trocar `[URL DO SITE]` por `https://capsoleilclub.com` |
-| D5 | Seg 12/10 | Privacidade e contato | ☐ | `privacy.html` sem colchetes; `[EMAIL DE CONTATO]` no `index.html` (ex.: hello@capsoleilclub.com) |
-| D6 | Ter 13/10 | Textos | ☐ | `[TRIO DE PRODUTOS]`. Revisar com o checklist de [marca.md](marca.md#checklist-para-qualquer-texto-novo); conferir que não há “Est. 1954” |
-| D7 | Qua 14/10 (flexível) | Compartilhamento | ☐ | `og-image.jpg` e meta tags, se precisar. Link da bio: `https://capsoleilclub.com/?utm_source=instagram` |
-| D8 | Qui 15/10 | Qualidade | ☐ | Correções pontuais. Meta: Lighthouse 90+ e formulário ok em iPhone e Android |
+| D2 | Ter 06/10 | Vercel | ✅ No ar em capsoleilclub.vercel.app | Hospedagem decidida depois: **Cloudflare Pages** ([README › passo 4](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) |
+| D3 | Qua 07/10 (flexível) | Supabase | ✅ Projeto e banco v2 (`club`) prontos, função `apply` publicada · ☐ falta o cadastro de teste depois do deploy | Nenhuma. As migrations já foram aplicadas: **não rode de novo** |
+| D4 | Qui 08/10 | Domínio (com o Felipe) | ☐ | Nada no código: o domínio entra em *Cloudflare Pages › Custom domains*, e `SITE_URL` passa a ser `https://capsoleilclub.com`. A função `apply` já aceita o domínio |
+| D5 | Seg 12/10 | Privacidade e contato | ☐ | Colchetes de `src/pages/privacy.astro` e `legal.astro`; `contactEmail` em `src/config.ts` (ex.: hello@capsoleilclub.com) |
+| D6 | Ter 13/10 | Textos | ☐ | `src/content/site.ts`: revisar as **Regras do Clube**, a **promessa da lista** (48 h, 1 carta por mês) e as legendas da Boutique (trio). Checklist de [marca.md](marca.md#checklist-para-qualquer-texto-novo) |
+| D7 | Qua 14/10 (flexível) | Compartilhamento | ☐ | `public/og-image.jpg`, se precisar (as meta tags usam `SITE_URL`). Link da bio: `https://capsoleilclub.com/?utm_source=instagram` |
+| D8 | Qui 15/10 | Qualidade | ☐ | Correções pontuais. Meta: Lighthouse 90+ (local: 90–97 no celular) e formulário ok em iPhone e Android |
 | D9 | Seg 19/10 | Medição sem cookies | ☐ | Ver *Antes de D9* abaixo |
-| D10 | Ter 20/10 | E-mail de boas-vindas (Brevo) | ☐ | Ver *Antes de D10* abaixo |
-| D11 | Qua 21/10 (flexível) | Segurança e backup | ☐ | Nada, em princípio. Supabase › Advisors, teste de e-mail repetido e inválido, backup em CSV |
+| D10 | Ter 20/10 | E-mail (Brevo) | ☐ | Ver *Antes de D10* abaixo. Decisão de 2026-10-03: **sem e-mail por enquanto** |
+| D11 | Qua 21/10 (flexível) | Segurança e backup | ☐ | Nada, em princípio. Supabase › Advisors, teste de e-mail repetido e inválido, backup em CSV de `club.members` |
 | D12 | Qui 22/10 | Fechamento e próxima fase | ☐ | Checklist “Antes de pôr o link na bio” do README e plano da transição para a Shopify |
 
 ### Antes de D7 (link na bio)
 
-- Decidir a **hospedagem com uso comercial**. O plano Hobby da Vercel não permite uso comercial (ver [site-e-acessos.md](site-e-acessos.md#custos-e-limites)).
-- Depois de trocar a URL nas meta tags, testar a prévia no *Facebook Sharing Debugger*, que é o leitor usado por WhatsApp e Instagram.
+- **Hospedagem com uso comercial:** decidida, Cloudflare Pages ([site-e-acessos.md](site-e-acessos.md#custos-e-limites)). Precisa estar no ar antes do link na bio.
+- Depois de ligar o domínio, testar a prévia no *Facebook Sharing Debugger*, que é o leitor usado por WhatsApp e Instagram.
 
-### Antes de D9 (Vercel Web Analytics)
+### Antes de D9 (analytics sem cookies)
 
-Hoje o site promete **“no analytics”** na `privacy.html` e no README. Ao ativar a medição:
+Hoje o site promete **sem cookies e sem analytics** na Privacy e no README. A proposta é o **Plausible** (UE, sem cookies), desligado até haver conta. Ao ativar:
 
-1. Adicione o script indicado pela Vercel como **arquivo externo**. A CSP do `vercel.json` bloqueia scripts escritos direto no HTML (inline).
-2. Atualize a `privacy.html` (seções *What we collect* e provedores) e a seção de privacidade do README.
-3. Abra o site com o console do navegador aberto e confira que nada foi bloqueado pela CSP.
+1. Libere o script e o envio do Plausible na CSP de `public/_headers` **e** do `vercel.json` (o teste exige que sejam iguais). Scripts escritos direto no HTML são bloqueados.
+2. Atualize a Privacy (`src/pages/privacy.astro`: *What we collect* e provedores) e a seção de privacidade do README.
+3. Rode `npm run verify` e abra o site com o console do navegador aberto: nada pode ser bloqueado pela CSP.
 
+O funil real (candidatou, confirmou, convidou) vem do banco: `select * from club.v_daily`.
 Os três números da semana: **visitas, inscrições e taxa** (inscrições ÷ visitas), anotados no Registro toda segunda.
 
-### Antes de D10 (Brevo)
+### Antes de D10 (e-mail)
 
-- A Brevo entra na lista de `[PROVEDORES]` da `privacy.html`.
-- O consentimento hoje diz *“email me when the Pro Shop opens”*. Se o e-mail de boas-vindas ou outros envios forem além do aviso de abertura, ajuste antes o texto do checkbox (`index.html`) e a `privacy.html`.
-- Para levar a lista: *Supabase › Table Editor › waitlist › Export* (CSV) e importar na lista “Waitlist” da Brevo.
+- **Decisão de 2026-10-03: sem e-mail por enquanto.** Quando houver: o provedor entra na Privacy, e a dupla confirmação usa os campos que o banco já tem (`status`, `confirmed_at`, `member_number`, `invite_code`, `club.consents` com o método `double_opt_in`).
+- O consentimento de hoje é para **Les Lettres du Club**: a abertura da Pro Shop e notícias raras, no máximo uma carta por mês (versão `2026-10-03` em `supabase/functions/_shared/lead.ts`). Se os envios forem além disso, mude o texto **e** crie uma versão nova do consentimento.
+- Para levar a lista: *Supabase › Table Editor › club › members › Export* (CSV), só quem tem `marketing_consent = true`.
 
 ## Cronograma da loja (resumo)
 
@@ -93,6 +105,6 @@ Toda segunda há um alinhamento entre Ramon e Felipe. Os responsáveis, as horas
 
 ### Onde o site entra no cronograma
 
-- **S1:** o trio de produtos destrava a frase de *I · The hour* (sessão D6), e o domínio destrava as sessões D4 e D7.
+- **S1:** o trio de produtos destrava as legendas de *III · La Boutique* (sessão D6), e o domínio destrava as sessões D4 e D7.
 - **S5:** “Conectar o domínio e o e-mail da loja”. A partir daqui, `capsoleilclub.com` passa a ser da Shopify. Combinar antes como a página de pré-lançamento sai do ar.
 - **S9:** “Avisar a lista” é o e-mail **“the gates are open”** para quem entrou pela página.
