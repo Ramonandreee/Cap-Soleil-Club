@@ -233,10 +233,10 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
   @media (hover: hover) and (pointer: fine) { .fragment__zoom:hover > :global(.fragment__photo) { transform: scale(1.065); } }
   @media (prefers-reduced-motion: reduce) { .fragment__zoom > :global(.fragment__photo) { transition: none; } .fragment__zoom:hover > :global(.fragment__photo), .fragment__zoom:focus-visible > :global(.fragment__photo) { transform: none; } }
 
-/* Titre et introduction partagent une grille; les photos restent inchangées. */
+/* Título e introdução compartilham a grade; fotografias preservadas. */
 .boutique { padding-block: 5.3125rem 4.6875rem; }
 .boutique__inner { max-width: 68.75rem; }
-.boutique__head { display: flex; justify-content: space-between; align-items: end; text-align: left; gap: 2.5rem; margin-bottom: 2.5rem; }
+.boutique__head { display: flex; flex-direction: row; justify-content: space-between; align-items: end; text-align: left; gap: 2.5rem; margin-bottom: 2.5rem; }
 .boutique__head .ornament { display: none; }
 .boutique__head .act-title { display: block; font-size: 3rem; margin: 0; }
 .boutique__head .act-title__numeral { display: block; font-size: .6875rem; letter-spacing: .125rem; margin-bottom: .875rem; color: var(--gold-ink); }
