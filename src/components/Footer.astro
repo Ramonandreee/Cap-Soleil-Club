@@ -10,8 +10,9 @@ import { FOOTER } from "../content/site.ts";
       <p class="footer__name">Cap Soleil <span>Lawn Tennis Club</span></p>
       <p class="footer__place">{FOOTER.place}</p>
     </div>
+    <div class="footer__rule" aria-hidden="true"></div>
     <ul class="footer__links" role="list">
-      <li><a href={SITE.instagram}>Instagram <span class="footer__handle">{SITE.instagramHandle}</span></a></li>
+      <li><a class="footer__instagram" href={SITE.instagram} aria-label={`Instagram ${SITE.instagramHandle}`} title={SITE.instagramHandle} target="_blank" rel="noopener noreferrer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none" /></svg></a></li>
       {SITE.contactEmail && <li><a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a></li>}
       <li><a href="/privacy">{FOOTER.privacy}</a></li>
       <li><a href="/legal">{FOOTER.legal}</a></li>
@@ -24,12 +25,12 @@ import { FOOTER } from "../content/site.ts";
     background: var(--navy);
     border-top: 1px solid rgb(184 155 94 / 0.3);
     color: var(--cream);
-    padding: 3.5rem var(--gutter) 3rem;
+    padding: 4rem var(--gutter) 3rem;
   }
 
   .footer__inner {
     display: grid;
-    gap: 2rem;
+    gap: 1.4rem;
     justify-items: center;
     max-width: var(--wide);
     margin-inline: auto;
@@ -43,7 +44,7 @@ import { FOOTER } from "../content/site.ts";
   }
 
   .footer__emblem {
-    width: 4.5rem;
+    width: 4rem;
     height: auto;
   }
 
@@ -53,7 +54,7 @@ import { FOOTER } from "../content/site.ts";
     gap: 0.4rem;
     margin: 0;
     font-family: var(--serif-display);
-    font-size: 1.35rem;
+    font-size: 1.5625rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     line-height: 1;
@@ -77,6 +78,7 @@ import { FOOTER } from "../content/site.ts";
   .footer__links {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     gap: 0.5rem 1.75rem;
     margin: 0;
@@ -95,7 +97,26 @@ import { FOOTER } from "../content/site.ts";
     color: var(--gold);
   }
 
-  .footer__handle {
-    color: var(--on-navy-muted);
+  .footer__rule {
+    width: 2.75rem;
+    height: 1px;
+    background: rgb(184 155 94 / 0.45);
+  }
+
+  .footer__links a.footer__instagram {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    text-decoration: none;
+  }
+
+  .footer__instagram svg { display: block; }
+
+  .footer__links a:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 5px;
   }
 </style>

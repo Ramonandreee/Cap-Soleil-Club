@@ -235,3 +235,8 @@ As três fotografias da boutique ampliam suavemente 6,5% ao passar o mouse ou re
 ## Organização editorial aprovada em 2026-10-04
 
 Boutique com título à esquerda e introdução à direita, fotos intactas e legendas numeradas alinhadas. L’Heure alterna alinhamentos em quadros de 58 svh (55 no celular). La Liste concentra acesso antecipado e frequência das cartas em dois blocos junto ao formulário; o cartão comunica pertencimento, sem repetir a promessa. Paleta, fontes, transição dia/noite, cabeçalho estável, zoom e validação preservados. Textos centralizados em `src/content/site.ts`.
+
+
+## Rodapé aprovado em 2026-10-04
+
+Rodapé azul-marinho com emblema centralizado, assinatura Cap Soleil, Côte d’Azur e fio dourado discreto. Instagram aparece apenas como ícone de traço fino em creme, com dourado ao passar o mouse, nome acessível e área clicável de 44 × 44 px. O destino é https://www.instagram.com/capsoleilclub/. Privacy e Legal notice permanecem em texto, levando a `/privacy` e `/legal`. Sem serviço externo novo nem alteração dos produtos ou do formulário.
