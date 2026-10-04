@@ -5,11 +5,10 @@ for (const [slug, name] of [["riviera", "Embroidered, Riviera"], ["polo", "Cotto
     await page.goto("/#boutique");
     await page.locator(`a.fragment__zoom[href="/${slug}"]`).click();
     await expect(page).toHaveURL(new RegExp(`/${slug}(?:\\.html)?$`));
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(new RegExp(name.replace(", ", ",\\s*")));
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(name);
     for (const image of await page.locator("main img").all()) {
       await expect(image).toBeVisible();
-      await image.scrollIntoViewIfNeeded();
-      await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBeTruthy();
+      expect(await image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBeTruthy();
     }
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
     await page.getByRole("link", { name: "PUT YOUR NAME DOWN", exact: true }).click();

@@ -1,13 +1,13 @@
-// Todos os textos do site num arquivo sÃ³. InglÃªs, com toques de francÃªs.
+// Todos os textos do site num arquivo só. Inglês, com toques de francês.
 // Antes de mudar, passe o texto pelo checklist de docs/marca.md
-// (sem data de fundaÃ§Ã£o, sem linguagem de venda, frases curtas).
+// (sem data de fundação, sem linguagem de venda, frases curtas).
 
 import { SITE } from "../config.ts";
 import type { Phase } from "../lib/sun.ts";
 
 export const THRESHOLD = {
   line: "A lawn tennis club on the Riviera. Not yet open.",
-  /** Linhas que sÃ³ aparecem em certas horas do dia na CÃ´te d'Azur. */
+  /** Linhas que só aparecem em certas horas do dia na Côte d'Azur. */
   phaseLines: {
     heure: "The courts close at sunset. The list does not.",
     nuit: "The club is closed for the night. The list remains open.",
@@ -15,22 +15,22 @@ export const THRESHOLD = {
   cta: "Put your name down",
 };
 
-/** Ato I: a histÃ³ria oficial (Drive â€º HistÃ³ria e Posicionamento), uma frase por tela. */
+/** Ato I: a história oficial (Drive › História e Posicionamento), uma frase por tela. */
 export const HOUR = {
   numeral: "I",
-  title: "Lâ€™Heure",
+  title: "L’Heure",
   lines: [
-    "Every summer afternoon on the CÃ´te dâ€™Azur has its hour.",
+    "Every summer afternoon on the Côte d’Azur has its hour.",
     "The sun slips behind the pines, the clay courts fall into shade and the sea below changes colour.",
     "The last set ends unhurried. Tea is poured on the terrace.",
     "Cap Soleil is that hour, made into a club.",
   ],
 };
 
-/** Ato II: as Regras do Clube (proposta, para revisÃ£o dos sÃ³cios). */
+/** Ato II: as Regras do Clube (proposta, para revisão dos sócios). */
 export const RULES = {
   numeral: "II",
-  title: "Les RÃ¨gles",
+  title: "Les Règles",
   subtitle: "Five rules, kept by the members.",
   items: [
     "Whites are worn on court.",
@@ -41,7 +41,7 @@ export const RULES = {
   ],
 };
 
-/** Ato III: fragmentos da Pro Shop. Sem preÃ§o e sem nome de produto. */
+/** Ato III: fragmentos da Pro Shop. Sem preço e sem nome de produto. */
 export const BOUTIQUE = {
   numeral: "III",
   title: "La Boutique",
@@ -69,7 +69,7 @@ export const LIST = {
   ],
   invitation: {
     heading: "Your place at the club.",
-    place: "CAP SOLEIL Â· CÃ”TE Dâ€™AZUR",
+    place: "CAP SOLEIL · CÔTE D’AZUR",
     kicker: "A LETTER FROM THE CLUB",
     title: "Les Lettres du Club",
     lines: ["Clay, pines and the Mediterranean."],
@@ -77,8 +77,8 @@ export const LIST = {
   card: {
     proposed: "Proposed for membership",
     namePlaceholder: "Your name",
-    place: "CÃ´te dâ€™Azur",
-    numberLabel: "NÂº",
+    place: "Côte d’Azur",
+    numberLabel: "Nº",
     sealed: "Sealed",
   },
   fields: {
@@ -95,7 +95,7 @@ export const LIST = {
     "Send me Les Lettres du Club by email and WhatsApp: the opening of the Pro Shop and rare news from the club, at most one a month. I can leave the list at any time.",
   privacyLink: "How we look after your details",
   submit: "Put my name down",
-  sending: "Sealingâ€¦",
+  sending: "Sealing…",
   success: {
     title: "Your name is down.",
     body: "When the Pro Shop opens, the list hears first.",
@@ -138,7 +138,7 @@ export const LIST = {
 };
 
 export const FOOTER = {
-  place: "CÃ´te dâ€™Azur",
+  place: "Côte d’Azur",
   privacy: "Privacy",
   legal: "Legal notice",
 };
@@ -147,7 +147,6 @@ function hoursInWords(hours: number): string {
   const words: Record<number, string> = { 24: "twenty-four hours", 48: "forty-eight hours", 72: "seventy-two hours" };
   return words[hours] ?? `${hours} hours`;
 }
-
 
 /** Páginas editoriais da Pro Shop, aprovadas por Felipe. */
 export const PRODUCT_COPY = {
@@ -160,7 +159,7 @@ export const PRODUCT_COPY = {
   "copy6": "Riviera",
   "copy7": "The half-zip pullover.",
   "copy8": "A navy layer for the quieter hours. A raised collar, a half zip and the club emblem, embroidered discreetly on the chest.",
-  "copy9": "Navy · cream &amp; gold embroidery",
+  "copy9": "Navy · cream & gold embroidery",
   "copy10": "Silhouette",
   "copy11": "Long sleeves · half zip",
   "copy12": "Signature",
@@ -190,7 +189,7 @@ export const PRODUCT_COPY = {
   "copy36": "cream",
   "copy37": "The cotton polo.",
   "copy38": "A cream polo for afternoons on the Riviera. A simple collar, short sleeves and the club emblem, quietly placed on the chest.",
-  "copy39": "Cream · navy &amp; gold embroidery",
+  "copy39": "Cream · navy & gold embroidery",
   "copy40": "Silhouette",
   "copy41": "Short sleeves · polo collar",
   "copy42": "Signature",
