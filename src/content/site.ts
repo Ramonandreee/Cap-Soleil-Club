@@ -46,7 +46,7 @@ export const BOUTIQUE = {
   numeral: "III",
   title: "La Boutique",
   intro: "The Pro Shop opens to the list first.",
-  note: `Members of the list are let in ${hoursInWords(SITE.earlyAccessHours)} before anyone else.`,
+  note: "Quiet pieces, for many afternoons like this one.",
   fragments: [
     { no: "01", caption: "Embroidered, Riviera" },
     { no: "02", caption: "Cotton polo, cream" },
@@ -61,15 +61,18 @@ export const LIST = {
   heading: "Put your name down",
   intro: [
     "The list is how the club begins.",
-    `Members of the list enter the Pro Shop ${hoursInWords(SITE.earlyAccessHours)} before anyone else, and receive Les Lettres du Club: rare, and never more than one a month.`,
+
+  ],
+  benefits: [
+    { no: "01", title: "Pro Shop access", detail: `${hoursInWords(SITE.earlyAccessHours).replace(/^./, (c) => c.toUpperCase())} before anyone else.` },
+    { no: "02", title: "Les Lettres du Club", detail: "Occasional letters. Never more than one a month." },
   ],
   invitation: {
     heading: "Your place at the club.",
     place: "CAP SOLEIL · CÔTE D’AZUR",
     kicker: "A LETTER FROM THE CLUB",
     title: "Les Lettres du Club",
-    lines: ["First through the Pro Shop doors.", "Occasional letters from the Riviera."],
-    frequency: "Rare, and never more than one a month.",
+    lines: ["Clay, pines and the Mediterranean."],
   },
   card: {
     proposed: "Proposed for membership",

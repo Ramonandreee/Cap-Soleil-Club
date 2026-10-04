@@ -7,7 +7,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
 
 <section class="boutique" id="boutique" aria-labelledby="boutique-title">
   <div class="boutique__inner">
-    <header class="act-head" data-reveal>
+    <header class="act-head boutique__head" data-reveal>
       <svg class="ornament" aria-hidden="true" focusable="false"><use href="#sun-rule"></use></svg>
       <h2 class="act-title" id="boutique-title">
         <span class="act-title__numeral">{BOUTIQUE.numeral}</span><span class="act-title__dot" aria-hidden="true">·</span><span>{BOUTIQUE.title}</span>
@@ -36,7 +36,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </div>
-          <figcaption><span class="caps">Nº {embroidered.no}</span> — {embroidered.caption}</figcaption>
+          <figcaption><span class="caps">Nº {embroidered.no}</span><span>{embroidered.caption}</span></figcaption>
         </figure>
       </li>
       <li data-reveal>
@@ -52,7 +52,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </div>
-          <figcaption><span class="caps">Nº {knit.no}</span> — {knit.caption}</figcaption>
+          <figcaption><span class="caps">Nº {knit.no}</span><span>{knit.caption}</span></figcaption>
         </figure>
       </li>
       <li data-reveal>
@@ -79,7 +79,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </div>
-          <figcaption><span class="caps">Nº {brim.no}</span> — {brim.caption}</figcaption>
+          <figcaption><span class="caps">Nº {brim.no}</span><span>{brim.caption}</span></figcaption>
         </figure>
       </li>
     </ul>
@@ -232,4 +232,19 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
   .fragment__zoom:focus-visible > :global(.fragment__photo) { transform: scale(1.065); }
   @media (hover: hover) and (pointer: fine) { .fragment__zoom:hover > :global(.fragment__photo) { transform: scale(1.065); } }
   @media (prefers-reduced-motion: reduce) { .fragment__zoom > :global(.fragment__photo) { transition: none; } .fragment__zoom:hover > :global(.fragment__photo), .fragment__zoom:focus-visible > :global(.fragment__photo) { transform: none; } }
+
+/* Titre et introduction partagent une grille; les photos restent inchangées. */
+.boutique { padding-block: 5.3125rem 4.6875rem; }
+.boutique__inner { max-width: 68.75rem; }
+.boutique__head { display: flex; justify-content: space-between; align-items: end; text-align: left; gap: 2.5rem; margin-bottom: 2.5rem; }
+.boutique__head .ornament { display: none; }
+.boutique__head .act-title { display: block; font-size: 3rem; margin: 0; }
+.boutique__head .act-title__numeral { display: block; font-size: .6875rem; letter-spacing: .125rem; margin-bottom: .875rem; color: var(--gold-ink); }
+.boutique__head .act-title__dot { display: none; }
+.boutique__intro { max-width: 16.875rem; font-size: 1.3125rem; line-height: 1.4; margin: 0 0 .3125rem; }
+.boutique__fragments { gap: 1.75rem; }
+.fragment figcaption { display: flex; gap: 1.125rem; align-items: baseline; line-height: 1.45; font-size: 1.0625rem; padding: 1.0625rem 0; }
+.fragment figcaption .caps { font-size: .625rem; letter-spacing: .1rem; color: var(--gold-ink); white-space: nowrap; }
+.boutique__note { font-family: var(--serif-display); font-style: italic; font-size: 1.5625rem; line-height: 1.4; margin-top: 2.5rem; }
+@media(max-width:43.75rem) { .boutique { padding-block: 4.0625rem 3.75rem; } .boutique__head { display: block; margin-bottom: 1.875rem; } .boutique__head .act-title { font-size: 2.5rem; margin-bottom: 1.125rem; } .boutique__intro { max-width: none; font-size: 1.25rem; } .boutique__note { font-size: 1.4375rem; } }
 </style>

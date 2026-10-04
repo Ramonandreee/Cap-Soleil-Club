@@ -18,4 +18,10 @@ import { HOUR } from '../content/site.ts';
 .hour__line { min-height: 67svh; padding: 4.375rem var(--gutter); }
 .hour__line p { max-width: 40rem; font-family: var(--serif-display); font-size: clamp(1.875rem, 3.3vw, 2.875rem); line-height: 1.45; }
 @media(max-width:43.75rem) { .hour__line { min-height: 63svh; } }
+
+.hour__line { min-height: 58svh; padding: 4.375rem max(7%, calc((100% - 68.75rem) / 2)); justify-items: start; }
+.hour__line p { max-width: 37.5rem; text-align: left; font-size: clamp(1.875rem, 3.5vw, 3rem); line-height: 1.32; }
+.hour__line:nth-child(even) { justify-items: end; }
+.hour__line:nth-child(even) p { max-width: 34.375rem; }
+@media(max-width:43.75rem) { .hour__line { min-height: 55svh; } .hour__line p { font-size: 1.9375rem; } }
 </style>
