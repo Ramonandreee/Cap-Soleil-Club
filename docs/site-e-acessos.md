@@ -192,3 +192,8 @@ Boutique com título à esquerda e introdução à direita, fotos intactas e leg
 
 Imagens da boutique levam a `/riviera`, `/polo` e `/navy-cap`. Layout editorial responsivo com detalhes, navegação entre peças e acesso ao formulário original. Fotos principais B1–B3 preservadas. Detalhe B1-detail v02: suéter dobrado, gerado por image_gen, 1536 × 1024, provisório por resolução; JPEG sRGB qualidade 90, sem ampliação. Original em `fotos-do-chat/Foto - B1-detail - v02.png`, aguardando arquivamento no Drive. Prompt: preservar modelo B1, tecido marinho e zíper prateado; dobrar como referência, em cadeira de vime sob luz mediterrânea e bordado discreto.
 
+
+
+### Correção de integridade da foto dobrada — 2026-10-04
+
+B1-detail v03 usa a mesma original aprovada, sem alteração visual. O JPEG anterior foi truncado no transporte para o Git. Novo arquivo B1-detail-v03.jpg com 462450 bytes, SHA Git 5b628d39f36ba57bd62442894f5daa7c07bbb9be conferido contra o arquivo local; decodificação completa validada. Resolução preservada em 1536 × 1024, sem ampliação. A original e o prompt no Drive permanecem os mesmos; atualizar somente o status técnico.
