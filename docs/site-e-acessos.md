@@ -2,7 +2,7 @@
 
 > **Fonte:** [Cap Soleil — Site: projetos e acessos](https://docs.google.com/document/d/1yq_kyPL2lHnK1tnemUPZap-PdTknYysjx57eiz618CU/edit)
 > (Drive › 05 - Loja e lançamento › Site — capsoleilclub.com). Aqui, o **status e os detalhes técnicos têm como fonte o GitHub**, e o Drive guarda um resumo (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
-> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03 · status conferido no GitHub, na Vercel e no Supabase
+> **Atualizado em:** 2026-10-04 · **Sincronizado com o Drive em:** 2026-10-03 · status conferido no GitHub, na Vercel e no Supabase
 
 O site de pré-lançamento é a portaria de um clube que ainda não abriu: monta a lista (**La Liste**) antes da abertura da Pro Shop.
 O endereço final previsto é **capsoleilclub.com**. A proposta completa (posicionamento, experiência, identidade digital, dados e arquitetura) está no Drive: *Cap Soleil — Proposta do site de lançamento (v2)*.
@@ -177,3 +177,7 @@ Portaria, L’Heure e regras compartilham a mesma quadra de saibro sobre o Medit
 O cartão tem proporção 85,6 × 54 mm, cantos arredondados, papel marfim texturizado, moldura dupla dourada, emblema oficial em relevo, marca-d’água e selo dourado. Campos, validação e envio do formulário preservados. Produtos B1–B3 sem alteração.
 
 H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolução abaixo do mínimo; sem ampliação artificial. Recorte responsivo no celular; versões verticais próprias ainda pendentes. Originais e prompts aguardam arquivamento no Drive por Ramon/Claude.
+
+## Convite da La Liste
+
+A coluna do cartão em La Liste apresenta “Your place at the club.” acima, emblema discreto ao fundo e “Les Lettres du Club” abaixo, com a promessa de acesso antecipado à Pro Shop e correspondência ocasional (no máximo uma por mês). Composição aprovada pelo Felipe em 04/10/2026. Textos em `src/content/site.ts`; apresentação em `src/components/List.astro`. O cartão continua acompanhando nome e país digitados. Os campos, consentimento e envio permanecem iguais.
