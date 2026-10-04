@@ -635,4 +635,5 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
 .invitation__note p span { display: block; }
 .invitation__frequency { font-size: .8125rem; font-style: italic; color: var(--gold); }
 @media(max-width:43.75rem) { .list__card { padding: 0; max-width: 28.75rem; width: 100%; margin-inline: auto; } .invitation__heading { margin-bottom: 2rem; } .invitation__note { margin-top: 2rem; } .invitation__heading p { font-size: 1.875rem; } }
+@media(max-width:55.999rem) { .list__grid { grid-template-areas: "intro" "form" "card"; } }
 </style>
