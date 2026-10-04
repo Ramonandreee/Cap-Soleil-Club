@@ -181,3 +181,7 @@ H1–H3: imagens geradas com image_gen, 1672 × 941 px, provisórias por resolu�
 ## Convite da La Liste
 
 A coluna do cartão em La Liste apresenta “Your place at the club.” acima, emblema discreto ao fundo e “Les Lettres du Club” abaixo, com a promessa de acesso antecipado à Pro Shop e correspondência ocasional (no máximo uma por mês). Composição aprovada pelo Felipe em 04/10/2026. Textos em `src/content/site.ts`; apresentação em `src/components/List.astro`. O cartão continua acompanhando nome e país digitados. Os campos, consentimento e envio permanecem iguais.
+
+## Organização editorial aprovada em 2026-10-04
+
+Boutique com título à esquerda e introdução à direita, fotos intactas e legendas numeradas alinhadas. L’Heure alterna alinhamentos em quadros de 58 svh (55 no celular). La Liste concentra acesso antecipado e frequência das cartas em dois blocos junto ao formulário; o cartão comunica pertencimento, sem repetir a promessa. Paleta, fontes, transição dia/noite, cabeçalho estável, zoom e validação preservados. Textos centralizados em `src/content/site.ts`.

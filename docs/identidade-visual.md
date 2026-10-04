@@ -2,7 +2,7 @@
 
 > **Fonte:** Drive › [01 - Identidade da marca](https://drive.google.com/drive/folders/1jiWUrwR6iFXIYnnAePwqRuGFMRYCwFCd) e [02 - Coleção e produtos](https://drive.google.com/drive/folders/1fBppQcaIvW5glW1dHiPuoTvNlQejR-3r), e o Google Doc [Cap Soleil — Identidade visual](https://docs.google.com/document/d/1YhPwr9-X6vkbqh4BLxdR4LzmLq_bPlczWNrwP4PMneM/edit) (01 - Identidade da marca), que tem este mesmo conteúdo.
 > A seção **[No site](#no-site)** tem como fonte este repositório (`src/styles/tokens.css`, `src/lib/sun.ts` e os componentes), e uma verificação automática confere que ela está em dia.
-> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
+> **Atualizado em:** 2026-10-04 · **Sincronizado com o Drive em:** 2026-10-03
 
 ## Em uma frase
 
@@ -231,3 +231,7 @@ Títulos e emblema de entrada mais leves, maior respiro sobre a paisagem, frases
 ### Aproximação dos produtos — 2026-10-03
 
 As três fotografias da boutique ampliam suavemente 6,5% ao passar o mouse ou receber foco pelo teclado. O zoom permanece dentro da moldura, sem deslocar legendas nem mostrar lupa. Em aparelhos com movimento reduzido, não há ampliação.
+
+## Organização editorial aprovada em 2026-10-04
+
+Boutique com título à esquerda e introdução à direita, fotos intactas e legendas numeradas alinhadas. L’Heure alterna alinhamentos em quadros de 58 svh (55 no celular). La Liste concentra acesso antecipado e frequência das cartas em dois blocos junto ao formulário; o cartão comunica pertencimento, sem repetir a promessa. Paleta, fontes, transição dia/noite, cabeçalho estável, zoom e validação preservados. Textos centralizados em `src/content/site.ts`.

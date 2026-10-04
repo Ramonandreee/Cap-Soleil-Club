@@ -23,6 +23,9 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
       <div class="list__intro">
         <h3 class="list__heading">{LIST.heading}</h3>
         {LIST.intro.map((p) => <p>{p}</p>)}
+        <div class="list__benefits">
+          {LIST.benefits.map((benefit) => <div><span>{benefit.no}</span><p>{benefit.title}<small>{benefit.detail}</small></p></div>)}
+        </div>
       </div>
 
       <div class="list__card">
@@ -59,7 +62,6 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
           <span class="invitation__kicker">{LIST.invitation.kicker}</span>
           <h3>{LIST.invitation.title}</h3>
           <p>{LIST.invitation.lines.map((line) => <span>{line}</span>)}</p>
-          <span class="invitation__frequency">{LIST.invitation.frequency}</span>
         </div>
       </div>
 
@@ -636,4 +638,25 @@ const countries = COUNTRY_CODES.map((code) => ({ code, name: names.of(code) ?? c
 .invitation__frequency { font-size: .8125rem; font-style: italic; color: var(--gold); }
 @media(max-width:43.75rem) { .list__card { padding: 0; max-width: 28.75rem; width: 100%; margin-inline: auto; } .invitation__heading { margin-bottom: 2rem; } .invitation__note { margin-top: 2rem; } .invitation__heading p { font-size: 1.875rem; } }
 @media(max-width:55.999rem) { .list__grid { grid-template-areas: "intro" "form" "card"; } }
+
+/* Organização editorial: benefícios junto à candidatura, cartão como convite. */
+.list { padding-block: 5rem 5.625rem; }
+.list__inner, .list__grid { max-width: 68.75rem; }
+.list__grid { column-gap: 5rem; row-gap: 1.875rem; }
+.list__heading { font-size: 2.375rem; margin-bottom: .9375rem; }
+.list__benefits { margin-top: 1.5rem; border-top: 1px solid rgb(184 155 94 / .25); }
+.list__benefits > div { display: flex; gap: 1.25rem; align-items: baseline; padding: .9375rem 0; border-bottom: 1px solid rgb(184 155 94 / .25); }
+.list__benefits > div > span { color: var(--gold); font-size: .625rem; letter-spacing: .0625rem; }
+.list__intro .list__benefits p { font-size: 1.1875rem; color: var(--cream); margin: 0; line-height: 1.4; }
+.list__benefits small { display: block; font-size: .9375rem; color: var(--on-navy-muted); margin-top: .25rem; }
+.invitation__heading { margin-bottom: 2.125rem; }
+.invitation__note { margin-top: 2.375rem; max-width: 20rem; }
+.invitation__note h3 { font-size: 1.8125rem; margin-bottom: .625rem; }
+.invitation__note p { font-size: 1.0625rem; margin: 0; }
+.invitation__watermark { opacity: .022; }
+.invitation__kicker { font-size: .625rem; }
+.field { margin-bottom: 0; }
+.form { gap: 1.125rem; }
+.field input, .field select { min-height: 3rem; }
+@media(max-width:43.75rem) { .list { padding-block: 3.75rem; } .list__heading { font-size: 2.125rem; } }
 </style>
