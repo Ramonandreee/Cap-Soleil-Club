@@ -185,3 +185,10 @@ A coluna do cartão em La Liste apresenta “Your place at the club.” acima, e
 ## Organização editorial aprovada em 2026-10-04
 
 Boutique com título à esquerda e introdução à direita, fotos intactas e legendas numeradas alinhadas. L’Heure alterna alinhamentos em quadros de 58 svh (55 no celular). La Liste concentra acesso antecipado e frequência das cartas em dois blocos junto ao formulário; o cartão comunica pertencimento, sem repetir a promessa. Paleta, fontes, transição dia/noite, cabeçalho estável, zoom e validação preservados. Textos centralizados em `src/content/site.ts`.
+
+
+
+## Páginas de produto — 2026-10-04
+
+Imagens da boutique levam a `/riviera`, `/polo` e `/navy-cap`. Layout editorial responsivo com detalhes, navegação entre peças e acesso ao formulário original. Fotos principais B1–B3 preservadas. Detalhe B1-detail v02: suéter dobrado, gerado por image_gen, 1536 × 1024, provisório por resolução; JPEG sRGB qualidade 90, sem ampliação. Original em `fotos-do-chat/Foto - B1-detail - v02.png`, aguardando arquivamento no Drive. Prompt: preservar modelo B1, tecido marinho e zíper prateado; dobrar como referência, em cadeira de vime sob luz mediterrânea e bordado discreto.
+
