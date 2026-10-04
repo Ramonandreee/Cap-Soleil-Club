@@ -14,7 +14,7 @@ for (const [slug, name] of [["riviera", "Embroidered, Riviera"], ["polo", "Cotto
     expect((await new AxeBuilder({ page }).analyze()).violations).toEqual([]);
     await page.getByRole("link", { name: "PUT YOUR NAME DOWN", exact: true }).click();
     await expect(page).toHaveURL(/#la-liste$/);
-    await expect(page.getByLabel("FIRST NAME", { exact: true })).toBeVisible();
+    await expect(page.locator("#first-name")).toBeVisible();
   });
 }
 
