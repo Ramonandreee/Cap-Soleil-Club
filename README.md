@@ -156,7 +156,7 @@ O `supabase/config.toml` já publica com `verify_jwt = false`: o site chama a fu
 **Ver a lista:** *Supabase › Table Editor*, escolha o esquema **`club`** no seletor do topo e abra **`members`**. Para exportar: **Export › CSV**.
 Números do dia por origem, país e aparelho: **SQL Editor** › `select * from club.v_daily order by day desc;`
 
-> A tabela antiga `public.waitlist` (v1) continua no banco, vazia, enquanto a v1 do site puder estar no ar. Na virada, a migration `20261003054108_club_v2.sql` já traz o trecho que copia o que houver nela para `club.members`.
+> A tabela antiga `public.waitlist` (v1) continua no banco, vazia e **sem acesso público** desde 2026-10-06. Os códigos anti-abuso (`club.rate_limits`) são apagados de hora em hora pelo Supabase Cron. Detalhes em [docs/site-e-acessos.md › Banco de dados](docs/site-e-acessos.md#banco-de-dados).
 
 ## 6. Teste real depois de publicar
 

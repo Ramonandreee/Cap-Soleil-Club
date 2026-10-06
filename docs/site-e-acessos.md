@@ -2,7 +2,7 @@
 
 > **Fonte:** [Cap Soleil — Site: projetos e acessos](https://docs.google.com/document/d/1yq_kyPL2lHnK1tnemUPZap-PdTknYysjx57eiz618CU/edit)
 > (Drive › 05 - Loja e lançamento › Site — capsoleilclub.com). Aqui, o **status e os detalhes técnicos têm como fonte o GitHub**, e o Drive guarda um resumo (ver [como-trabalhamos.md](como-trabalhamos.md#onde-mora-cada-coisa)).
-> **Atualizado em:** 2026-10-04 · **Sincronizado com o Drive em:** 2026-10-03 · status conferido no GitHub, na Vercel e no Supabase
+> **Atualizado em:** 2026-10-06 · **Sincronizado com o Drive em:** 2026-10-03 · status conferido no GitHub, na Vercel e no Supabase
 
 O site de pré-lançamento é a portaria de um clube que ainda não abriu: monta a lista (**La Liste**) antes da abertura da Pro Shop.
 O endereço final previsto é **capsoleilclub.com**. A proposta completa (posicionamento, experiência, identidade digital, dados e arquitetura) está no Drive: *Cap Soleil — Proposta do site de lançamento (v2)*.
@@ -43,9 +43,9 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
 | Codex (ChatGPT) | O Felipe muda o site pelo ChatGPT: o Codex abre o PR e o merge publica | `AGENTS.md` e o app *ChatGPT Codex Connector* no GitHub | ☐ Conectar ([passos](como-trabalhamos.md#com-o-chatgpt-codex)) | Felipe e Ramon |
 | Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
-| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2` e `20261003210000_club_apply_name_phone` | ✅ Aplicado e testado em 2026-10-03; cadastro de teste ponta a ponta feito e apagado | Ramon |
+| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2`, `20261003210000_club_apply_name_phone` e `20261006154719_club_housekeeping` | ✅ Aplicado e testado; conferido de ponta a ponta em 2026-10-06 (site no ar → função `apply` v2 → banco, sem erros nos logs). ☐ Apagar o cadastro de teste do Ramon (`utm_source = teste`) antes de divulgar | Ramon |
 | Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 2, com sobrenome e WhatsApp, desde 2026-10-03; `verify_jwt = false`) e respondendo | Ramon |
-| Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Ainda ligada ao site v1, vazia. Aposentar depois da virada | Ramon |
+| Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Aposentada em 2026-10-06: sem acesso público (a tabela, vazia, e a função `join_waitlist` continuam no banco) | Ramon |
 | Turnstile | Anti-robô da Cloudflare (opcional) | Cloudflare › Turnstile | ☐ Não ligado ([README › passo 7](../README.md#7-ligar-o-turnstile-anti-robô-da-cloudflare-opcional)) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
 | Instagram e Threads | Onde o link aparece | @capsoleilclub | ✅ Garantido | Ramon |
@@ -56,13 +56,16 @@ Tudo da v2 fica no esquema **`club`**, nas migrations aplicadas em 2026-10-03:
 
 1. [`20261003054108_club_v2.sql`](../supabase/migrations/20261003054108_club_v2.sql): cria o esquema. É **aditiva**: não mexe na tabela da v1.
 2. [`20261003210000_club_apply_name_phone.sql`](../supabase/migrations/20261003210000_club_apply_name_phone.sql): a candidatura passa a gravar **sobrenome** (`last_name`) e **WhatsApp** (`phone_e164`). Os dois parâmetros novos têm valor padrão, então a função antiga continuou funcionando até a nova ser publicada.
+3. [`20261006154719_club_housekeeping.sql`](../supabase/migrations/20261006154719_club_housekeeping.sql):
+   - **limpeza de hora em hora** dos códigos anti-abuso: o Supabase Cron roda `club.purge_rate_limits()` no minuto 17 de cada hora. Assim nada fica mais de um dia, como promete a Privacy. Acompanhe em *Integrations › Cron* no painel;
+   - **aposentadoria da v1:** tira o acesso público (`anon` e `authenticated`) à função `join_waitlist` e à tabela `public.waitlist`.
 
 | Tabela | Para quê | Principais campos |
 |---|---|---|
 | `club.members` | Um registro por pessoa (o lead) | `id`, `email` (único, sem diferenciar maiúsculas), `first_name`, `last_name`, `phone_e164` (o WhatsApp no formato internacional, ex.: `+5511912345678`), `country_code` (ISO), `locale`, `status` (*pending*, *confirmed*, *unsubscribed*, *bounced*, *shop_invited*, *customer*), `member_number` (vazio até haver confirmação por e-mail), `invite_code` (8 letras), `invited_by`, `invitations_left` (3), origem (`utm_*`, `referrer_host`, `landing_path`), `device_class`, consentimento atual (`marketing_consent`, `consent_version`, `consent_at`), datas, `crm_contact_id` e `crm_synced_at` (integração futura), `metadata` (ex.: a hora do dia no site). Nome, sobrenome, e-mail e WhatsApp são obrigatórios no formulário desde 2026-10-03; quem entrou antes pode estar sem sobrenome e WhatsApp |
 | `club.consents` | Prova de consentimento (GDPR art. 7) | membro, finalidade (`club_letters`), concedido ou não, versão do texto aceito, método (`web_form`, `double_opt_in`…), data |
 | `club.events` | Histórico para campanhas e auditoria | membro, tipo (`applied`, `applied_again`, `invite_used`…), dados, data |
-| `club.rate_limits` | Freio contra abuso | chave com HMAC (nunca IP ou e-mail em claro), janela, contagem. Limpa sozinha |
+| `club.rate_limits` | Freio contra abuso | chave com HMAC (nunca IP ou e-mail em claro), janela, contagem. Apagada de hora em hora pelo Supabase Cron (tarefa `club-purge-rate-limits`): nada passa de um dia |
 | `club.v_daily` | Painel | candidaturas por dia, status, origem, país e aparelho |
 
 **Como uma candidatura é gravada:** a função chama `public.club_apply(...)`, que só o `service_role` pode executar.
@@ -84,7 +87,7 @@ No Drive (pasta *Site — capsoleilclub.com*) estão os dois SQLs que criaram a 
 
 O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrations/20261001000000_waitlist.sql) junta os dois no estado final. Os arquivos em `supabase/migrations/` são o **histórico do que já foi aplicado: não rode de novo**.
 
-**Na virada para a v2:** copiar o que houver em `public.waitlist` para `club.members` (o trecho já está no fim da migration v2 e pode ser rodado de novo sem duplicar) e, depois, revogar o acesso público à `join_waitlist`.
+**Virada para a v2 (feita):** a `public.waitlist` ficou vazia, então não houve o que copiar para `club.members`. O acesso público à `join_waitlist` e à tabela foi revogado em 2026-10-06 (migration `club_housekeeping`).
 
 ## Fotos do site
 
