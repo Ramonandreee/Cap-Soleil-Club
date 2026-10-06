@@ -6,7 +6,7 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 
 ## A lei: documentação sempre em dia
 
-- **Mudou o site** (`src/`, `public/`, `supabase/`, `astro.config.mjs`, `package.json`, `tsconfig.json` ou `vercel.json`)? Atualize a documentação **no mesmo PR**: `README.md`, este arquivo ou `docs/`. Para saber qual, use a tabela “Se mudou isto, atualize aquilo” em [docs/como-trabalhamos.md](docs/como-trabalhamos.md#se-mudou-isto-atualize-aquilo).
+- **Mudou o site** (`src/`, `public/`, `supabase/`, `astro.config.mjs`, `package.json` ou `tsconfig.json`)? Atualize a documentação **no mesmo PR**: `README.md`, este arquivo ou `docs/`. Para saber qual, use a tabela “Se mudou isto, atualize aquilo” em [docs/como-trabalhamos.md](docs/como-trabalhamos.md#se-mudou-isto-atualize-aquilo).
 - **Mudou um arquivo em `docs/`?** Atualize a linha `**Atualizado em:** AAAA-MM-DD` dele. Se conferiu o documento contra a fonte no Drive, atualize também `**Sincronizado com o Drive em:**` e a tabela de sincronização de `como-trabalhamos.md`.
 - **Mudou uma cor** (`:root` em `src/styles/tokens.css`), **uma fonte** (`@fontsource` em `src/layouts/Base.astro`) **ou o céu** (`PALETTES` em `src/lib/sun.ts`)? Atualize [docs/identidade-visual.md › No site](docs/identidade-visual.md#no-site).
 - **Antes de cada commit,** rode `python3 scripts/check_docs.py`. Ele precisa passar. Antes do PR, rode também `npm run verify` (tipos, testes, build e testes no navegador).
@@ -38,6 +38,6 @@ Os detalhes estão em [docs/como-trabalhamos.md](docs/como-trabalhamos.md).
 - **Nunca** coloque a secret key, a service_role ou a secret key do Turnstile no código, nos docs ou no Drive. O site não tem chave nenhuma.
 - `supabase/migrations/*.sql` é o **histórico do que já foi aplicado** no banco: **não rode de novo**. Mudança no banco = migration nova, aplicada uma vez e registrada em [docs/site-e-acessos.md](docs/site-e-acessos.md#banco-de-dados).
 - Mudou a função? Publique de novo (`npx supabase functions deploy apply --project-ref anlniqjoaogsuptuvrtk`; o `config.toml` mantém `verify_jwt = false`).
-- A CSP (`public/_headers` e, durante a transição, `vercel.json`, que precisam ser iguais) bloqueia scripts e estilos inline. O Astro está configurado para gerar tudo como arquivo; não use `define:vars`, `style="…"` no HTML nem `<script is:inline>` com código. Script, fonte ou conexão nova precisa ser liberada lá.
+- A CSP (`public/_headers`) bloqueia scripts e estilos inline. O Astro está configurado para gerar tudo como arquivo; não use `define:vars`, `style="…"` no HTML nem `<script is:inline>` com código. Script, fonte ou conexão nova precisa ser liberada lá.
 - O site não usa cookies, analytics nem armazenamento no navegador. Se isso mudar, atualize a Privacy (`src/pages/privacy.astro`) e os docs (ver [roadmap.md › Antes de D9](docs/roadmap.md#antes-de-d9-analytics-sem-cookies)).
-- Hospedagem decidida: **Cloudflare Pages** (build `npm run build`, saída `dist`). A Vercel publica até a troca.
+- Hospedagem decidida: **Cloudflare Pages** (build `npm run build`, saída `dist`), a única hospedagem. A Vercel saiu em 2026-10-06.

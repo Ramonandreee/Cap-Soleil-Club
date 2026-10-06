@@ -1,8 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-// A Cloudflare lê public/_headers; a Vercel, enquanto ainda publica o site, lê o vercel.json.
-// As duas listas de cabeçalhos de segurança precisam ser iguais.
+// A Cloudflare lê os cabeçalhos de segurança de public/_headers.
 const root = new URL("../../", import.meta.url);
 
 function cloudflareHeaders(): Record<string, string> {
@@ -23,17 +22,7 @@ function cloudflareHeaders(): Record<string, string> {
   return headers;
 }
 
-function vercelHeaders(): Record<string, string> {
-  const config = JSON.parse(readFileSync(new URL("vercel.json", root), "utf8"));
-  const all = config.headers.find((h: { source: string }) => h.source === "/(.*)");
-  return Object.fromEntries(all.headers.map((h: { key: string; value: string }) => [h.key, h.value]));
-}
-
 describe("security headers", () => {
-  it("are the same on Cloudflare and Vercel", () => {
-    expect(vercelHeaders()).toEqual(cloudflareHeaders());
-  });
-
   it("keep a strict CSP", () => {
     const csp = cloudflareHeaders()["Content-Security-Policy"];
     expect(csp).toContain("default-src 'self'");

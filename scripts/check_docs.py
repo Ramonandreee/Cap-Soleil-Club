@@ -29,7 +29,7 @@ SITE_SOURCES = ROOT / "src"
 
 # Arquivos que mudam o site e arquivos que contam como documentação.
 SITE_PATHS = (
-    "src/", "public/", "supabase/", "astro.config.mjs", "package.json", "vercel.json", "tsconfig.json",
+    "src/", "public/", "supabase/", "astro.config.mjs", "package.json", "tsconfig.json",
 )
 DOC_PATHS = ("README.md", "CLAUDE.md", "docs/")
 

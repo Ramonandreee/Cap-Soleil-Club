@@ -1,5 +1,4 @@
-# Cabeçalhos de segurança (Cloudflare Pages). A mesma CSP está no vercel.json
-# enquanto a Vercel ainda publica o site; um teste confere que as duas são iguais.
+# Cabeçalhos de segurança (Cloudflare Pages). Um teste confere a CSP.
 # Script, fonte ou conexão nova precisa ser liberada aqui.
 
 /*

@@ -4,7 +4,7 @@ Cap Soleil é uma marca de roupas e pôsteres inspirada nos clubes de tênis da 
 Este site é a **portaria de um clube que ainda não abriu**: a pessoa chega na luz real daquela hora na Côte d’Azur, lê as Regras do Clube, vê fragmentos da Pro Shop e põe o nome na lista (**La Liste**).
 
 - **No ar:** https://cap-soleil-club.pages.dev (Cloudflare Pages, desde 03/10/2026). Endereço final previsto: capsoleilclub.com.
-- **Hospedagem:** **Cloudflare Pages**. A Vercel (capsoleilclub.vercel.app) ainda publica a mesma versão até ser desligada (passo 4, item 7).
+- **Hospedagem:** **Cloudflare Pages**, a única. A Vercel saiu do código em 06/10/2026.
 - **Site:** [Astro](https://astro.build), que gera páginas estáticas. Tem build com npm e JavaScript pequeno, só para o céu, a rolagem e o formulário.
 - **Lista:** o formulário manda para a função **`apply`** (Supabase Edge Function), que valida e grava no esquema **`club`** do banco (projeto **Cap Soleil Club**, Paris / eu-west-3).
 - **Proposta completa (privada, no Drive):** [Cap Soleil — Proposta do site de lançamento (v2)](https://docs.google.com/document/d/1FAFPsSY93FUrCLoEGsGT61_TLRYatLDxYpNLAzzpWU4/edit).
@@ -39,7 +39,6 @@ supabase/functions/apply/    Função que recebe as candidaturas (valida, limita
 supabase/functions/_shared/  Regras da candidatura, usadas pela função e pelo formulário
 supabase/migrations/         Histórico do banco (já aplicado). NÃO rode de novo
 tests/                       Testes de unidade (Vitest) e de ponta a ponta (Playwright)
-vercel.json                  Só durante a transição: build e cabeçalhos na Vercel (sai depois da Cloudflare)
 docs/                        Como trabalhamos, marca, identidade visual, peças e acessos, roadmap
 scripts/check_docs.py        Verificação "Documentação em dia"
 .github/                     Modelo de PR e as verificações automáticas
@@ -72,7 +71,7 @@ npm run dev     # abre o site em http://localhost:4321
 | As cores do céu em cada hora | `src/lib/sun.ts` (`PALETTES`) |
 | A política de privacidade ou o aviso legal | `src/pages/privacy.astro` e `src/pages/legal.astro` |
 | O que o formulário aceita | `supabase/functions/_shared/lead.ts` (vale para o site **e** para a função; a função precisa ser publicada de novo, passo 5) |
-| Um script, fonte ou serviço externo novo | Libere na CSP de `public/_headers` **e** do `vercel.json` (um teste confere que as duas são iguais) |
+| Um script, fonte ou serviço externo novo | Libere na CSP de `public/_headers` |
 
 ## 3. Testar antes do PR
 
@@ -88,7 +87,7 @@ Eles **nunca** chamam a função de verdade: o envio é interceptado.
 
 ## 4. Publicar na Cloudflare Pages (a hospedagem decidida)
 
-> ✅ **Feito em 03/10/2026:** o projeto `cap-soleil-club` está no ar. Faltam o item 6 (domínio) e o item 7 (repositório privado e Vercel desligada). Os passos ficam aqui para refazer ou conferir.
+> ✅ **Feito em 03/10/2026:** o projeto `cap-soleil-club` está no ar. Faltam o item 6 (domínio) e, do item 7, deixar o repositório privado. A Vercel saiu em 06/10/2026. Os passos ficam aqui para refazer ou conferir.
 
 Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos dois sócios, mesmo com o repositório **privado**, e cada branch ou PR ganha um link de prévia. O plano grátis permite uso comercial. Isso vale também para os PRs que o Felipe abre pelo ChatGPT ([Com o ChatGPT (Codex)](docs/como-trabalhamos.md#com-o-chatgpt-codex)).
 
@@ -106,10 +105,8 @@ Com a Cloudflare, **todo commit na `main` publica o site**, de qualquer um dos d
 6. **Domínio** (quando `capsoleilclub.com` estiver registrado): no projeto, **Custom domains › Set up a custom domain**. Depois, troque `SITE_URL` para `https://capsoleilclub.com` e publique de novo.
 7. **Depois que a Cloudflare estiver no ar:**
    - deixe o repositório **privado** de novo (*GitHub › Settings › General › Danger Zone › Change visibility*);
-   - apague o projeto na Vercel (*Settings › Advanced › Delete Project*) e, num PR, remova o `vercel.json` e a origem `capsoleilclub.vercel.app` de `DEFAULT_ORIGINS` em `supabase/functions/apply/handler.ts`;
+   - Vercel: o `vercel.json` e a origem `capsoleilclub.vercel.app` saíram do código em 06/10/2026. Falta apagar o projeto no painel da Vercel (*Settings › Advanced › Delete Project*) e publicar a função `apply` de novo (passo 5);
    - atualize [docs/site-e-acessos.md](docs/site-e-acessos.md#status) e o Drive.
-
-> **Enquanto isso, na Vercel:** o `vercel.json` já manda a Vercel construir o Astro (`npm run build`, pasta `dist`) com os mesmos cabeçalhos de segurança. Ao entrar na `main`, este site também aparece em capsoleilclub.vercel.app.
 
 ---
 
@@ -205,7 +202,7 @@ Se aparecer *“Something went wrong on our side”*, veja **Edge Functions › 
 
 ## Detalhes técnicos (para quem for mexer no código)
 
-- **Segurança:** CSP estrita em `public/_headers` (e no `vercel.json`, durante a transição): só o próprio site, a função do Supabase e o Turnstile. Nenhum script ou estilo escrito direto no HTML; o Astro gera tudo como arquivo (`inlineStylesheets: 'never'`, `assetsInlineLimit: 0`). HSTS, `frame-ancestors 'none'`, `nosniff`.
+- **Segurança:** CSP estrita em `public/_headers`: só o próprio site, a função do Supabase e o Turnstile. Nenhum script ou estilo escrito direto no HTML; o Astro gera tudo como arquivo (`inlineStylesheets: 'never'`, `assetsInlineLimit: 0`). HSTS, `frame-ancestors 'none'`, `nosniff`.
 - **Sem segredos no navegador:** o site não usa mais o supabase-js nem a Publishable key. Só a função, no servidor, fala com o banco.
 - **Privacidade:** sem cookies, sem analytics, nada guardado no navegador. As fontes são servidas pelo próprio site (sem Google Fonts).
 - **Banco:** esquema `club` com RLS ligado e sem políticas (ninguém de fora lê nem escreve); só o `service_role` executa `public.club_apply` e `public.club_rate_limit_hit`. Detalhes em [docs/site-e-acessos.md](docs/site-e-acessos.md#banco-de-dados).
