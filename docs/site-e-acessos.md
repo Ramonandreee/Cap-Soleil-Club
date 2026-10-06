@@ -13,7 +13,7 @@ O endereço final previsto é **capsoleilclub.com**. A proposta completa (posici
 Instagram / Threads (@capsoleilclub)
         │  link da bio: …/?utm_source=instagram
         ▼
-Site (Astro, estático) ── Cloudflare Pages: cap-soleil-club.pages.dev (a Vercel ainda publica até ser desligada)
+Site (Astro, estático) ── Cloudflare Pages: cap-soleil-club.pages.dev
         │  publicado a cada commit na main · cada PR ganha uma prévia
         │◄─────────────── GitHub: Ramonandreee/Cap-Soleil-Club
         ▼
@@ -42,7 +42,7 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | Site v2 (Astro) | A experiência em cinco atos | `src/` | ✅ No ar desde 03/10/2026 (PR #3) | Ramon |
 | Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
 | Codex (ChatGPT) | O Felipe muda o site pelo ChatGPT: o Codex abre o PR e o merge publica | `AGENTS.md` e o app *ChatGPT Codex Connector* no GitHub | ☐ Conectar ([passos](como-trabalhamos.md#com-o-chatgpt-codex)) | Felipe e Ramon |
-| Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
+| Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Desligada em 2026-10-06: o `vercel.json` e a origem saíram do código. ☐ Apagar o projeto no painel da Vercel e publicar a função `apply` de novo | Ramon |
 | Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2`, `20261003210000_club_apply_name_phone` e `20261006154719_club_housekeeping` | ✅ Aplicado e testado; conferido de ponta a ponta em 2026-10-06 (site no ar → função `apply` v2 → banco, sem erros nos logs). ☐ Apagar o cadastro de teste do Ramon (`utm_source = teste`) antes de divulgar | Ramon |
 | Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 2, com sobrenome e WhatsApp, desde 2026-10-03; `verify_jwt = false`) e respondendo | Ramon |
 | Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Aposentada em 2026-10-06: sem acesso público (a tabela, vazia, e a função `join_waitlist` continuam no banco) | Ramon |
@@ -110,7 +110,7 @@ O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠
 
 ## Segurança
 
-- **No navegador:** CSP estrita (`public/_headers`; a mesma no `vercel.json` durante a transição, e um teste confere que são iguais), HSTS, `frame-ancestors 'none'`, nenhum script ou estilo escrito direto no HTML, nenhum segredo.
+- **No navegador:** CSP estrita (`public/_headers`, conferida por um teste), HSTS, `frame-ancestors 'none'`, nenhum script ou estilo escrito direto no HTML, nenhum segredo.
 - **Na função `apply`:** só aceita origens conhecidas (CORS), só `POST` com JSON de até 4 KB, valida cada campo no servidor (as mesmas regras do formulário, em `supabase/functions/_shared/lead.ts`), recusa envios em menos de 1,2 s, tem campo-armadilha, Turnstile opcional, e limites por IP, por e-mail e no total. Responde igual para nome novo e repetido. Os logs não têm dados pessoais.
 - **No banco:** esquema fora da API, RLS sem políticas, execução só pelo `service_role`.
 
@@ -124,7 +124,7 @@ O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠
 ## Custos e limites
 
 - **Cloudflare Pages (decidido):** plano grátis com uso comercial permitido, deploy de qualquer commit (os dois sócios, repositório privado) e prévia por PR. Limite de 500 builds por mês.
-- **Vercel (até a troca):** o plano Hobby é só para uso pessoal e não comercial, e só publica commits de outra pessoa com o repositório **público**. Por isso a troca.
+- **Vercel (desligada em 2026-10-06):** o plano Hobby é só para uso pessoal e não comercial, e só publica commits de outra pessoa com o repositório **público**. Por isso a troca.
 - **Repositório público = documentação pública:** enquanto estiver público, `docs/`, `CLAUDE.md` e o histórico podem ser lidos por qualquer pessoa. A proposta v2 fica só no Drive por isso. Os documentos do Drive citados continuam fechados.
 - **Supabase:** o plano grátis permite 2 projetos ativos por pessoa. Projetos grátis podem ser **pausados por inatividade**; se o formulário parar de funcionar, confira isso primeiro. Edge Functions: 500 mil chamadas por mês no plano grátis.
 - **Brevo** (quando houver e-mail): plano grátis com até 300 e-mails por dia.
@@ -152,7 +152,7 @@ O ChatGPT entrega no máximo 1536 px: as fotos entram como **provisórias** (⚠
 | Contato | E-mail público do clube (ex.: hello@capsoleilclub.com) | `src/config.ts` (`contactEmail`) |
 | Domínio | Confirmar se `capsoleilclub.com` está livre e registrar (Felipe) | `SITE_URL` na Cloudflare; origem já aceita pela função |
 | Provedor de e-mail | Brevo para tudo, ou Resend/Postmark para as cartas e Brevo para marketing | Nova função (`confirm`), tabela de tokens e textos da Privacy |
-| Analytics | Plausible (UE, sem cookies), desligado até haver conta | CSP em `public/_headers` e `vercel.json`, e a Privacy |
+| Analytics | Plausible (UE, sem cookies), desligado até haver conta | CSP em `public/_headers` e a Privacy |
 | Trio de produtos | Decidir no S1 do cronograma | Legendas de *La Boutique* (`BOUTIQUE.fragments`) |
 | “1954” nas artes | 3 logos alternativos e os 6 pôsteres v01 trazem “1954” (ver [identidade-visual.md](identidade-visual.md#pôsteres--coleção-verão)). Decidir no S1 se a data sai | Nada no site (ele não tem data); afeta as artes no Drive |
 | Nome do repositório | No Drive o nome previsto era `capsoleilclub`; no GitHub está `Cap-Soleil-Club` | Nada. Se renomear, reconecte a Cloudflare |

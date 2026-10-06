@@ -5,7 +5,7 @@
 > - [Cap Soleil — Cronograma de lançamento](https://docs.google.com/spreadsheets/d/1z4llc4ppFm5Wf4eG5VRcmiSKqUTArQMisDHHiI3ZHMM/edit) (Drive › 07 - Planejamento)
 >
 > Os ☐/✅ do dia a dia e o **Registro** das sessões ficam no Drive (a fonte). Aqui ficam o mapa e **o que cada etapa muda no código**.
-> **Atualizado em:** 2026-10-03 · **Sincronizado com o Drive em:** 2026-10-03
+> **Atualizado em:** 2026-10-06 · **Sincronizado com o Drive em:** 2026-10-03
 
 ## O site v2 (produto real)
 
@@ -22,7 +22,7 @@ Ela cobre posicionamento, benchmark, conceito, arquitetura da experiência, iden
 | Fundação: Astro, tokens, componentes, relógio de sol, testes e CI | ✅ No ar desde 03/10/2026 |
 | Dados: banco v2 (esquema `club`) e função `apply` | ✅ No Supabase, testados. ☐ Turnstile (opcional) |
 | Experiência: os cinco atos, o cartão de membro e o selo | ✅ Pronto. ☐ Revisão dos textos pelos sócios (Regras do Clube e promessa da lista) |
-| Hospedagem: Cloudflare Pages e repositório privado | ✅ Cloudflare no ar (cap-soleil-club.pages.dev). ☐ Repositório privado e Vercel desligada |
+| Hospedagem: Cloudflare Pages e repositório privado | ✅ Cloudflare no ar (cap-soleil-club.pages.dev). ✅ Vercel desligada (06/10). ☐ Repositório privado |
 | E-mail: dupla confirmação, número de membro, convites, cartas | ☐ Depois (decisão: sem e-mail por enquanto; o banco já está pronto) |
 | Lançamento: analytics, domínio, páginas legais preenchidas, testes em aparelhos | ☐ Ver as sessões D4–D12 |
 
@@ -73,7 +73,7 @@ Estado conferido em **03/10/2026**. As três primeiras sessões já estão adian
 
 Hoje o site promete **sem cookies e sem analytics** na Privacy e no README. A proposta é o **Plausible** (UE, sem cookies), desligado até haver conta. Ao ativar:
 
-1. Libere o script e o envio do Plausible na CSP de `public/_headers` **e** do `vercel.json` (o teste exige que sejam iguais). Scripts escritos direto no HTML são bloqueados.
+1. Libere o script e o envio do Plausible na CSP de `public/_headers`. Scripts escritos direto no HTML são bloqueados.
 2. Atualize a Privacy (`src/pages/privacy.astro`: *What we collect* e provedores) e a seção de privacidade do README.
 3. Rode `npm run verify` e abra o site com o console do navegador aberto: nada pode ser bloqueado pela CSP.
 

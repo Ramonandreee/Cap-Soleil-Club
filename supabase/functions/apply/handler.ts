@@ -38,7 +38,6 @@ export const DEFAULT_ORIGINS = [
   "https://www.capsoleilclub.com",
   "https://cap-soleil-club.pages.dev",
   "https://*.cap-soleil-club.pages.dev",
-  "https://capsoleilclub.vercel.app",
   "http://localhost:4321",
   "http://127.0.0.1:4321",
 ] as const;

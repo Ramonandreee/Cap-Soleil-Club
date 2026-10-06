@@ -7,7 +7,6 @@ import sitemap from "@astrojs/sitemap";
 
 const site =
   process.env.SITE_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
   process.env.CF_PAGES_URL ||
   "http://localhost:4321";
 
@@ -15,7 +14,7 @@ export default defineConfig({
   site,
   trailingSlash: "never",
   build: {
-    // privacy.html em vez de privacy/index.html: a Cloudflare e a Vercel servem como /privacy.
+    // privacy.html em vez de privacy/index.html: a Cloudflare serve como /privacy.
     format: "file",
     // A CSP bloqueia <style> e <script> escritos no HTML: tudo vira arquivo.
     inlineStylesheets: "never",

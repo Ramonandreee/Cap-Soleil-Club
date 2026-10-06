@@ -1,7 +1,7 @@
 # Como trabalhamos: GitHub e Drive sempre em dia
 
 > **Fonte:** este arquivo. Há uma cópia no Drive: [Cap Soleil — Como trabalhamos (GitHub e Drive)](https://docs.google.com/document/d/1gzJ54-_tb3c9mlNeBZretGxF4SdpEdZcEEZPS8bJKJM/edit) (07 - Planejamento).
-> **Atualizado em:** 2026-10-03
+> **Atualizado em:** 2026-10-06
 
 ## A lei do projeto
 
@@ -28,7 +28,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 | Textos do site (inglês) | GitHub: `src/content/site.ts` | Drive: o doc de origem, quando a frase vem de lá (ex.: a história) |
 | Código, configuração, banco e segurança do site | GitHub (código, [README](../README.md) e [site-e-acessos.md](site-e-acessos.md)) | Drive: *Site: projetos e acessos* (só status e links) |
 | Proposta do site v2 (conceito, experiência, decisões) | Drive: *Cap Soleil — Proposta do site de lançamento (v2)* | [roadmap.md](roadmap.md) (só o que vira código) |
-| Status das peças (GitHub, Cloudflare, Vercel, Supabase, domínio) | GitHub: [site-e-acessos.md](site-e-acessos.md#status) | Drive: *Site: projetos e acessos* |
+| Status das peças (GitHub, Cloudflare, Supabase, domínio) | GitHub: [site-e-acessos.md](site-e-acessos.md#status) | Drive: *Site: projetos e acessos* |
 | Rotina e sessões do site (☐/✅ e Registro) | Drive: *Cap Soleil — Rotina de desenvolvimento do site* | [docs/roadmap.md](roadmap.md) (mapa e impacto no código) |
 | Cronograma da loja (S1–S10) | Drive: planilha *Cap Soleil — Cronograma de lançamento* | [docs/roadmap.md](roadmap.md) (resumo) |
 | Fornecedores, financeiro, jurídico e Instagram | Drive (pastas 03, 04 e 06) | — (não vai para o GitHub) |
@@ -49,7 +49,7 @@ Cada assunto tem **uma fonte**. As outras cópias são **espelhos**, que dizem d
 | Decisão tomada (trio, paleta, 1954, hospedagem…) | Tire de “Decisões pendentes” e registre onde ela vale | O doc de origem (*História*, *Rotina*, *Cronograma*…) |
 | História, posicionamento ou tom de voz | [marca.md](marca.md) | *Cap Soleil — História e Posicionamento* (a fonte) |
 | Política de privacidade, aviso legal ou provedores | `src/pages/privacy.astro`, `src/pages/legal.astro` e [site-e-acessos.md](site-e-acessos.md) | *Site: projetos e acessos* |
-| Script, fonte ou serviço externo novo | CSP em `public/_headers` **e** `vercel.json`, a Privacy e [site-e-acessos.md](site-e-acessos.md#segurança) | *Site: projetos e acessos* |
+| Script, fonte ou serviço externo novo | CSP em `public/_headers`, a Privacy e [site-e-acessos.md](site-e-acessos.md#segurança) | *Site: projetos e acessos* |
 
 ## Trabalhando os dois ao mesmo tempo
 
@@ -81,7 +81,7 @@ Os dois mexem ao mesmo tempo e têm a **mesma autoridade**: quem abre o PR faz o
   - **Block force pushes**.
 - **Felipe**, no computador dele, se usar o Git ou o Codex local: `git config --global core.autocrlf true` no Windows (ou `input` no Mac) e `git config --global pull.rebase false`.
 - **Mesma autoridade de verdade:** num repositório de conta pessoal, só o dono (Ramon) muda configurações e aprova apps (Codex, Claude, Cloudflare). Para o Felipe ter os mesmos poderes, o repositório precisa ir para uma **organização gratuita do GitHub** com os dois como *owners*.
-  - Depois da mudança, é preciso reconectar a Cloudflare Pages, a Vercel e os apps do Codex e do Claude.
+  - Depois da mudança, é preciso reconectar a Cloudflare Pages e os apps do Codex e do Claude.
   - Combine antes de fazer: o site fica sem publicar até a Cloudflare ser reconectada.
 
 **No Drive**
@@ -149,7 +149,7 @@ python3 scripts/check_docs.py
 
 | Ela confere | Se falhar |
 |---|---|
-| Se o PR mexe no site (`src/`, `public/`, `supabase/`, `astro.config.mjs`, `package.json`, `tsconfig.json` ou `vercel.json`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
+| Se o PR mexe no site (`src/`, `public/`, `supabase/`, `astro.config.mjs`, `package.json` ou `tsconfig.json`) e também mexe em algum documento (`README.md`, `CLAUDE.md` ou `docs/`) | Atualize o documento certo (tabela *Se mudou isto…*). Se de fato não há o que documentar (ex.: corrigir um erro de digitação), escreva no texto do PR a linha `Docs: não se aplica — motivo` |
 | Se toda cor de `:root` em `src/styles/tokens.css` e toda fonte `@fontsource` de `src/layouts/Base.astro` aparecem em [identidade-visual.md › No site](identidade-visual.md#no-site) | Inclua a cor ou a fonte na tabela |
 | Se os links entre os documentos (e as âncoras `#`) existem | Corrija o link |
 | Se o site (`src/`) menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
