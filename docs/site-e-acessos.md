@@ -43,9 +43,9 @@ Conferido em **2026-10-03**. Quem mudar o estado de uma peça atualiza esta tabe
 | Cloudflare Pages | Hospedagem (uso comercial, deploy dos dois sócios com repositório privado) | https://cap-soleil-club.pages.dev | ✅ No ar desde 03/10/2026, publicando a `main`. ☐ Domínio | Ramon |
 | Codex (ChatGPT) | O Felipe muda o site pelo ChatGPT: o Codex abre o PR e o merge publica | `AGENTS.md` e o app *ChatGPT Codex Connector* no GitHub | ☐ Conectar ([passos](como-trabalhamos.md#com-o-chatgpt-codex)) | Felipe e Ramon |
 | Vercel | Hospedagem anterior | https://capsoleilclub.vercel.app | ✅ Ainda publica a v2. ☐ Desligar e remover o `vercel.json` ([README › passo 4, item 7](../README.md#4-publicar-na-cloudflare-pages-a-hospedagem-decidida)) | Ramon |
-| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2`, `20261003210000_club_apply_name_phone` e `20261006154719_club_housekeeping` | ✅ Aplicado e testado; conferido de ponta a ponta em 2026-10-06 (site no ar → função `apply` v2 → banco, sem erros nos logs). ☐ Apagar o cadastro de teste do Ramon (`utm_source = teste`) antes de divulgar | Ramon |
+| Supabase · banco v2 | A lista, os consentimentos e os eventos | Esquema `club`, migrations `20261003054108_club_v2`, `20261003210000_club_apply_name_phone`, `20261006154719_club_housekeeping` e `20261006162000_waitlist_drop_public_policy` | ✅ Aplicado e testado; conferido de ponta a ponta em 2026-10-06 (site no ar → função `apply` v2 → banco, sem erros nos logs). ☐ Apagar o cadastro de teste do Ramon (`utm_source = teste`) antes de divulgar | Ramon |
 | Supabase · função `apply` | Recebe as candidaturas | `…supabase.co/functions/v1/apply` | ✅ Publicada (versão 2, com sobrenome e WhatsApp, desde 2026-10-03; `verify_jwt = false`) e respondendo | Ramon |
-| Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Aposentada em 2026-10-06: sem acesso público (a tabela, vazia, e a função `join_waitlist` continuam no banco) | Ramon |
+| Supabase · banco v1 | Lista do site antigo | `public.waitlist` | ✅ Aposentada em 2026-10-06: sem acesso público e sem a policy pública (a tabela, vazia, e a função `join_waitlist` continuam no banco) | Ramon |
 | Turnstile | Anti-robô da Cloudflare (opcional) | Cloudflare › Turnstile | ☐ Não ligado ([README › passo 7](../README.md#7-ligar-o-turnstile-anti-robô-da-cloudflare-opcional)) | Ramon |
 | Domínio | Endereço da bio | capsoleilclub.com | ☐ A verificar e registrar | Felipe |
 | Instagram e Threads | Onde o link aparece | @capsoleilclub | ✅ Garantido | Ramon |
@@ -59,6 +59,7 @@ Tudo da v2 fica no esquema **`club`**, nas migrations aplicadas em 2026-10-03:
 3. [`20261006154719_club_housekeeping.sql`](../supabase/migrations/20261006154719_club_housekeeping.sql):
    - **limpeza de hora em hora** dos códigos anti-abuso: o Supabase Cron roda `club.purge_rate_limits()` no minuto 17 de cada hora. Assim nada fica mais de um dia, como promete a Privacy. Acompanhe em *Integrations › Cron* no painel;
    - **aposentadoria da v1:** tira o acesso público (`anon` e `authenticated`) à função `join_waitlist` e à tabela `public.waitlist`.
+4. [`20261006162000_waitlist_drop_public_policy.sql`](../supabase/migrations/20261006162000_waitlist_drop_public_policy.sql): apaga a policy “Anyone can join the list” da `public.waitlist`, que sobrou da v1. Sem ela, mesmo que alguém devolva o `grant`, o RLS continua negando tudo ao público. ☐ **Ainda não aplicada** no banco: espera o ok do Ramon.
 
 | Tabela | Para quê | Principais campos |
 |---|---|---|
@@ -87,7 +88,7 @@ No Drive (pasta *Site — capsoleilclub.com*) estão os dois SQLs que criaram a 
 
 O arquivo [`supabase/migrations/20261001000000_waitlist.sql`](../supabase/migrations/20261001000000_waitlist.sql) junta os dois no estado final. Os arquivos em `supabase/migrations/` são o **histórico do que já foi aplicado: não rode de novo**.
 
-**Virada para a v2 (feita):** a `public.waitlist` ficou vazia, então não houve o que copiar para `club.members`. O acesso público à `join_waitlist` e à tabela foi revogado em 2026-10-06 (migration `club_housekeeping`).
+**Virada para a v2 (feita):** a `public.waitlist` ficou vazia, então não houve o que copiar para `club.members`. O acesso público à `join_waitlist` e à tabela foi revogado em 2026-10-06 (migration `club_housekeeping`), e a policy pública saiu no mesmo dia (migration `waitlist_drop_public_policy`).
 
 ## Fotos do site
 
