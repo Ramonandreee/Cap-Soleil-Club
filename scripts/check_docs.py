@@ -179,8 +179,28 @@ def check_line_endings():
         )
 
 
+MOJIBAKE = re.compile("Ã[\u0080-\u00bf]|Â[\u00a0-\u00bf]|â€")
+
+
+def check_encoding():
+    """Texto salvo com a codificação trocada vira "NÂº" e "preÃ§o" no site."""
+    for folder in ("src", "docs"):
+        for path in sorted((ROOT / folder).rglob("*")):
+            if path.suffix not in (".astro", ".ts", ".css", ".md", ".mjs", ".json") or not path.is_file():
+                continue
+            text = path.read_text("utf-8", errors="replace")
+            hit = MOJIBAKE.search(text)
+            if hit:
+                line = text.count("\n", 0, hit.start()) + 1
+                errors.append(
+                    f"{rel(path)}:{line}: caracteres com a codificação trocada (\"{hit.group(0)}\"). "
+                    "Salve o arquivo em UTF-8 e corrija o trecho (ex.: “NÂº” → “Nº”)."
+                )
+
+
 def main():
     check_line_endings()
+    check_encoding()
     check_links()
     check_identity()
     check_brand()

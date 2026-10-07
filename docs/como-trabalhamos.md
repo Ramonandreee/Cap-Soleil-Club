@@ -1,7 +1,7 @@
 # Como trabalhamos: GitHub e Drive sempre em dia
 
 > **Fonte:** este arquivo. Há uma cópia no Drive: [Cap Soleil — Como trabalhamos (GitHub e Drive)](https://docs.google.com/document/d/1gzJ54-_tb3c9mlNeBZretGxF4SdpEdZcEEZPS8bJKJM/edit) (07 - Planejamento).
-> **Atualizado em:** 2026-10-06
+> **Atualizado em:** 2026-10-07
 
 ## A lei do projeto
 
@@ -155,6 +155,7 @@ python3 scripts/check_docs.py
 | Se o site (`src/`) menciona data de fundação (“Est. 1954”, “Established”, “Founded in”) | Tire a data: é regra da marca |
 | Se cada documento em `docs/` tem a linha **Atualizado em** | Acrescente a linha no topo |
 | Se algum arquivo tem fim de linha do Windows (CRLF), que vira conflito com o trabalho do outro sócio | Na sua branch: `git add --renormalize .` e um commit |
+| Se algum arquivo de `src/` ou `docs/` tem caracteres com a codificação trocada (ex.: “Nº” aparecendo com um “Â” a mais) | Salve o arquivo em UTF-8 e corrija o trecho que a verificação aponta |
 
 > **Bloquear o merge de verdade:** com o repositório público, o GitHub grátis permite *branch protection*. Em **Settings › Branches › Add rule** (ou *Rulesets*), para a `main`: exigir PR antes do merge e exigir as verificações **Documentação em dia** e **Site (testes)**.
 > Quando o repositório voltar a ser privado (Cloudflare), o GitHub grátis deixa de aplicar essas regras em repositório privado de conta pessoal. A regra continua valendo do mesmo jeito: **PR vermelho não entra.**

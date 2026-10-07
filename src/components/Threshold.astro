@@ -8,7 +8,8 @@ import { THRESHOLD } from '../content/site.ts';
     <Emblem class="threshold__mark" />
     <h1 id="club-name"><span class="threshold__name">Cap Soleil</span><span class="threshold__club caps">Lawn Tennis Club</span></h1>
     <p class="threshold__line">{THRESHOLD.line}</p>
-    <p class="threshold__phase-line" data-phase-line hidden></p>
+    <!-- A frase da tarde já vem no HTML (aparece sem esperar o JavaScript); o sky.ts troca ou esconde conforme a hora. -->
+    <p class="threshold__phase-line" data-phase-line>{THRESHOLD.phaseLines.heure}</p>
     <a class="button button--gold" href="#la-liste">{THRESHOLD.cta}</a>
   </div>
 </section>
