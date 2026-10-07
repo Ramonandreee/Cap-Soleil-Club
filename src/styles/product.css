@@ -4,3 +4,4 @@
 
 
 .product-page .main-photo img{height:auto;aspect-ratio:4/5}
+.product-page .related a[aria-current="page"]{pointer-events:none;font-style:italic}

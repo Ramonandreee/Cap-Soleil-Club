@@ -157,7 +157,8 @@ test.describe("the acts", () => {
     await page.locator("#regles").scrollIntoViewIfNeeded();
     await expect(bar).toBeVisible();
     await bar.getByRole("link", { name: "La Liste" }).click();
-    await expect(page.locator("#first-name")).toBeInViewport();
+    // Leva ao começo do ato IV; no celular o cartão vem antes do formulário.
+    await expect(page.locator("#list-title")).toBeInViewport();
   });
 });
 

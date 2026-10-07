@@ -1,5 +1,5 @@
 ---
-// Ato III Â· La Boutique: fragmentos da Pro Shop em close, sem preÃ§o e sem nome de produto.
+// Ato III · La Boutique: fragmentos da Pro Shop em close, sem preço e sem nome de produto.
 import Photo from "./Photo.astro";
 import { BOUTIQUE } from "../content/site.ts";
 const [embroidered, knit, brim] = BOUTIQUE.fragments;
@@ -10,7 +10,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
     <header class="act-head boutique__head" data-reveal>
       <svg class="ornament" aria-hidden="true" focusable="false"><use href="#sun-rule"></use></svg>
       <h2 class="act-title" id="boutique-title">
-        <span class="act-title__numeral">{BOUTIQUE.numeral}</span><span class="act-title__dot" aria-hidden="true">Â·</span><span>{BOUTIQUE.title}</span>
+        <span class="act-title__numeral">{BOUTIQUE.numeral}</span><span class="act-title__dot" aria-hidden="true">·</span><span>{BOUTIQUE.title}</span>
       </h2>
       <p class="boutique__intro">{BOUTIQUE.intro}</p>
     </header>
@@ -36,7 +36,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </a>
-          <figcaption><span class="caps">NÂº {embroidered.no}</span><span>{embroidered.caption}</span></figcaption>
+          <figcaption><span class="caps">Nº {embroidered.no}</span><span>{embroidered.caption}</span></figcaption>
         </figure>
       </li>
       <li data-reveal>
@@ -52,7 +52,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </a>
-          <figcaption><span class="caps">NÂº {knit.no}</span><span>{knit.caption}</span></figcaption>
+          <figcaption><span class="caps">Nº {knit.no}</span><span>{knit.caption}</span></figcaption>
         </figure>
       </li>
       <li data-reveal>
@@ -79,7 +79,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
           </svg>
           </Photo>
           </a>
-          <figcaption><span class="caps">NÂº {brim.no}</span><span>{brim.caption}</span></figcaption>
+          <figcaption><span class="caps">Nº {brim.no}</span><span>{brim.caption}</span></figcaption>
         </figure>
       </li>
     </ul>
@@ -214,7 +214,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
     }
   }
 
-/* Refinamento editorial aprovado: respiro, proporÃ§Ã£o e alinhamento. */
+/* Refinamento editorial aprovado: respiro, proporção e alinhamento. */
 .boutique { background: var(--cream); padding-block: clamp(4.5rem, 8vw, 6.5625rem); }
 .boutique__intro { color: var(--muted); font-size: 1.4375rem; }
 .boutique__fragments { gap: 1.875rem; }
@@ -225,7 +225,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
 @media(min-width:48rem) { .boutique__fragments li:nth-child(2) { margin-top: 0; } }
 @media(max-width:47.999rem) { .fragment { max-width: 26rem; } }
 
-  /* AproximaÃ§Ã£o discreta, contida na moldura e sem Ã­cones. */
+  /* Aproximação discreta, contida na moldura e sem ícones. */
   .fragment__zoom { display: block; overflow: hidden; aspect-ratio: 4 / 5; }
   .fragment__zoom > :global(.fragment__photo) { width: 100%; height: 100%; transform: scale(1); transform-origin: 50% 42%; transition: transform 900ms var(--ease); }
   .fragment__zoom:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 5px; }
@@ -233,7 +233,7 @@ const [embroidered, knit, brim] = BOUTIQUE.fragments;
   @media (hover: hover) and (pointer: fine) { .fragment__zoom:hover > :global(.fragment__photo) { transform: scale(1.065); } }
   @media (prefers-reduced-motion: reduce) { .fragment__zoom > :global(.fragment__photo) { transition: none; } .fragment__zoom:hover > :global(.fragment__photo), .fragment__zoom:focus-visible > :global(.fragment__photo) { transform: none; } }
 
-/* TÃ­tulo e introduÃ§Ã£o compartilham a grade; fotografias preservadas. */
+/* Título e introdução compartilham a grade; fotografias preservadas. */
 .boutique { padding-block: 5.3125rem 4.6875rem; }
 .boutique__inner { max-width: 68.75rem; }
 .boutique__head { display: flex; flex-direction: row; justify-content: space-between; align-items: end; text-align: left; gap: 2.5rem; margin-bottom: 2.5rem; }
